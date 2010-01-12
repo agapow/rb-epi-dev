@@ -78,6 +78,27 @@ module IO
 		end
 	end
 
+	# Read and return the passed object, opening and lcosing if necessary.
+	#
+	# @param [#read, String] a readable object or a filepath (String)
+   # @param [String] the reading mode, by default 'r'
+	#
+	# This is a convenience function for a one-liner that sucks the contents
+	# from a file or similar object.
+	#
+	def quick_read (io_or_path, mode='r')
+		rdr = BaseReader.new(io_or_path, mode)
+		data = rdr.hndl.read()
+		rdr.close()
+		return data
+	end
+
+	def quick_write (data, io_or_path, mode='w')
+		wrtr = BaseWriter.new(io_or_path, mode)
+		wrtr.hndl.write(data)
+		wrtr.close()
+		return nil
+	end
 	class CsvWriter
 	end
 
