@@ -1,19 +1,7 @@
+require 'pathname'
 
-module IO
-
-	def quick_read (io_or_path, mode='r')
-		rdr = BaseReader.new(io_or_path, mode)
-		data = rdr.hndl.read()
-		rdr.close()
-		return data
-	end
-
-	def quick_write (data, io_or_path, mode='w')
-		wrtr = BaseWriter.new(io_or_path, mode)
-		wrtr.hndl.write(data)
-		wrtr.close()
-		return nil
-	end
+module Relais
+	module Dev
 
 	class BaseIO
 		def initialize(io_or_path, mode)
@@ -28,6 +16,7 @@ module IO
 				@hndl = io_or_path
 				@file_open = false
 			end
+			prepare()
 		end
 
 		# Destructor.
@@ -40,7 +29,17 @@ module IO
 			end	
 		end
 
-		# Do any necessary teardown to finish IO
+		# Do any necessary setup to commence IO.
+		#
+		# Currently all this does is close any file handle that is opened by the
+		# IO object.
+		#
+		def prepare()
+			@hndl.close()
+			@file_open = false
+		end
+		
+		# Do any necessary teardown to finish IO.
 		#
 		# Currently all this does is close any file handle that is opened by the
 		# IO object.
@@ -78,13 +77,22 @@ module IO
 		end
 	end
 
-	# Read and return the passed object, opening and lcosing if necessary.
+	# Read the contents of the passed object, opening and closing if required.
 	#
 	# @param [#read, String] a readable object or a filepath (String)
    # @param [String] the reading mode, by default 'r'
 	#
-	# This is a convenience function for a one-liner that sucks the contents
-	# from a file or similar object.
+	# This is a convenience function, allowing simple one-liners that read the
+	# contents of a file or similar object. If a string is passed, it is
+	# assumed to be a filepath, which is opened, read and closed. All other 
+	# objects are presumed to be "readable"
+	#
+	# @example
+	#    data = quick_read('foo.txt')
+	#
+	#    hndl = File.open('bar.txt', 'rb')
+	#    data = File.open(hndl)
+	#    hndl.close()
 	#
 	def quick_read (io_or_path, mode='r')
 		rdr = BaseReader.new(io_or_path, mode)
@@ -99,11 +107,13 @@ module IO
 		wrtr.close()
 		return nil
 	end
+	
 	class CsvWriter
 	end
 
 	class CsvReader
 	end
 
+end
 end
 
