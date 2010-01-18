@@ -1,2 +1,4 @@
 relais-dev/pkg
+*.swp
+.yardoc
 
