@@ -1,6 +1,7 @@
+:title: Relais code style guidelines for Ruby
 
-First principles
-----------------
+= First principles
+
 
 * Writing ocde is fast. Debeggging code is slow. `Code is read far more times
   than it is written <guido>`__. Therefore we should ensure that code is easy
@@ -24,8 +25,7 @@ First principles
 * However, always remember, we are here to get stuff done. 
 
 
-Overall formatting
-------------------
+= Overall formatting
 
 Use UTF-8 encoding. Enforce this with editor hash line at the top of the file::
 
@@ -57,8 +57,7 @@ lines between major code sections (e.g. classes) to distinguish these breaks
 from internal spacing.
 
 
-Code formatting
----------------
+= Code formatting
  
 * Use spaces around operators, after commas, colons and semicolons,
   around { and before }.
@@ -147,8 +146,7 @@ Use `Yard <http://yardoc.org>`__ for documentation. A useful template is::
 
 
 
-Also see
---------
+= Also see
 
 * `Ruby guide <http://www.caliban.org/ruby/rubyguide.shtml>`__
 
