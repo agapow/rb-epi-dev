@@ -57,7 +57,7 @@ def partition (objs, options={}, &block)
 end
 	
 
-# Calculate the frequncy of objects in a sequence.
+# Calculate the frequency of objects in a sequence.
 #
 # @param [Enumerable, #each] objs A sequence of objects to be counted
 # @yield [o] A block to generate the key (grouping term) for each object. If
