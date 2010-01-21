@@ -1,4 +1,9 @@
 require 'ostruct'
+require 'logger'
+
+module Relais
+	module Dev
+		module Common
 
 # Options and their default values for scripts and functions.
 #
@@ -31,6 +36,14 @@ require 'ostruct'
 #   my_opt = Options.new(:overwrite_data => true, :message => "foo")
 #   # or a hash if you prefer
 #   my_opt = Options.new({:overwrite_data => true, :message => "foo"})
+#
+# Usage woudl typically be:
+#
+#   def myfunc (arg1, arg2, opts={})
+#      options = Options.new(
+#        :overwrite_data => true,
+#        :message =>  "foo",
+#      ).update(opts)
 #
 class Options < OpenStruct
 	# TODO: replace "attribute" and "field" with "instance variable"
@@ -229,4 +242,7 @@ def log_error(msg, logger, options)
 	logger.add(defaults[:lvl], msg)
 end
 
+		end
+	end
+end
 
