@@ -1,18 +1,86 @@
+require 'ostruct'
 
-
-require 'logger'
-
-
-# A hash for containing option defaults
+# Options and their default values for scripts and functions.
 #
-class OptHash < Hash
-	# TODO: add a merge_opts arg that can only overwrite existing keys
+# Options are traditionally handled within Ruby by juggling and merging hashes.
+# This works fine except for the danger of mispelling silently going unnoticed:
+#
+#   options = {:overwrite_data => true}
+#   ...
+#   options[:overwrite_date] = false
+#   ... 
+#   if options[:overwrite_data]
+#   ...
+#
+# and the slightly awkward lookup required to get and set value. This class
+# solves these problems by implementing options as an OpenStruct that cannot add
+# attributes after construction. Thus options are accessed as simple attributes
+# and attempting to access a mispelt options results in an error. Also,
+# readability is helped by making intent clear in the class name: 
+#
+#   options = Options.new(:overwrite_data => true, :message => "foo") 
+#   ...
+#   options.overwrite_date = false   # error!
+#   ... 
+#   if options.overwrite_data        # easier
+#   ...
+# 
+# Options can be created with the same syntax as OpenStruct:
+#
+#   # pass keyword arguments
+#   my_opt = Options.new(:overwrite_data => true, :message => "foo")
+#   # or a hash if you prefer
+#   my_opt = Options.new({:overwrite_data => true, :message => "foo"})
+#
+class Options < OpenStruct
+	# TODO: replace "attribute" and "field" with "instance variable"
 
-	# Currently, this does nothing. However in the future it will do some
-	# argument checking to guard against mispelt keys. Perhaps a single class
-	# or a method that accepts a series of hashs (from config files etc.) and
-	# overwrites all preceding  
+	def method_missing(mid, *args) # :nodoc:
+		# TODO: should reallu call Object.method_missing, bypassing OpenStruct
+		raise TypeError, "can't add to #{self.class} once created", caller(1)
+	end
+
+	# Remove the named attribute from the object.
+	#
+	def delete_field(name)
+		raise TypeError, "can't delete from #{self.class} once created", caller(1)
+	end
+
+	# Compare this object and +other+ for equality.
+	#
+	def ==(other)
+		# TODO: change to do class comparison and make clearer 
+		return false unless(other.kind_of?(OpenStruct))
+		return @table == other.table
+	end
+
+	# Update the fields with the passed values.
+	#
+	# @param [Hash, #each_pair] hsh  A hash of attribute (key) / value pairs.
+	# 
+	# Normally this would be used to merge passed option values with a default
+	# set. It differs from the {Hash} method by raising an error if the update
+	# refers to an attribute that doesn't exist. 
+	# 
+	def update(hsh)
+		hsh.each_pair { |k,v|
+			# ???: not sure if this is the right Ruby idiom
+			instance_variable_set("@"+k, v)	
+		}
+	end
+
 end
+
+
+# Create an options object with these default values.
+#
+# @see {Options}
+#
+# This is a simple bit of semantic sugar
+def default_options(*args)
+	return Options.new(*args)
+end
+
 
 
 # Print the passed objects, and complete with a linebreak.
@@ -30,8 +98,8 @@ def printn(*args)
 	print(*args)
 	print "\n"
 end
-
-
+ 
+ 
 # Raise an exception unless the passed condition is met
 #
 # @param [Boolean] cond A test that evaulates to a boolean
@@ -70,8 +138,8 @@ def raise_unless(cond, options)
 		raise err_class.new(msg)
 	end
 end
-
-
+ 
+ 
 # Raise an exception unless the passed condition is met
 #
 # @param [Boolean] cond A test that evaulates to a boolean
@@ -108,8 +176,8 @@ def die_unless(cond, options)
 		exit(ret_code)	
 	end
 end
-
-
+ 
+ 
 # Print an error message to a stream.
 #
 # @private
@@ -135,8 +203,8 @@ def print_error (msg, options)
 	lvl_str = lvl.to_s()
 	stream.write("#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}")
 end
-
-
+ 
+ 
 # Print an error message to a logger.
 #
 # @private
@@ -144,7 +212,8 @@ end
 # @param [String, #to_s] msg An error message to report
 # @param [Logger] logger A logger to receieve the error message
 # @param [Hash] options
-# @option options [#to_s] lvl The error level, which should be a logging level but
+# @option options [#to_s] lvl The error level, which should be a logging level
+# but
 #   may be a descriptive string, Logger::ERROR by default
 #
 # This is just an internal helper function, to send an message to a logger in
@@ -159,6 +228,5 @@ def log_error(msg, logger, options)
 	## Main:
 	logger.add(defaults[:lvl], msg)
 end
-
 
 

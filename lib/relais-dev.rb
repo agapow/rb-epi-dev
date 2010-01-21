@@ -1,19 +1,25 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-# The module that contains everything Sass-related:
+# Relais::Dev is a collection of assorted utility functions for development and
+# debugging. Although it has a deep purpose as a aid for the Ruby port of the
+# Relais epiinformatics suite <http://www.epicentr.org>, it should be suitable
+# for general programming making several common tasks quick and consistent. 
+#   
+# By importing this file you get the entirity of Relais::Dev which contains:
 #
-# * {Sass::Engine} is the class used to render Sass within Ruby code.
-# * {Sass::Plugin} is interfaces with web frameworks (Rails and Merb in
-# particular).
-# * {Sass::SyntaxError} is raised when Sass encounters an error.
-# * {Sass::CSS} handles conversion of CSS to Sass.
+# * {Relais::Dev::Common} for traditional debugging constructs like diagnostic
+#   printing and assertion.
+# * {Relais::Dev::Io} for consistent and simple IO classes.
+# * {Relais::Dev::Cli} for commandline program functions, including a more.
+#   sophisticated argument parser and common commandline flags.
+# * {Relais::Dev::Log} for enhanced and streamlined logging. 
+# * {Relais::Dev::Text} for common text manipulation utilities. 
+# * {Relais::Dev::Math} for assorted math functions. 
 #
-# Also see the {file:SASS_REFERENCE.md full Sass reference}.
-
 module Relais
 	module Dev
-		VERSION = '0.0.2'
+		VERSION = '0.0.3'
 	end
 end
 
