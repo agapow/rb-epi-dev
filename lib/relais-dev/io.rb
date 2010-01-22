@@ -92,6 +92,26 @@ module Relais
 		def initialize(io_or_path, mode='r')
 			super.initialize(io_or_path, mode)
 		end
+
+		# Return entire ocntents of IO object.
+		#
+		def read(&block)
+			
+		end
+
+	end
+
+	class RecordReader < BaseReader
+		# ???: should 'read' alias to 'read_all' or vice versa
+
+		def read_each(&block)
+
+		end
+
+		def read_all()
+
+		end
+
 	end
 
 	# Read the contents of the passed object, opening and closing if required.
