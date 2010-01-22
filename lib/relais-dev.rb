@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
@@ -26,6 +29,8 @@ end
 require 'relais-dev/common'
 require 'relais-dev/io'
 require 'relais-dev/text'
-require 'relais-dev/simplelog'
+require 'relais-dev/log'
 require 'relais-dev/cli'
+require 'relais-dev/math'
+require 'relais-dev/errors'
 

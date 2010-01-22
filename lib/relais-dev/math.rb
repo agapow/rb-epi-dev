@@ -1,3 +1,6 @@
+#! /usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
 # Useful sequence analysis functions, especially for SNPs
 #
 # For simplicity, we assume lowest commn denominator here in terms of data

@@ -1,3 +1,6 @@
+#! /usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
 require 'ostruct'
 require 'logger'
 
@@ -37,7 +40,7 @@ module Relais
 #   # or a hash if you prefer
 #   my_opt = Options.new({:overwrite_data => true, :message => "foo"})
 #
-# Usage woudl typically be:
+# Usage would typically be:
 #
 #   def myfunc (arg1, arg2, opts={})
 #      options = Options.new(
@@ -78,8 +81,9 @@ class Options < OpenStruct
 	def update(hsh)
 		hsh.each_pair { |k,v|
 			# ???: not sure if this is the right Ruby idiom
-			instance_variable_set("@"+k, v)	
+			instance_variable_set("@"+k.to_s, v)	
 		}
+		return self
 	end
 
 end
@@ -135,11 +139,11 @@ def raise_unless(cond, options)
 	# TODO: use globals to set the default err logger and stream
 	# TODO: need a better word than 'defaults'
 	defaults = {
-		err_class=AssertionError,
-		msg="an unknown error has occurred and an exception has been raised",
-		logger=nil,
-		lvl=Logger:ERROR,
-		err_stream=$stderr,
+		:err_class => AssertionError,
+		:msg => "an unknown error has occurred and an exception has been raised",
+		:logger => nil,
+		:lvl => Logger::ERROR,
+		:err_stream => $stderr,
 	}.merge(options)
 	unless (cond)
 		if defaults[:err_stream]
@@ -173,11 +177,11 @@ end
 #
 def die_unless(cond, options)
 	defaults = {
-		ret_code=AssertionError,
-		msg="an unknown error has occurred and the program will exit",
-		logger=nil,
-		lvl=Logger:FATAL,
-		err_stream=$stderr,
+		:ret_code => AssertionError,
+		:msg => "an unknown error has occurred and the program will exit",
+		:logger => nil,
+		:lvl => Logger::FATAL,
+		:err_stream => $stderr,
 	}.merge(options)
    unless (cond)
 		if defaults[:err_stream]
@@ -209,9 +213,9 @@ def print_error (msg, options)
 	## Preconditions & preparation:
 	# ???: you can use STDERR or $stderr, unsure which is best
 	defaults = {
-		stream=$stderr,
-		lvl=Logger:ERROR,
-	}.merge (options)
+		:stream => $stderr,
+		:lvl => Logger::ERROR,
+	}.merge(options)
 	## Main:
 	lvl_str = lvl.to_s()
 	stream.write("#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}")
@@ -236,8 +240,8 @@ end
 def log_error(msg, logger, options)
 	## Preconditions & preparation:
 	defaults = {
-		lvl=Logger:ERROR,
-	}.merge (options)
+		:lvl => Logger::ERROR,
+	}.merge(options)
 	## Main:
 	logger.add(defaults[:lvl], msg)
 end

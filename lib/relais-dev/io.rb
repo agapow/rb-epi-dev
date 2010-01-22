@@ -1,3 +1,6 @@
+#! /usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
 # so here's the idea for the io idiom:
 # * every io object was a class method "use_with" that passes itself to the
 # block
@@ -16,11 +19,17 @@
 
 require 'pathname'
 
+require 'relais-dev/common'
+include Relais::Dev::Common
+
 module Relais
 	module Dev
 		module IO
 
 	class BaseIO
+
+		attr_accessor(:hndl, :file_open)
+
 		def initialize(io_or_path, mode)
 			# TODO: what if it's a Pathname?
 
@@ -90,7 +99,7 @@ module Relais
 		# TODO: use each and enumerable for reading
 
 		def initialize(io_or_path, mode='r')
-			super.initialize(io_or_path, mode)
+			super(io_or_path, mode)
 		end
 
 		# Return entire ocntents of IO object.
@@ -103,16 +112,87 @@ module Relais
 
 	class RecordReader < BaseReader
 		# ???: should 'read' alias to 'read_all' or vice versa
+		
+		def read_record(row)
+			# TODO: throw unimplemented 	
+		end
 
+		def >>(row)
+			read_record(row)
+		end
+
+		# Read every record and pass it to the block
 		def read_each(&block)
 
 		end
 
+		# Return an array of every record
 		def read_all()
+			return [].collect
 
 		end
 
+		def read()
+			return read_all
+		end
+
 	end
+
+	class RecordWriter < BaseWriter
+		
+	end
+
+	class CsvWriter < RecordWriter
+
+		def initialise(opts={})
+			@options = default_options(
+				:header => false,
+				:mode => 'rb'
+			).update(opts)
+			@header_len = @options.header ? @options.header.length: nil
+			# TODO: cal to super
+		end
+
+		def prepare()
+			@csv_writer = CSV::Writer.create(@hndl)
+		end
+
+		def finish()
+			@csv_writer.close()
+		end
+
+		def write_record(row)
+			@csv_writer << row
+		end
+
+		def <<(row)
+			write_record(row)
+		end
+
+	end
+
+
+	class CsvReader < RecordReader
+
+		def prepare()
+			@csv_writer = CSV::Writer.create(@hndl)
+		end
+
+		def finish()
+			@csv_writer.close()
+		end
+
+		def read_record(row)
+			@csv_writer << row
+		end
+
+		def >>(row)
+			write_record(row)
+		end
+
+	end
+
+
 
 	# Read the contents of the passed object, opening and closing if required.
 	#
@@ -141,38 +221,6 @@ module Relais
 		return data
 	end
 
-	# Write data to the passed object, opening and closing if required.
-	#
-	# @param [#read, String] io_or_path  A writable object or a filepath
-	#    (String).
-   # @param [String] mode  The writing mode, by default 'w'.
-	#
-	# @returns The data in the file. 
-	#
-	# This is a convenience function, allowing simple one-liners that read the
-	# contents of a file or similar object. If a string is passed, it is
-	# assumed to be a filepath, which is opened, read and closed. All other 
-	# objects are presumed to be "readable".
-	#
-	# @example
-	#    data = quick_read('foo.txt')
-	#
-	#    hndl = File.open('bar.txt', 'rb')
-	#    data = File.open(hndl)
-	#    hndl.close()
-	#
-	def quick_write (data, io_or_path, mode='w')
-		wrtr = BaseWriter.new(io_or_path, mode)
-		wrtr.hndl.write(data)
-		wrtr.close()
-		return nil
-	end
-	
-	class CsvWriter
-	end
-
-	class CsvReader
-	end
 
 		end
 	end
