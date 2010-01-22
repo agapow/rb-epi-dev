@@ -1,3 +1,19 @@
+# so here's the idea for the io idiom:
+# * every io object was a class method "use_with" that passes itself to the
+# block
+# * every reader has a iterator method that passes records one-by-one to the
+# block
+# * every writer was a iterator method that accepts results from block (how do
+# we loop appropriate time?
+#
+# So:
+#    MyReader.use_with('file/path', 'rb') { |rdr|
+#      rdr.each_record { |rec|
+#         ...
+#      }
+#    } 
+
+
 require 'pathname'
 
 module Relais
