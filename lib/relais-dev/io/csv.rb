@@ -20,11 +20,10 @@
 require 'pathname'
 
 require 'relais-dev/common'
-include Relais::Dev::Common
+include Relais::Dev
 
 module Relais
 	module Dev
-		module IO
 
 	class BaseIO
 
@@ -222,7 +221,6 @@ module Relais
 	end
 
 
-		end
 	end
 end
 

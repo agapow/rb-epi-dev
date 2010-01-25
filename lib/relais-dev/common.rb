@@ -6,7 +6,6 @@ require 'logger'
 
 module Relais
 	module Dev
-		module Common
 
 # Options and their default values for scripts and functions.
 #
@@ -246,7 +245,6 @@ def log_error(msg, logger, options)
 	logger.add(defaults[:lvl], msg)
 end
 
-		end
 	end
 end
 
