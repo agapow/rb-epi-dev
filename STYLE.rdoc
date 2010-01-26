@@ -2,27 +2,24 @@
 
 = First principles
 
+* Be readable: Writing code is fast. Debugging code is slow. `Code is read far
+  more times than it is written <guido>`__. Therefore we should ensure that code
+  is easy to read at the expense of taking longer to write it.
 
-* Writing ocde is fast. Debeggging code is slow. `Code is read far more times
-  than it is written <guido>`__. Therefore we should ensure that code is easy
-  to read at the expense of taking longer to write it.
+* Be memorable: Consistency is good. Meeting expectations is good. Code and
+  APIs that are easy to learn and understand are those that behave the way you
+  expect them to.
 
-* Consistency is good. Meeting expectations is good. Code and APIs that are
-  easy to learn and understand are those that behave the way you expect them
-  to.
+* Be clear: Explicit is better than implicit. In the face of ambiguity, refuse
+  the temptation to guess. There should be one-- and preferably only one
+  --obvious and good way to do it.
 
-* `A foolish consistency is the hobgoblin of small minds <>`__. Within reason.
-  If style intereferes with the *functionality* of code, style must give way.
+* Be simple: If the implementation is hard to explain, it's a bad idea. If the
+  implementation is easy to explain, it may be a good idea.
 
-* Explicit is better than implcit.
-
-* In the face of ambiguity, refuse the temptation to guess.
-
-* There should be one-- and preferably only one --obvious way to do it.
-
-* If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea.
-
-* However, always remember, we are here to get stuff done. 
+* Be reasonable: `A foolish consistency is the hobgoblin of small minds <>`__.
+  Within reason. If style interferes with the *functionality* of code, style
+  must give way. And always remember, we are here to get stuff done. 
 
 
 = Overall formatting
@@ -33,23 +30,20 @@ Use UTF-8 encoding. Enforce this with editor hash line at the top of the file::
 
 Use Unix-style line endings.
 
-.. rationale:
-	Strange encodings and end-of-line markers can cause strange errors in editors and interpretors. But
-	everything understand utf8 and newline.	
+*Rationale: Strange encodings and end-of-line markers can cause strange errors
+in editors and interpretors. But everything understand utf8 and newline.*
  
 Use tabs *or* spaces for indenting, but not both. Be consistent.
 
-.. rationale:
-	This gives a consistent level of relative indenting / nesting regardless of
-	local editor settings and lets the code be easily 
+*Rationale: This gives a consistent level of relative indenting / nesting
+regardless of local editor settings and lets the code be easily.*
 
 Keep lines fewer than 80 characters.
 
-.. rationale:
-	Readability - I shouldn't have to scroll to see that the line ends "unless
-	...". Also, lines that are longer than 80 characters are a sign that 1.
-	you're probably trying to do too much in one line or 2. your variable names
-	are far too long. 
+*Rationale: I shouldn't have to scroll across to see that the line ends "unless
+...". Also, lines that are longer than 80 characters are a sign that 1. you're
+probably trying to do too much in one line or 2. your variable names are far too
+long.*
 
 Readability studies suggest that indivdual function should be no more than a
 screenful and that within should be broke up into sections of 5-7 lines. Use two
@@ -62,7 +56,8 @@ from internal spacing.
 * Use spaces around operators, after commas, colons and semicolons,
   around { and before }.
  
-* No spaces after (, [ and before ], ). except where doing multiline lists or hashes.
+* No spaces after (, [ and before ], ). except where doing multiline lists or
+  hashes.
  
 * Indent when as deep as case.
  
@@ -98,12 +93,11 @@ implcit returns, etc. Don't.
 
 Use "||" instead of "or".
 
-.. rationale:
-	"||" works like you expect, whereas "or" sometimes doesn't, depending on
-   context. See `here <TODO>`__
+*Rationale: "||" works like you expect, whereas "or" sometimes doesn't,
+depending on context. See `here <TODO>`__.*
 
 Optional function parameters should always be passed in a hash as the final
-argument, even if there is only one, using an idiom like this::
+argument - even if there is only one - using an idiom like this::
 
 	def myfunc(arg1, arg2, opts={})
 		defaults = {
@@ -111,24 +105,25 @@ argument, even if there is only one, using an idiom like this::
 			:bar => true,
 		}.merge(options)
 
-.. rationale:
-	Ruby's mapping of the parameters passed in to arguments gets super messy if
-   you interleave named and unamed arguments or want to pass in some but not all
-   unamed arguments. By using the Rails-style final hash, we get clarity,
-   consistency and the ability to use any combination of optional arguments. It
-   is tempting to eschew the hash if there is only one optional argument, but if
-   another optional parameter has to be added later, the function signature will
-   get ugly::
+*Rationale: Ruby's mapping of the parameters passed in to arguments gets super
+messy if you interleave named and unamed arguments or want to pass in some but
+not all unamed arguments. By using the Rails-style final hash, we get clarity,
+consistency and the ability to use any combination of optional arguments. It is
+tempting to eschew the hash if there is only one optional argument, but if
+another optional parameter has to be added later, the function signature will
+get ugly:*
 
-		# tempting but wrong
-      def wraptext(str, width=60)
-		# when more parameters are added
-		def wraptext(str, width=60, strip_newlines=true)
-		def wraptext(str, width=60, options={})
-		# better solution
-		def wraptext(str, options={})
-     
-Use `Yard <http://yardoc.org>`__ for documentation. A useful template is::
+	# tempting but wrong
+	def wraptext(str, width=60)
+	
+	# when more parameters are added
+	def wraptext(str, width=60, strip_newlines=true)
+	def wraptext(str, width=60, options={})
+	
+	# better solution
+	def wraptext(str, options={})
+
+Use `Yard <http://yardoc.org>`__ for documentation. A useful template is:
 
 	# Short description of function.
 	#
@@ -137,26 +132,48 @@ Use `Yard <http://yardoc.org>`__ for documentation. A useful template is::
 	#
 	# @return A description of return values.
 	#
+	# A more detailed description.
+	#
+	# @example
+	#   myfunc(1, 2) => 3
+	#
 	def myfunc(param1, param2)
 		...
- 
-.. rationale:
-	Yard's syntax is slightly awkward and requires some discipline and
-	consistency to use, but the output is far more consistent.
 
+*Rationale: Yard's syntax is slightly awkward and requires some discipline and
+consistency to use, but the output is far more consistent and organised that the
+usual RDoc.*
+
+
+= Miscellaneous
+
+When in doubt about the right level of access restriction (e.g. private vs.
+protected), maybe you should defer the decision and leave it all public.
+
+*Rationale: Make the access too restrictive and you make it hard for your users,
+encourage them to duplicate functionality or hack around your restrictions.
+Better to be too lax and maybe tighten up later, although this has problem that
+it may invalidate working code. As an alternative, Python's idea of policy for
+security (i.e. "only use this if you have to and know what you're doing") works
+well for most cases.*
+
+An API isn't correct and hasn't been tested until it has been used in anger.
 
 
 = Also see
 
 * `Ruby guide <http://www.caliban.org/ruby/rubyguide.shtml>`__
 
-* Christian Neukirchen `Ruby Style Guide <http://github.com/chneukirchen/styleguide/blob/master/RUBY-STYLE>`__
+* Christian Neukirchen `Ruby Style Guide
+  <http://github.com/chneukirchen/styleguide/blob/master/RUBY-STYLE>`__
 
-* Benjamin Kudria `Ruby srtyle guide <http://github.com/bkudria/styleguide>`__
+* Benjamin Kudria `Ruby style guide <http://github.com/bkudria/styleguide>`__
 
-* Guido van Rossum `PEP 8 - Style guide for Python code <http://www.python.org/dev/peps/pep-0008/>`__
+* Guido van Rossum `PEP 8 - Style guide for Python code
+  <http://www.python.org/dev/peps/pep-0008/>`__
 
-* Tim Peters `PEP 20 - The Zen of Python <http://www.python.org/dev/peps/pep-0020/>`__
+* Tim Peters `PEP 20 - The Zen of Python
+  <http://www.python.org/dev/peps/pep-0020/>`__
 
 
 
