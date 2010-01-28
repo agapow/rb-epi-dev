@@ -18,6 +18,11 @@ $hoe = Hoe.spec 'relais-dev' do
 
 end
 
+YARD::Rake::YardocTask.new do |t|
+  t.files   = ['lib/**/*.rb', OTHER_PATHS]   # optional
+  t.options = ['--any', '--extra', '--opts'] # optional
+end
+
 require 'newgem/tasks'
 Dir['tasks/**/*.rake'].each { |t| load t }
 

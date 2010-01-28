@@ -25,7 +25,7 @@ module Relais
 			# @yield [o] A block to generate the key (grouping term) for each object. If
 			#   not given, we use simple equality (i.e. the item itself)
 			#
-			# @returns [Hash] a hash of the key generated from each item and an array of the
+			# @return [Hash] a hash of the key generated from each item and an array of the
 			#   corrsponding items 
 			#
 			# There is actually a function in Rails for this, but 1. Rails is not always
@@ -72,7 +72,7 @@ module Relais
 			# @yield [o] A block to generate the key (grouping term) for each object. If
 			#   not given, we use simple equality (i.e. the item itself)
 			#
-			# @returns [Hash] a hash of the key generated from each item and an array of the
+			# @return [Hash] a hash of the key generated from each item and an array of the
 			#   corrsponding items 
 			#
 			# This works in an analogous way to the partition function, except the hash it

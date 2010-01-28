@@ -63,7 +63,7 @@ module Relais
 				#   pairs.
 				# 
 				# Normally this would be used to merge passed option values with a
-				# default set. It differs from the {Hash} method by raising an error
+				# default set. It differs from the Hash method by raising an error
 				# if the update refers to an attribute that doesn't exist.
 				#
 				def update(hsh)
