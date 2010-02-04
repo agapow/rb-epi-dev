@@ -58,7 +58,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/relais-dev.rb<span class="defines">,<br />
-  lib/relais-dev/io.rb</span>
+  lib/relais-dev/math.rb,<br /> lib/relais-dev/common.rb,<br /> lib/relais-dev/io/csv.rb,<br /> lib/relais-dev/io/base.rb,<br /> lib/relais-dev/io/quick.rb,<br /> lib/relais-dev/base/ohash.rb,<br /> lib/relais-dev/base/fixedstruct.rb</span>
 </dd>
   
 </dl>
@@ -68,9 +68,9 @@
 <p class="children">
    
     
-   
+      <strong class="modules">Modules:</strong> <a href="Dev/Base.html" title="Relais::Dev::Base (module)">Base</a>, <a href="Dev/Common.html" title="Relais::Dev::Common (module)">Common</a>, <a href="Dev/I0.html" title="Relais::Dev::I0 (module)">I0</a>, <a href="Dev/IO.html" title="Relais::Dev::IO (module)">IO</a>, <a href="Dev/Math.html" title="Relais::Dev::Math (module)">Math</a>
     
-      <strong class="classes">Classes:</strong> <a href="Dev/BaseIO.html" title="Relais::Dev::BaseIO (class)">BaseIO</a>, <a href="Dev/BaseReader.html" title="Relais::Dev::BaseReader (class)">BaseReader</a>, <a href="Dev/BaseWriter.html" title="Relais::Dev::BaseWriter (class)">BaseWriter</a>, <a href="Dev/CsvReader.html" title="Relais::Dev::CsvReader (class)">CsvReader</a>, <a href="Dev/CsvWriter.html" title="Relais::Dev::CsvWriter (class)">CsvWriter</a>
+   
     
   
 </p>
@@ -82,7 +82,7 @@
         <dt id="VERSION-constant" class="">VERSION =
             <span class="summary_desc"></span>
         </dt>
-        <dd><pre class="code"><span class='string val'>'0.0.2'</span>
+        <dd><pre class="code"><span class='string val'>'0.0.3'</span>
 </pre></dd>
       
     </dl>
@@ -90,204 +90,11 @@
 
 
 
-  <h2>Instance Method Summary</h2>
-
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#quick_read-instance_method" title="#quick_read (instance method)">- (Object) <strong>quick_read</strong>(io_or_path, mode = 'r') </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Read the contents of the passed object, opening and closing if required.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#quick_write-instance_method" title="#quick_write (instance method)">- (Object) <strong>quick_write</strong>(data, io_or_path, mode = 'w') </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-  </ul>
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-    
-    
-      <div class="method_details first">
-  <p class="signature first" id="quick_read-instance_method">
-  
-    - (<tt>Object</tt>) <strong>quick_read</strong>(io_or_path, mode = 'r') 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Read the contents of the passed object, opening and closing if required.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">   <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='quick_read identifier id'>quick_read</span><span class='lparen token'>(</span><span class='string val'>'foo.txt'</span><span class='rparen token'>)</span>
-
-   <span class='hndl identifier id'>hndl</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='string val'>'bar.txt'</span><span class='comma token'>,</span> <span class='string val'>'rb'</span><span class='rparen token'>)</span>
-   <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='hndl identifier id'>hndl</span><span class='rparen token'>)</span>
-   <span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-</pre>
-    
-  </div>
-<h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>#read</tt>, <tt>String</tt>)</span>
-      
-      
-        <span class='name'>a</span>
-      
-      
-      
-        &mdash;
-        
-readable object or a filepath (String)
-
-
-      
-    </li>
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>the</span>
-      
-      
-      
-        &mdash;
-        
-reading mode, by default &#8216;r&#8217;
-
-
-This is a convenience function, allowing simple one-liners that read the
-contents of a file or similar object. If a string is passed, it is assumed
-to be a filepath, which is opened, read and closed. All other objects are
-presumed to be &quot;readable&quot;
-
-
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-97
-98
-99
-100
-101
-102</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io.rb', line 97</span>
-
-<span class='def def kw'>def</span> <span class='quick_read identifier id'>quick_read</span> <span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='assign token'>=</span><span class='string val'>'r'</span><span class='rparen token'>)</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
-  <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='data identifier id'>data</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="quick_write-instance_method">
-  
-    - (<tt>Object</tt>) <strong>quick_write</strong>(data, io_or_path, mode = 'w') 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-104
-105
-106
-107
-108
-109</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io.rb', line 104</span>
-
-<span class='def def kw'>def</span> <span class='quick_write identifier id'>quick_write</span> <span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='comma token'>,</span> <span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='assign token'>=</span><span class='string val'>'w'</span><span class='rparen token'>)</span>
-  <span class='wrtr identifier id'>wrtr</span> <span class='assign token'>=</span> <span class='BaseWriter constant id'>BaseWriter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
-  <span class='wrtr identifier id'>wrtr</span><span class='dot token'>.</span><span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
-  <span class='wrtr identifier id'>wrtr</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Thu Jan 14 16:05:10 2010 by 
+  Generated on Wed Jan 27 14:11:14 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

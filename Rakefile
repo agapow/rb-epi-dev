@@ -2,6 +2,7 @@ require 'rubygems'
 gem 'hoe', '>= 2.1.0'
 require 'hoe'
 require 'fileutils'
+require 'yard'
 require './lib/relais-dev'
 
 Hoe.plugin :newgem
@@ -19,7 +20,7 @@ $hoe = Hoe.spec 'relais-dev' do
 end
 
 YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb', OTHER_PATHS]   # optional
+  t.files   = ['lib/**/*.rb']   # optional
   t.options = ['--any', '--extra', '--opts'] # optional
 end
 

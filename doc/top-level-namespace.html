@@ -67,7 +67,7 @@
     
    
     
-      <strong class="classes">Classes:</strong> <a href="Bioseq.html" title="Bioseq (class)">Bioseq</a>, <a href="EpiObject.html" title="EpiObject (class)">EpiObject</a>, <a href="ExtRef.html" title="ExtRef (class)">ExtRef</a>, <a href="Isolate.html" title="Isolate (class)">Isolate</a>, <a href="PrimaryEpiObject.html" title="PrimaryEpiObject (class)">PrimaryEpiObject</a>
+      <strong class="classes">Classes:</strong> <a href="AssertionError.html" title="AssertionError (class)">AssertionError</a>, <a href="Bioseq.html" title="Bioseq (class)">Bioseq</a>, <a href="EpiObject.html" title="EpiObject (class)">EpiObject</a>, <a href="ExtRef.html" title="ExtRef (class)">ExtRef</a>, <a href="Isolate.html" title="Isolate (class)">Isolate</a>, <a href="PrimaryEpiObject.html" title="PrimaryEpiObject (class)">PrimaryEpiObject</a>, <a href="UnimplementedError.html" title="UnimplementedError (class)">UnimplementedError</a>
     
   
 </p>
@@ -120,6 +120,29 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#fill_text-instance_method" title="#fill_text (instance method)">- (Object) <strong>fill_text</strong>(txt, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Like wrap_text but returns an array of lines.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#load_from_file-instance_method" title="#load_from_file (instance method)">- (Object) <strong>load_from_file</strong>(file_or_path) </a>
     
 
@@ -160,7 +183,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#printn-instance_method" title="#printn (instance method)">- (Object) <strong>printn</strong>(*args) </a>
+      <a href="#wrap_text-instance_method" title="#wrap_text (instance method)">- (Hash) <strong>wrap_text</strong>(txt, col = 60) </a>
     
 
     
@@ -173,52 +196,9 @@
 
   
     <span class="summary_desc">
-Print the passed objects, and complete with a linebreak.
+Wrap a length of text to fit within a given width.
 
 </span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#raise_unless-instance_method" title="#raise_unless (instance method)">- (Object) <strong>raise_unless</strong>(cond, options) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Raise an exception unless the passed condition is met.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#wrap_text-instance_method" title="#wrap_text (instance method)">- (Object) <strong>wrap_text</strong>(txt, col = 60) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
   
 </li>
 
@@ -243,9 +223,6 @@ Raise an exception unless the passed condition is met.
       <pre class="lines">
 
 
-84
-85
-86
 87
 88
 89
@@ -254,10 +231,13 @@ Raise an exception unless the passed condition is met.
 92
 93
 94
-95</pre>
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 87</span>
 
 <span class='def def kw'>def</span> <span class='dump_to_file identifier id'>dump_to_file</span> <span class='lparen token'>(</span><span class='obj identifier id'>obj</span><span class='comma token'>,</span> <span class='file_or_path identifier id'>file_or_path</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='file_or_path identifier id'>file_or_path</span><span class='dot token'>.</span><span class='class identifier id'>class</span> <span class='eq op'>==</span> <span class='String constant id'>String</span>
@@ -278,6 +258,46 @@ Raise an exception unless the passed condition is met.
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="fill_text-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fill_text</strong>(txt, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Like wrap_text but returns an array of lines
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/text.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='fill_text identifier id'>fill_text</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span>  <span class='wrap_text identifier id'>wrap_text</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="load_from_file-instance_method">
   
     - (<tt>Object</tt>) <strong>load_from_file</strong>(file_or_path) 
@@ -290,9 +310,6 @@ Raise an exception unless the passed condition is met.
       <pre class="lines">
 
 
-98
-99
-100
 101
 102
 103
@@ -302,10 +319,13 @@ Raise an exception unless the passed condition is met.
 107
 108
 109
-110</pre>
+110
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 101</span>
 
 <span class='def def kw'>def</span> <span class='load_from_file identifier id'>load_from_file</span> <span class='lparen token'>(</span><span class='file_or_path identifier id'>file_or_path</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='file_or_path identifier id'>file_or_path</span><span class='dot token'>.</span><span class='class identifier id'>class</span> <span class='eq op'>==</span> <span class='String constant id'>String</span>
@@ -339,12 +359,12 @@ Raise an exception unless the passed condition is met.
       <pre class="lines">
 
 
-79
-80
-81</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/epiobjs.rb', line 82</span>
 
 <span class='def def kw'>def</span> <span class='obj_from_yaml identifier id'>obj_from_yaml</span> <span class='lparen token'>(</span><span class='yaml_node identifier id'>yaml_node</span><span class='rparen token'>)</span>
 
@@ -356,16 +376,16 @@ Raise an exception unless the passed condition is met.
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="printn-instance_method">
+  <p class="signature " id="wrap_text-instance_method">
   
-    - (<tt>Object</tt>) <strong>printn</strong>(*args) 
+    - (<tt>Hash</tt>) <strong>wrap_text</strong>(txt, col = 60) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Print the passed objects, and complete with a linebreak.
+Wrap a length of text to fit within a given width
 </p>
 
 
@@ -377,8 +397,11 @@ Print the passed objects, and complete with a linebreak.
     <h3>Examples:</h3>
     
       <h4></h4>
-      <pre class="example code">  <span class='rshft op'>&gt;&gt;</span><span class='gt op'>&gt;</span> <span class='printn identifier id'>printn</span><span class='lparen token'>(</span><span class='string val'>'foo'</span><span class='rparen token'>)</span>
-  <span class='string val'>'foo'</span>
+      <pre class="example code">  <span class='rshft op'>&gt;&gt;</span> <span class='partition identifier id'>partition</span><span class='lparen token'>(</span><span class='lparen token'>(</span><span class='float val'>1</span><span class='dot2 op'>..</span><span class='integer val'>6</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span> <span class='mod op'>%</span> <span class='integer val'>2</span> <span class='rbrace token'>}</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='integer val'>0</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='lbrack token'>[</span><span class='integer val'>2</span><span class='comma token'>,</span> <span class='integer val'>4</span><span class='comma token'>,</span> <span class='integer val'>6</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='integer val'>1</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='integer val'>3</span><span class='comma token'>,</span> <span class='integer val'>5</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span>
+  <span class='comment val'># change the values stored to a string representation</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='partition identifier id'>partition</span><span class='lparen token'>(</span><span class='lparen token'>(</span><span class='float val'>1</span><span class='dot2 op'>..</span><span class='integer val'>6</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:value_proc=</span><span class='gt op'>&gt;</span><span class='lambda identifier id'>lambda</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='f identifier id'>f</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrace token'>}</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='x identifier id'>x</span><span class='bitor op'>|</span> <span class='x identifier id'>x</span> <span class='mod op'>%</span> <span class='integer val'>2</span> <span class='rbrace token'>}</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='integer val'>0</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='lbrack token'>[</span><span class='string val'>&quot;2&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;4&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;6&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='integer val'>1</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='lbrack token'>[</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;3&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;5&quot;</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span>
 </pre>
     
   </div>
@@ -387,94 +410,16 @@ Print the passed objects, and complete with a linebreak.
   
     <li>
       
-        <span class='type'></span>
+        <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>[]</span>
-      
-      
-      
-        &mdash;
-        
-args ant objects that can be printed
-
-
-This is a simple convenience function, prompted by the irritation of having
-to add &#8217;\n&#8217; after every &quot;diagnostic printf&quot; .
-
-
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-13
-14
-15
-16</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 13</span>
-
-<span class='def def kw'>def</span> <span class='printn identifier id'>printn</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='print identifier id'>print</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='print identifier id'>print</span> <span class='string val'>&quot;\n&quot;</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="raise_unless-instance_method">
-  
-    - (<tt>Object</tt>) <strong>raise_unless</strong>(cond, options) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Raise an exception unless the passed condition is met
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='day_of_month identifier id'>day_of_month</span> <span class='leq op'>&lt;=</span> <span class='integer val'>32</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='filepath identifier id'>filepath</span><span class='dot token'>.</span><span class='exists identifier id'>exists</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:error=</span><span class='gt op'>&gt;</span><span class='IOError constant id'>IOError</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='denominator identifier id'>denominator</span> <span class='neq op'>!=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:msg=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;division by zero!&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-</pre>
-    
-  </div>
-<h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <span class='name'>cond</span>
+        <span class='name'>txt</span>
       
       
       
         &mdash;
         
-A test that evaulates to a boolean
+The text to be wraopped.
 
 
       
@@ -491,7 +436,7 @@ A test that evaulates to a boolean
       
         &mdash;
         
-An options hash
+A hash of optional parameters
 
 
       
@@ -504,44 +449,30 @@ An options hash
     
     
     
-    <h3>Options Hash (<tt>options</tt>):</h3>
-    <ul class="option">
-      
-        <li>
-          <span class="type">(<tt>Exception class</tt>)</span>
-          <span class="name">error</span>
-          <span class="default">
-            
-              <span class="na">N/A</span>
-            
-          </span>
-          &mdash;
-An exception class, by default AssertionError
-
-
-        </tr>
-      
-        <li>
-          <span class="type">(<tt>String</tt>)</span>
-          <span class="name">error</span>
-          <span class="default">
-            
-              <span class="na">N/A</span>
-            
-          </span>
-          &mdash;
-An error message, by default &quot;an unknown error has occurred&quot;
-
-
-Assertions are provided within Ruby, but only within the testing
-frameworks. This method plugs that gap and provides some useful extra
-functionality, such as specifying error class and message.
-
-
-        </tr>
-      
-    </ul>
+<h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+a hash of the key generated from each item and an array of the corrsponding
+items
+
+
+Once again, there is actually a function in Rails for this, but Rails is
+not always available and we can add to the functionality of this one.
+
+
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -549,44 +480,13 @@ functionality, such as specifying error class and message.
       <pre class="lines">
 
 
-37
-38
-39
-40</pre>
+27
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 37</span>
-
-<span class='def def kw'>def</span> <span class='raise_unless identifier id'>raise_unless</span><span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='error identifier id'>error</span><span class='assign token'>=</span><span class='AssertionError constant id'>AssertionError</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='assign token'>=</span><span class='string val'>&quot;an unknown error has occurred&quot;</span><span class='rbrace token'>}</span>
-   <span class='raise identifier id'>raise</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:error</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="wrap_text-instance_method">
-  
-    - (<tt>Object</tt>) <strong>wrap_text</strong>(txt, col = 60) 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-2
-3
-4
-5</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/text.rb', line 2</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/text.rb', line 27</span>
 
 <span class='def def kw'>def</span> <span class='wrap_text identifier id'>wrap_text</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='col identifier id'>col</span><span class='assign token'>=</span><span class='integer val'>60</span><span class='rparen token'>)</span>
   <span class='txt identifier id'>txt</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='dregexp node'>/(.{1,#{col}})( +|$)\n?|(.{#{col}})/</span><span class='comma token'>,</span>
@@ -603,7 +503,7 @@ functionality, such as specifying error class and message.
 </div>
     
     <div id="footer">
-  Generated on Thu Jan 14 16:05:10 2010 by 
+  Generated on Wed Jan 27 14:11:18 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

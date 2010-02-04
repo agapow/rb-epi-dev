@@ -10,60 +10,34 @@ digraph TopLevel {
         color = black
     ]
 
-    Isolate [
+    UnimplementedError [
         fontcolor = black,
-        URL = "classes/Isolate.html",
+        URL = "classes/UnimplementedError.html",
         shape = ellipse,
         color = palegoldenrod,
         style = filled,
-        label = "Isolate"
+        label = "UnimplementedError"
     ]
 
-    Bioseq [
+    AssertionError [
         fontcolor = black,
-        URL = "classes/Bioseq.html",
+        URL = "classes/AssertionError.html",
         shape = ellipse,
         color = palegoldenrod,
         style = filled,
-        label = "Bioseq"
+        label = "AssertionError"
     ]
 
-    PrimaryEpiObject [
-        fontcolor = black,
-        URL = "classes/PrimaryEpiObject.html",
-        shape = ellipse,
-        color = palegoldenrod,
-        style = filled,
-        label = "PrimaryEpiObject"
+    StandardError [
+        URL = "classes/StandardError.html",
+        label = "StandardError"
     ]
 
-    ExtRef [
-        fontcolor = black,
-        URL = "classes/ExtRef.html",
-        shape = ellipse,
-        color = palegoldenrod,
-        style = filled,
-        label = "ExtRef"
-    ]
-
-    EpiObject [
-        fontcolor = black,
-        URL = "classes/EpiObject.html",
-        shape = ellipse,
-        color = palegoldenrod,
-        style = filled,
-        label = "EpiObject"
-    ]
-
-    PrimaryEpiObject -> Isolate [
+    StandardError -> UnimplementedError [
 
     ]
 
-    PrimaryEpiObject -> Bioseq [
-
-    ]
-
-    EpiObject -> PrimaryEpiObject [
+    StandardError -> AssertionError [
 
     ]
 

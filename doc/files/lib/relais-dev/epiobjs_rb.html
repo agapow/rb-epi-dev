@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Tue Jan 12 18:14:09 +0000 2010</td>
+      <td>Fri Jan 22 16:53:40 +0000 2010</td>
     </tr>
     </table>
   </div>
@@ -75,9 +75,15 @@
   <area shape="rect" coords="152,6,224,54"      href="../../../classes/ExtRef.html" alt="ExtRef" />
   <area shape="rect" coords="51,6,128,54"      href="../../../classes/EpiObject.html" alt="EpiObject" />
 </map>
-<img src="../../../dot/f_3.png" usemap="#map" border="0" alt="dot/f_3.png">
+<img src="../../../dot/f_2.png" usemap="#map" border="0" alt="dot/f_2.png">
     </div>
 
+    <div id="description">
+      <p>
+-*- coding: utf-8 -*-
+</p>
+
+    </div>
 
 
    </div>
@@ -86,9 +92,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000005">dump_to_file</a>&nbsp;&nbsp;
-      <a href="#M000006">load_from_file</a>&nbsp;&nbsp;
-      <a href="#M000004">obj_from_yaml</a>&nbsp;&nbsp;
+      <a href="#M000003">dump_to_file</a>&nbsp;&nbsp;
+      <a href="#M000004">load_from_file</a>&nbsp;&nbsp;
+      <a href="#M000002">obj_from_yaml</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -109,6 +115,11 @@
           <td class="context-item-name">DOMAIN</td>
           <td>=</td>
           <td class="context-item-value">'epiinformatics.org'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+-*- coding: utf-8 -*-
+
+</td>
         </tr>
         </table>
       </div>
@@ -123,21 +134,21 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="#M000003" class="method-signature">
           <span class="method-name">dump_to_file</span><span class="method-args">(obj, file_or_path)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 84</span>
+<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 87</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dump_to_file</span> (<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">file_or_path</span>)
         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file_or_path</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
                 <span class="ruby-identifier">hndl</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_or_path</span>, <span class="ruby-value str">'w'</span>)
@@ -155,21 +166,21 @@
         </div>
       </div>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
 
         <div class="method-heading">
-          <a href="#M000006" class="method-signature">
+          <a href="#M000004" class="method-signature">
           <span class="method-name">load_from_file</span><span class="method-args">(file_or_path)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 98</span>
+<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 101</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_from_file</span> (<span class="ruby-identifier">file_or_path</span>)
         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file_or_path</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
                 <span class="ruby-identifier">hndl</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_or_path</span>, <span class="ruby-value str">'r'</span>)
@@ -188,21 +199,21 @@
         </div>
       </div>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
 
         <div class="method-heading">
-          <a href="#M000004" class="method-signature">
+          <a href="#M000002" class="method-signature">
           <span class="method-name">obj_from_yaml</span><span class="method-args">(yaml_node)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 79</span>
+<span class="ruby-comment cmt"># File lib/relais-dev/epiobjs.rb, line 82</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">obj_from_yaml</span> (<span class="ruby-identifier">yaml_node</span>)
 
 <span class="ruby-keyword kw">end</span>

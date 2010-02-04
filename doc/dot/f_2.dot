@@ -1,0 +1,71 @@
+digraph TopLevel {
+    compound = true
+    bgcolor = lightcyan1
+    fontname = Arial
+    fontsize = 8
+    label = "TopLevel"
+    node [
+        fontname = Arial,
+        fontsize = 8,
+        color = black
+    ]
+
+    Isolate [
+        fontcolor = black,
+        URL = "classes/Isolate.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Isolate"
+    ]
+
+    Bioseq [
+        fontcolor = black,
+        URL = "classes/Bioseq.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "Bioseq"
+    ]
+
+    PrimaryEpiObject [
+        fontcolor = black,
+        URL = "classes/PrimaryEpiObject.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "PrimaryEpiObject"
+    ]
+
+    ExtRef [
+        fontcolor = black,
+        URL = "classes/ExtRef.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "ExtRef"
+    ]
+
+    EpiObject [
+        fontcolor = black,
+        URL = "classes/EpiObject.html",
+        shape = ellipse,
+        color = palegoldenrod,
+        style = filled,
+        label = "EpiObject"
+    ]
+
+    PrimaryEpiObject -> Isolate [
+
+    ]
+
+    PrimaryEpiObject -> Bioseq [
+
+    ]
+
+    EpiObject -> PrimaryEpiObject [
+
+    ]
+
+}
+

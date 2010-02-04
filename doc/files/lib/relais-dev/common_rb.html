@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Thu Jan 14 14:34:19 +0000 2010</td>
+      <td>Wed Jan 27 14:07:27 +0000 2010</td>
     </tr>
     </table>
   </div>
@@ -69,42 +69,52 @@
   <div id="contextContent">
     <div id="diagram">
       <map id="map" name="map">
+  <area shape="rect" coords="211,191,296,239"      href="../../../classes/Relais/Dev/Base/FixedStruct.html" alt="FixedStruct" />
+  <area shape="rect" coords="217,309,289,357"      href="../../../classes/Relais/Dev/Common/Options.html" alt="Options" />
+  <area shape="rect" coords="811,408,904,456"      href="../../../classes/Relais/Dev/IO/RecordWriter.html" alt="RecordWriter" />
+  <area shape="rect" coords="819,507,896,555"      href="../../../classes/Relais/Dev/IO/LineWriter.html" alt="LineWriter" />
+  <area shape="rect" coords="696,309,784,357"      href="../../../classes/Relais/Dev/IO/BaseReader.html" alt="BaseReader" />
+  <area shape="rect" coords="688,408,787,456"      href="../../../classes/Relais/Dev/IO/RecordReader.html" alt="RecordReader" />
+  <area shape="rect" coords="695,507,780,555"      href="../../../classes/Relais/Dev/IO/LineReader.html" alt="LineReader" />
+  <area shape="rect" coords="813,309,896,357"      href="../../../classes/Relais/Dev/IO/BaseWriter.html" alt="BaseWriter" />
+  <area shape="rect" coords="787,191,859,239"      href="../../../classes/Relais/Dev/IO/BaseIO.html" alt="BaseIO" />
+  <area shape="rect" coords="211,5,296,53"      href="../../../classes/OpenStruct.html" alt="OpenStruct" />
+  <area shape="rect" coords="331,5,403,53"      href="../../../classes/Hash.html" alt="Hash" />
+  <area shape="rect" coords="320,191,413,239"      href="../../../classes/Relais/Dev/Base/OrderedHash.html" alt="OrderedHash" />
+  <area shape="rect" coords="456,5,555,53"      href="../../../classes/RecordReader.html" alt="RecordReader" />
+  <area shape="rect" coords="472,191,555,239"      href="../../../classes/Relais/Dev/I0/CsvReader.html" alt="CsvReader" />
+  <area shape="rect" coords="579,5,672,53"      href="../../../classes/RecordWriter.html" alt="RecordWriter" />
+  <area shape="rect" coords="579,191,656,239"      href="../../../classes/Relais/Dev/I0/CsvWriter.html" alt="CsvWriter" />
+  <area shape="rect" coords="180,276,300,368"      href="../../../classes/Relais/Dev/Common.html" alt="Common" />
+  <area shape="rect" coords="677,157,915,565"      href="../../../classes/Relais/Dev/IO.html" alt="IO" />
+  <area shape="rect" coords="173,157,424,249"      href="../../../classes/Relais/Dev/Base.html" alt="Base" />
+  <area shape="rect" coords="435,157,667,249"      href="../../../classes/Relais/Dev/I0.html" alt="I0" />
+  <area shape="rect" coords="69,180,163,227"      href="../../../classes/Relais/Dev/Math.html" alt="Math" />
+  <area shape="rect" coords="43,124,925,576"      href="../../../classes/Relais/Dev.html" alt="Dev" />
+  <area shape="rect" coords="16,91,936,587"      href="../../../classes/Relais.html" alt="Relais" />
 </map>
-<img src="../../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+<img src="../../../dot/f_4.png" usemap="#map" border="0" alt="dot/f_4.png">
     </div>
 
     <div id="description">
       <p>
-Print the passed objects, and complete with a linebreak.
+-*- coding: utf-8 -*-
 </p>
-<p>
-@param [] args ant objects that can be printed
-</p>
-<p>
-This is a simple convenience function, prompted by the irritation of having
-to add &#8217;\n&#8217; after every &quot;diagnostic printf&quot; .
-</p>
-<p>
-@example
-</p>
-<pre>
-  &gt;&gt;&gt; printn('foo')
-  'foo'
-</pre>
 
     </div>
 
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      ostruct&nbsp;&nbsp;
+      logger&nbsp;&nbsp;
+      relais-dev/base/fixedstruct&nbsp;&nbsp;
+      </div>
+    </div>
 
    </div>
 
-    <div id="method-list">
-      <h3 class="section-bar">Methods</h3>
-
-      <div class="name-list">
-      <a href="#M000001">printn</a>&nbsp;&nbsp;
-      <a href="#M000002">raise_unless</a>&nbsp;&nbsp;
-      </div>
-    </div>
 
   </div>
 
@@ -121,107 +131,6 @@ to add &#8217;\n&#8217; after every &quot;diagnostic printf&quot; .
 
 
     <!-- if method_list -->
-    <div id="methods">
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
-
-        <div class="method-heading">
-          <a href="#M000001" class="method-signature">
-          <span class="method-name">printn</span><span class="method-args">(*args)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Print the passed objects, and complete with a linebreak.
-</p>
-<p>
-@param [] args ant objects that can be printed
-</p>
-<p>
-This is a simple convenience function, prompted by the irritation of having
-to add &#8217;\n&#8217; after every &quot;diagnostic printf&quot; .
-</p>
-<p>
-@example
-</p>
-<pre>
-  &gt;&gt;&gt; printn('foo')
-  'foo'
-</pre>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/relais-dev/common.rb, line 13</span>
-<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">printn</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-        <span class="ruby-identifier">print</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-        <span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\n&quot;</span>
-<span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
-
-        <div class="method-heading">
-          <a href="#M000002" class="method-signature">
-          <span class="method-name">raise_unless</span><span class="method-args">(cond, options)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Raise an exception unless the passed condition is met
-</p>
-<p>
-@param [Boolean] cond A test that evaulates to a boolean @param [Hash]
-options An options hash @option options [Exception class] error An
-exception class, by default
-</p>
-<pre>
-  AssertionError
-</pre>
-<p>
-@option options [String] error An error message, by default &quot;an
-unknown error
-</p>
-<pre>
-  has occurred&quot;
-</pre>
-<p>
-Assertions are provided within Ruby, but only within the testing
-frameworks. This method plugs that gap and provides some useful extra
-functionality, such as specifying error class and message.
-</p>
-<p>
-@example
-</p>
-<pre>
-  raise_unless (day_of_month &lt;= 32)
-  raise_unless (filepath.exists, {:error=&gt;IOError})
-  raise_unless (denominator != 0, {:msg=&gt;&quot;division by zero!&quot;})
-</pre>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000002-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/relais-dev/common.rb, line 37</span>
-<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">raise_unless</span>(<span class="ruby-identifier">cond</span>, <span class="ruby-identifier">options</span>)
-        <span class="ruby-identifier">defaults</span> = {<span class="ruby-identifier">error</span>=<span class="ruby-constant">AssertionError</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">&quot;an unknown error has occurred&quot;</span>}
-   <span class="ruby-identifier">raise</span> <span class="ruby-identifier">defaults</span>[<span class="ruby-identifier">:error</span>].<span class="ruby-identifier">new</span>(<span class="ruby-identifier">defaults</span>[<span class="ruby-identifier">:msg</span>])
-<span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
 
 
   </div>

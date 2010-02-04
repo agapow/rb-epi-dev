@@ -62,8 +62,11 @@
 
 require 'ostruct'
 require 'logger'
+require 'test/unit/assertions'
 
 require 'relais-dev/base/fixedstruct'
+require 'relais-dev/errors'
+
 
 
 ### IMPLEMENTATION
@@ -74,7 +77,15 @@ require 'relais-dev/base/fixedstruct'
 module Relais
 	module Dev
 		module Common
-
+			
+			RBE = Relais::Dev::Errors
+			include Test::Unit::Assertions
+			LEVELS = %w(DEBUG INFO WARN ERROR FATAL ANY)
+			
+			def level_to_str(lvl)
+				return LEVELS[lvl] || LEVELS[-1]
+			end
+			
 			# Options and their default values for scripts and functions.
 			#
 			# Options are traditionally handled within Ruby by juggling and merging
@@ -204,24 +215,26 @@ module Relais
 			#   raise_unless (filepath.exists, {:error=>IOError})
 			#   raise_unless (denominator != 0, {:msg=>"division by zero!"})
 			#
-			def raise_unless(cond, options)
+			def raise_unless(cond, opts={})
 				# TODO: use globals to set the default err logger and stream
 				# TODO: need a better word than 'defaults'
 				defaults = {
-					:err_class => AssertionError,
+					:err_class => RBE::AssertionError,
 					:msg => "an unknown error has occurred and an exception has been raised",
 					:logger => nil,
 					:lvl => Logger::ERROR,
 					:err_stream => $stderr,
-				}.merge(options)
+				}.merge(opts)
 				unless (cond)
 					if defaults[:err_stream]
-						print_error(msg, logger, {:lvl=>lvl, :stream=>stream})
+						print_error(defaults[:msg], 
+							{:lvl=>defaults[:lvl], :stream=>defaults[:err_stream]})
 					end
 					if defaults[:logger]
-						log_error(msg,{:lvl=>lvl})	
+						log_error(defaults[:msg], defaults[:logger],
+							{:lvl=>defaults[:lvl]})	
 					end
-					raise err_class.new(msg)
+					raise defaults[:err_class].new(defaults[:msg])
 				end
 			end
 			 
@@ -244,20 +257,20 @@ module Relais
 			#   raise_unless (filepath.exists, {:error=>IOError})
 			#   raise_unless (denominator != 0, {:msg=>"division by zero!"})
 			#
-			def die_unless(cond, options)
+			def die_unless(cond, opts={})
 				defaults = {
-					:ret_code => AssertionError,
+					:ret_code => -1,
 					:msg => "an unknown error has occurred and the program will exit",
 					:logger => nil,
 					:lvl => Logger::FATAL,
 					:err_stream => $stderr,
-				}.merge(options)
+				}.merge(opts)
 				unless (cond)
 					if defaults[:err_stream]
-						print_error(msg, logger, {:lvl=>lvl, :stream=>stream})
+						print_error(msg, {:lvl=>lvl, :stream=>stream})
 					end
 					if defaults[:logger]
-						log_error(msg,{:lvl=>lvl})	
+						log_error(msg, logger, {:lvl=>lvl})	
 					end
 					exit(ret_code)	
 				end
@@ -279,16 +292,19 @@ module Relais
 			# screen in the events of errors. It is used by assertion-like
 			# functions.
 			#
-			def print_error (msg, options)
+			def print_error (msg, opts={})
 				## Preconditions & preparation:
 				# ???: you can use STDERR or $stderr, unsure which is best
 				defaults = {
 					:stream => $stderr,
 					:lvl => Logger::ERROR,
-				}.merge(options)
+				}.merge(opts)
+				if defaults[:lvl].is_a?(Fixnum)
+					defaults[:lvl] = LEVELS[defaults[:lvl]] || LEVELS[-1]
+				end
 				## Main:
-				lvl_str = lvl.to_s()
-				stream.write("#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}")
+				lvl_str = defaults[:lvl]
+				defaults[:stream].write("#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}\n")
 			end
 			 
 			 
@@ -308,11 +324,11 @@ module Relais
 			# functions. Better and more powerful logging functions can be found
 			# elsewhere.
 			#
-			def log_error(msg, logger, options)
+			def log_error(msg, logger, opts={})
 				## Preconditions & preparation:
 				defaults = {
 					:lvl => Logger::ERROR,
-				}.merge(options)
+				}.merge(opts)
 				## Main:
 				logger.add(defaults[:lvl], msg)
 			end
