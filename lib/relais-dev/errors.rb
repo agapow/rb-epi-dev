@@ -14,13 +14,8 @@ module Relais
 	module Dev
 		module Errors
 
-			class AssertionError < StandardError
-			
-			end
-			
-			class UnimplementedError < StandardError
-			
-			end
+			AssertionError = AssertionFailedError
+			UnimplementedError = NotImplementedError
 
 		end
 	end
