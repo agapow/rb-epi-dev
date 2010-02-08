@@ -16,14 +16,15 @@
 require 'relais-dev/io/base'
 require 'relais-dev/common'
 
-RBC = Relais::Dev::Common
 
 
 ### IMPLEMENTATION
 
 module Relais
 	module Dev
-		module I0
+		module Io
+
+			RBC = Relais::Dev::Common
 
 			# Read the contents of the passed object, opening and closing if required.
 			#

@@ -10,19 +10,9 @@
 
 ### IMPLEMENTATION
 
-# submodules that we provide
-Dir['relais-dev/io/*.rb'].sort.each { |lib|
-	require lib 
-}
-
-#require 'relais-dev/io/base'
-#require 'relais-dev/io/quick'
-#require 'relais-dev/io/csv'
-
-# local code
-
 module Relais
 	module Dev
+		
 		# Simplified and consistent input and output.
 		#
 		# Together, the Ruby standard and third-party libraries present a cacophony of 
@@ -83,6 +73,11 @@ module Relais
 		end
 	end
 end
+
+
+# submodules that we provide
+Dir['relais-dev/io/*.rb'].sort.each { |lib| require lib }
+
 
 ### END
 

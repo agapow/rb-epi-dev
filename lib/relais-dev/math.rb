@@ -1,18 +1,17 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Assorted mathematical and logical functions.
-
+# Source file for {Relais::Dev::Math}.
 
 ### IMPORTS
-
-require 'relais-dev/common'
-
 
 ### IMPLEMENTATION
 
 module Relais
 	module Dev
+		
+		# Assorted mathematical and logical functions.
+		#
 		module Math
 			
 			# Cluster the passed objects by similarity.
@@ -69,16 +68,16 @@ module Relais
 			# Calculate the frequency of objects in a sequence.
 			#
 			# @param [Enumerable, #each] objs A sequence of objects to be counted
-			# @yield [o] A block to generate the key (grouping term) for each object. If
-			#   not given, we use simple equality (i.e. the item itself)
+			# @yield [o] A block to generate the key (grouping term) for each
+			#   object. If not given, we use simple equality (i.e. the item itself)
 			#
-			# @return [Hash] a hash of the key generated from each item and an array of the
-			#   corrsponding items 
+			# @return [Hash] a hash of the key generated from each item and an
+			#   array of the corresponding items 
 			#
 			# This works in an analogous way to the partition function, except the hash it
-			# returns has the frequency of an object as values. Note that is you try and
-			# calaculate character frequency over a string, you have to first break the
-			# string up by character.
+			# returns has the frequency of an object as values. Note that is you
+			# try and calaculate character frequency over a string, you have to
+			# first break the string up by character.
 			# 
 			# @example
 			#   #divide a range into even and odd numbers
@@ -92,7 +91,7 @@ module Relais
 				# using 'or' gives odd results here
 				key_proc = block || lambda { |x| x }
 				## Main:
-				# basically we generate a key for each item and use it to fill the hash
+				# generate a key for each item and use it to fill the hash
 				counted_items = {}	
 				objs.each { |o|
 					key = key_proc.call(o)

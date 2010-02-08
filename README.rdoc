@@ -1,26 +1,40 @@
 = relais-dev
 
 * http://github.com/agapow/rb-relais-dev
+* http://agapow.net/software/rb-relais-dev
+* http://relais.rubyforge.org
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Relais is a suite of libraries for epi-informatics, the computational analysis
+of disease data. Relais::Dev is a common base for development with other Relais
+libraries, presenting utilities and consistent idioms for coding.
+
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* A consistent and easy-to-use set of IO classes.
+* Error-resistant handling of method options.
+* Useful mathematical and logical functions.
+* A fraework for commandline applications.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+	def read_data(fpath, opts={})
+		options = defaults(
+			:line_endings => unix,
+		).update!(opts)
+		LineReader('in/data.txt', {:eoln => options.line_endings}).with { |rdr|
+			
+		}
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Ruby 1.8.6 or higher. Earlier versions may work but are not guaranteed.
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install
 
 == LICENSE:
 

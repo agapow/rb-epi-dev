@@ -90,7 +90,7 @@ When using OpenStructs, errors can silently occur from mispellings:
 <pre class="code">
   <span class='mydata identifier id'>mydata</span> <span class='assign token'>=</span> <span class='OpenStruct constant id'>OpenStruct</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:received</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='dot3 op'>...</span>
-  <span class='mydata identifier id'>mydata</span><span class='dot token'>.</span><span class='recieved identifier id'>recieved</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='mydata identifier id'>mydata</span><span class='dot token'>.</span><span class='recieved identifier id'>recieved</span> <span class='assign token'>=</span> <span class='false false kw'>false</span> <span class='comment val'># oops!</span>
 </pre>
 <p>
 A FixedStruct prevents this by only allowing instance variables to be added
@@ -140,7 +140,7 @@ FixedStructs can be created with the same syntax as OpenStructs:
 
   
     <span class="summary_desc">
-Compare this object and <tt>other</tt> for equality.
+Compare this and another object for equality.
 
 </span>
   
@@ -186,8 +186,7 @@ Remove the named attribute from the object.
 
   
     <span class="summary_desc">
-TODO: replace talk of &quot;attribute/field&quot; with &quot;instance
-variable&quot;.
+Respond when a method is absent.
 
 </span>
   
@@ -197,7 +196,7 @@ variable&quot;.
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(hsh) </a>
+      <a href="#update%21-instance_method" title="#update! (instance method)">- (Object) <strong>update!</strong>(hsh) </a>
     
 
     
@@ -236,8 +235,7 @@ Update the fields with the passed values.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-TODO: replace talk of &quot;attribute/field&quot; with &quot;instance
-variable&quot;
+Respond when a method is absent.
 </p>
 
 
@@ -264,14 +262,14 @@ variable&quot;
       <pre class="lines">
 
 
-39
-40
-41
-42
-43</pre>
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 48</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='mid identifier id'>mid</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
   <span class='comment val'># TODO: should call Object.method_missing, bypassing OpenStruct?</span>
@@ -301,7 +299,12 @@ variable&quot;
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Compare this object and <tt>other</tt> for equality.
+Compare this and another object for equality.
+</p>
+<p>
+We assume that only FixedStructs can be equal to each to each and then
+devolve equality down to the contents, i.e. are the contents equal to each
+other?
 </p>
 
 
@@ -315,14 +318,14 @@ Compare this object and <tt>other</tt> for equality.
       <pre class="lines">
 
 
-54
-55
-56
-57
-58</pre>
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 69</span>
 
 <span class='def def kw'>def</span> <span class='eq op'>==</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
   <span class='comment val'># TODO: change to do class comparison and make clearer </span>
@@ -372,13 +375,13 @@ Remove the named attribute from the object.
       <pre class="lines">
 
 
-47
-48
-49
-50</pre>
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='delete_field identifier id'>delete_field</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='TypeError constant id'>TypeError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;can't delete from #{self.class} once created&quot;</span><span class='comma token'>,</span>
@@ -391,9 +394,9 @@ Remove the named attribute from the object.
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="update-instance_method">
+  <p class="signature " id="update!-instance_method">
   
-    - (<tt>Object</tt>) <strong>update</strong>(hsh) 
+    - (<tt>Object</tt>) <strong>update!</strong>(hsh) 
   
 
   
@@ -407,7 +410,18 @@ Update the fields with the passed values.
   </div>
 </div>
 <div class="tags">
-  <h3>Parameters:</h3>
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='fs identifier id'>fs</span> <span class='assign token'>=</span> <span class='FixedStruct constant id'>FixedStruct</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:foo</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'bar'</span><span class='rparen token'>)</span>
+  <span class='fs identifier id'>fs</span><span class='dot token'>.</span><span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:foo</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'baz'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>    <span class='comment val'># foo is now 'baz'</span>
+<span class='dot3 op'>...</span><span class='fs identifier id'>fs</span><span class='dot token'>.</span><span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:foo</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'quux'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>   <span class='comment val'># error!</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
 <ul class="param">
   
     <li>
@@ -440,21 +454,23 @@ refers to an attribute that doesn&#8217;t exist.
       <pre class="lines">
 
 
-69
-70
-71
-72
-73
-74
-75</pre>
+89
+90
+91
+92
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/base/fixedstruct.rb', line 89</span>
 
-<span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='hsh identifier id'>hsh</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='hsh identifier id'>hsh</span><span class='rparen token'>)</span>
+  <span class='comment val'># CHANGE: now a ! method because it mutates</span>
   <span class='hsh identifier id'>hsh</span><span class='dot token'>.</span><span class='each_pair identifier id'>each_pair</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span><span class='v identifier id'>v</span><span class='bitor op'>|</span>
     <span class='comment val'># ???: not sure if this is the right Ruby idiom</span>
-    <span class='instance_variable_set identifier id'>instance_variable_set</span><span class='lparen token'>(</span><span class='string val'>&quot;@&quot;</span><span class='plus op'>+</span><span class='k identifier id'>k</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='rparen token'>)</span>  
+    <span class='instance_variable_set identifier id'>instance_variable_set</span><span class='lparen token'>(</span><span class='string val'>&quot;@&quot;</span><span class='plus op'>+</span><span class='k identifier id'>k</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='rparen token'>)</span>
   <span class='rbrace token'>}</span>
   <span class='return return kw'>return</span> <span class='self self kw'>self</span>
 <span class='end end kw'>end</span>
@@ -469,7 +485,7 @@ refers to an attribute that doesn&#8217;t exist.
 </div>
     
     <div id="footer">
-  Generated on Wed Jan 27 14:11:13 2010 by 
+  Generated on Mon Feb  8 15:43:43 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

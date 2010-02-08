@@ -46,30 +46,54 @@
 <li>http://github.com/agapow/rb-relais-dev
 
 </li>
+<li>http://agapow.net/software/rb-relais-dev
+
+</li>
+<li>http://relais.rubyforge.org
+
+</li>
 </ul>
 <h2>DESCRIPTION:</h2>
 <p>
-FIX (describe your package)
+Relais is a suite of libraries for epi-informatics, the computational
+analysis of disease data. Relais::Dev is a common base for development with
+other Relais libraries, presenting utilities and consistent idioms for
+coding.
 </p>
 <h2>FEATURES/PROBLEMS:</h2>
 <ul>
-<li>FIX (list of features or problems)
+<li>A consistent and easy-to-use set of IO classes.
+
+</li>
+<li>Error-resistant handling of method options.
+
+</li>
+<li>Useful mathematical and logical functions.
+
+</li>
+<li>A fraework for commandline applications.
 
 </li>
 </ul>
 <h2>SYNOPSIS:</h2>
 <pre class="code">
-  <span class='FIX constant id'>FIX</span> <span class='lparen token'>(</span><span class='code identifier id'>code</span> <span class='sample identifier id'>sample</span> <span class='of identifier id'>of</span> <span class='usage identifier id'>usage</span><span class='rparen token'>)</span>
+        <span class='def def kw'>def</span> <span class='read_data identifier id'>read_data</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+                <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='defaults identifier id'>defaults</span><span class='lparen token'>(</span>
+                        <span class='symbol val'>:line_endings</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='unix identifier id'>unix</span><span class='comma token'>,</span>
+                <span class='rparen token'>)</span><span class='dot token'>.</span><span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+                <span class='LineReader constant id'>LineReader</span><span class='lparen token'>(</span><span class='string val'>'in/data.txt'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:eoln</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='line_endings identifier id'>line_endings</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rdr identifier id'>rdr</span><span class='bitor op'>|</span>
+
+                <span class='rbrace token'>}</span>
 </pre>
 <h2>REQUIREMENTS:</h2>
 <ul>
-<li>FIX (list of requirements)
+<li>Ruby 1.8.6 or higher. Earlier versions may work but are not guaranteed.
 
 </li>
 </ul>
 <h2>INSTALL:</h2>
 <ul>
-<li>FIX (sudo gem install, anything else)
+<li>sudo gem install
 
 </li>
 </ul>
@@ -105,7 +129,7 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 </div></div>
     
     <div id="footer">
-  Generated on Wed Jan 27 14:11:12 2010 by 
+  Generated on Mon Feb  8 15:43:41 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

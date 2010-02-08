@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/relais-dev/common.rb</dd>
+    <dd class="r2 last">lib/relais-dev/common/options.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -123,22 +123,28 @@ Options can be created with the same syntax as OpenStruct:
   <span class='comment val'># or a hash if you prefer</span>
   <span class='my_opt identifier id'>my_opt</span> <span class='assign token'>=</span> <span class='Options constant id'>Options</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:overwrite_data</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;foo&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
 </pre>
-<p>
-Usage would typically be:
-</p>
-<pre class="code">
-  <span class='def def kw'>def</span> <span class='myfunc identifier id'>myfunc</span> <span class='lparen token'>(</span><span class='arg1 identifier id'>arg1</span><span class='comma token'>,</span> <span class='arg2 identifier id'>arg2</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='def def kw'>def</span> <span class='myfunc identifier id'>myfunc</span> <span class='lparen token'>(</span><span class='arg1 identifier id'>arg1</span><span class='comma token'>,</span> <span class='arg2 identifier id'>arg2</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
      <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='Options constant id'>Options</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span>
        <span class='symbol val'>:overwrite_data</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
        <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>  <span class='string val'>&quot;foo&quot;</span><span class='comma token'>,</span>
-     <span class='rparen token'>)</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+     <span class='rparen token'>)</span><span class='dot token'>.</span><span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+
+<span class='Options constant id'>Options</span> <span class='is identifier id'>is</span> <span class='currently identifier id'>currently</span> <span class='a identifier id'>a</span> <span class='synonym identifier id'>synonym</span> <span class='for for kw'>for</span> <span class='lbrace token'>{</span><span class='Relais constant id'>Relais</span><span class='colon2 op'>::</span><span class='Dev constant id'>Dev</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='colon2 op'>::</span><span class='FixedStruct constant id'>FixedStruct</span><span class='rbrace token'>}</span>
+<span class='although identifier id'>although</span> <span class='this identifier id'>this</span> <span class='may identifier id'>may</span> <span class='change identifier id'>change</span> <span class='at identifier id'>at</span> <span class='some identifier id'>some</span> <span class='later identifier id'>later</span> <span class='point identifier id'>point</span><span class='dot token'>.</span>
 </pre>
-
-
+    
   </div>
-</div>
-<div class="tags">
-  
+
 </div>
 
   
@@ -147,357 +153,30 @@ Usage would typically be:
   
   
 
-  <h2>Instance Method Summary</h2>
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="../Base/FixedStruct.html" title="Relais::Dev::Base::FixedStruct (class)">Relais::Dev::Base::FixedStruct</a></h3>
+  <p class="inherited"><a href="../Base/FixedStruct.html#%3D%3D-instance_method" title="Relais::Dev::Base::FixedStruct#== (method)">#==</a>, <a href="../Base/FixedStruct.html#delete_field-instance_method" title="Relais::Dev::Base::FixedStruct#delete_field (method)">#delete_field</a>, <a href="../Base/FixedStruct.html#method_missing-instance_method" title="Relais::Dev::Base::FixedStruct#method_missing (method)">#method_missing</a>, <a href="../Base/FixedStruct.html#update%21-instance_method" title="Relais::Dev::Base::FixedStruct#update! (method)">#update!</a></p>
 
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#%3D%3D-instance_method" title="#== (instance method)">- (Object) <strong>=</strong>(other) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Compare this object and <tt>other</tt> for equality.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#delete_field-instance_method" title="#delete_field (instance method)">- (Object) <strong>delete_field</strong>(name) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Remove the named attribute from the object.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(mid, *args) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-TODO: replace &quot;attribute&quot; and &quot;field&quot; with
-&quot;instance variable&quot;.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(hsh) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Update the fields with the passed values.
-
-</span>
-  
-</li>
-
-    
-  </ul>
-
-  
-  
-  
-  
-  
   <div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
-  <p class="notice this">
+  <p class="notice super">
     This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <a href="../Base/FixedStruct.html#method_missing-instance_method" title="Relais::Dev::Base::FixedStruct#method_missing (method)">Relais::Dev::Base::FixedStruct</a>
     
   </p>
   
-    <div class="method_details first">
-  <p class="signature first" id="method_missing-instance_method">
-  
-    - (<tt>Object</tt>) <strong>method_missing</strong>(mid, *args) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-TODO: replace &quot;attribute&quot; and &quot;field&quot; with
-&quot;instance variable&quot;
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Raises:</h3>
-<ul class="raise">
-  
-    <li>
-      
-        <span class='type'>(<tt>TypeError</tt>)</span>
-      
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-123
-124
-125
-126</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 123</span>
-
-<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='mid identifier id'>mid</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
-  <span class='comment val'># TODO: should call Object.method_missing, bypassing OpenStruct</span>
-  <span class='raise identifier id'>raise</span> <span class='TypeError constant id'>TypeError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;can't add to #{self.class} once created&quot;</span><span class='comma token'>,</span> <span class='caller identifier id'>caller</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-  
 </div>
 
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-    
-    
-      <div class="method_details first">
-  <p class="signature first" id="==-instance_method">
-  
-    - (<tt>Object</tt>) <strong>==</strong>(other) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Compare this object and <tt>other</tt> for equality.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-136
-137
-138
-139
-140</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 136</span>
-
-<span class='def def kw'>def</span> <span class='eq op'>==</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
-  <span class='comment val'># TODO: change to do class comparison and make clearer </span>
-  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='unless unless_mod kw'>unless</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='dot token'>.</span><span class='kind_of? fid id'>kind_of?</span><span class='lparen token'>(</span><span class='OpenStruct constant id'>OpenStruct</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='@table ivar id'>@table</span> <span class='eq op'>==</span> <span class='other identifier id'>other</span><span class='dot token'>.</span><span class='table identifier id'>table</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="delete_field-instance_method">
-  
-    - (<tt>Object</tt>) <strong>delete_field</strong>(name) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Remove the named attribute from the object.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Raises:</h3>
-<ul class="raise">
-  
-    <li>
-      
-        <span class='type'>(<tt>TypeError</tt>)</span>
-      
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-130
-131
-132</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 130</span>
-
-<span class='def def kw'>def</span> <span class='delete_field identifier id'>delete_field</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
-  <span class='raise identifier id'>raise</span> <span class='TypeError constant id'>TypeError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;can't delete from #{self.class} once created&quot;</span><span class='comma token'>,</span> <span class='caller identifier id'>caller</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="update-instance_method">
-  
-    - (<tt>Object</tt>) <strong>update</strong>(hsh) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Update the fields with the passed values.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>, <tt>#each_pair</tt>)</span>
-      
-      
-        <span class='name'>hsh</span>
-      
-      
-      
-        &mdash;
-        
-A hash of attribute (key) / value pairs.
-
-
-Normally this would be used to merge passed option values with a default
-set. It differs from the Hash method by raising an error if the update
-refers to an attribute that doesn&#8217;t exist.
-
-
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-150
-151
-152
-153
-154
-155
-156</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common.rb', line 150</span>
-
-<span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='hsh identifier id'>hsh</span><span class='rparen token'>)</span>
-  <span class='hsh identifier id'>hsh</span><span class='dot token'>.</span><span class='each_pair identifier id'>each_pair</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span><span class='v identifier id'>v</span><span class='bitor op'>|</span>
-    <span class='comment val'># ???: not sure if this is the right Ruby idiom</span>
-    <span class='instance_variable_set identifier id'>instance_variable_set</span><span class='lparen token'>(</span><span class='string val'>&quot;@&quot;</span><span class='plus op'>+</span><span class='k identifier id'>k</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='rparen token'>)</span>  
-  <span class='rbrace token'>}</span>
-  <span class='return return kw'>return</span> <span class='self self kw'>self</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Wed Jan 27 14:11:17 2010 by 
+  Generated on Mon Feb  8 15:43:41 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

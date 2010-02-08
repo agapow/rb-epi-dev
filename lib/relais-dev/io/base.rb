@@ -20,15 +20,17 @@ require 'relais-dev/common'
 
 module Relais
 	module Dev
-		module IO
+		module Io
 		
-			class BaseIO
+			RDC = Relais::Dev::Common
+		
+			class BaseIo
 		
 				attr_accessor(:hndl, :file_open)
-		
+
 				def initialize(io_or_path, mode)
 					# TODO: what if it's a Pathname?
-		
+
 					# if passed a filepath, open it
 					is_path = (io_or_path.class == String)
 					if is_path
@@ -40,7 +42,7 @@ module Relais
 					end
 					prepare()
 				end
-		
+
 				# Destructor.
 				# 
 				# This simply ensures that any file opened by object is closed.
@@ -48,9 +50,9 @@ module Relais
 				def finalize()
 					if @file_open
 						@hndl.close()
-					end	
+					end
 				end
-		
+
 				# Do any necessary setup to commence IO.
 				#
 				# This is called from the constructor to handle anything that has to
@@ -59,9 +61,9 @@ module Relais
 				# information opening tags, etc.
 				#
 				def prepare()
-					# to be overridden in subclasses	
+					# to be overridden in subclasses
 				end
-				
+
 				# Do any necessary teardown to complete IO.
 				#
 				# Currently all this does is close any file handle that is opened by the
@@ -72,12 +74,12 @@ module Relais
 					@hndl.close()
 					@file_open = false
 				end
-		
+
 				# Create an IO object, pass it for use and then finish it off.
 				#
 				# This allows easy use of an IO object within a block.
 				#
-				def self.use_with(io_or_path, opts={}, &block)
+				def self.with(io_or_path, opts={}, &block)
 					io = BaseIO.new(io_or_path, opts)
 					result = block.call(io)
 					io.finish()
@@ -85,8 +87,8 @@ module Relais
 				end
 			end
 
-		
-			class BaseWriter < BaseIO
+
+			class BaseWriter < BaseIo
 				# ???: what sort fo write interface do we need
 		
 				def initialize(io_or_path, opts={})
@@ -97,9 +99,9 @@ module Relais
 				end
 
 			end
-	
-	
-			class BaseReader < BaseIO
+
+
+			class BaseReader < BaseIo
 				# TODO: add enumerable interface
 				# TODO: use each and enumerable for reading
 		
@@ -151,7 +153,7 @@ module Relais
 				
 			end
 
-			
+
 			class LineReader < RecordReader
 
 				def read_record()
@@ -172,7 +174,7 @@ module Relais
 				alias write_line write_record
 
 			end
-				
+
 
 		end
 	end

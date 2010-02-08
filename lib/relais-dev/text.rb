@@ -1,9 +1,9 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Home for {Relais::Dev:Text} module.
+# Source file for {Relais::Dev::Text} .
 #
-# Import this file to load {Relais::Dev:Text}.
+# Import this file to load {Relais::Dev::Text}.
 
 ### IMPORTS
 
@@ -16,12 +16,15 @@ RBC = Relais::Dev::Common
 
 # submodules that we provide
 
-# Assorted text manipulation functions.
-#
+
 module Relais
 	module Dev
+		
+		# Assorted text manipulation functions.
+		#
 		module Text
-		# TODO: a textwrapper class like in Python?
+			
+			# TODO: a textwrapper class like in Python?
 
 			# Wrap a length of text to fit within a given width
 			#
@@ -38,13 +41,16 @@ module Relais
 			# equivalents.
 			#
 			# @example
-			#   >> wra
+			#   >> fill('foo')
+			#   foo
+			#   >> fill('foo'*10, {:width=>10})
+			#   foofoofoof\noofoofoofo\nofoofoofoo
 			#
 			def fill(txt, opts={})
 				# TODO: needs further options including eoln type and space stripping
 				options = RBC::defaults(
 					:width => 60,
-					:collpase_space => false
+					:collapse_space => false
 				).merge(opts)
 				# to save repeated lookup
 				return txt.gsub(/(.{1,#{options.width}})( +|$)\n?|(.{#{options.width}})/,
@@ -56,8 +62,14 @@ module Relais
 			# @see fill
 			# @return [Array] An array of Strings.
 			#
-			# This works like {wrap_text} but instead of a String with inserted
+			# This works like {Text#fill} but instead of a String with inserted
 			# newlines, it returns an array of lines. 
+			#
+			# @example
+			#   >> wrap('foo')
+			#   [foo]
+			#   >> fill('foo'*10, {:width=>10})
+			#   [foofoofoof,oofoofoofo,ofoofoofoo]
 			#
 			def wrap(txt, options={})
 				return  wrap_text(txt, options).split("\n")

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta name="Content-Type" content="text/html; charset=UTF-8" />
-<title>Module: Relais::Dev::Base</title>
+<title>Module: Relais::Dev::Errors</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
@@ -23,10 +23,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../../_index.html">Index (B)</a> &raquo; 
+    <a href="../../_index.html">Index (E)</a> &raquo; 
     <span class='title'><a href="../../Relais.html" title="Relais (module)">Relais</a></span> &raquo; <span class='title'><a href="../Dev.html" title="Relais::Dev (module)">Dev</a></span>
      &raquo; 
-    <span class="title">Base</span>
+    <span class="title">Errors</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -43,7 +43,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Module: Relais::Dev::Base 
+    <div id="content"><h1>Module: Relais::Dev::Errors 
   
   
 </h1>
@@ -57,9 +57,7 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/relais-dev/base.rb<span class="defines">,<br />
-  lib/relais-dev/base/ohash.rb,<br /> lib/relais-dev/base/fixedstruct.rb</span>
-</dd>
+    <dd class="r1 last">lib/relais-dev/errors.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -67,14 +65,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-Assorted data structures.
-</p>
-<p>
-Even in a scripting langauge you sometimes need more than a hash and a
-list. Here we collect some useful variant data structures. Although some of
-these are available elsewhere (e.g. in Rails) but rather than require a
-whole external framework for small bits of functionality, we implement them
-here.
+Common error types.
 </p>
 
 
@@ -82,16 +73,22 @@ here.
 </div>
 <div class="tags">
   
-</div><h2>Defined Under Namespace</h2>
-<p class="children">
-   
-    
-   
-    
-      <strong class="classes">Classes:</strong> <a href="Base/FixedStruct.html" title="Relais::Dev::Base::FixedStruct (class)">FixedStruct</a>
-    
+</div>
+  <h2>Constant Summary</h2>
   
-</p>
+    <dl class="constants">
+      
+        <dt id="AssertionError-constant" class="">AssertionError =
+            <span class="summary_desc">
+For brevity.
+
+</span>
+        </dt>
+        <dd><pre class="code"><span class='Test constant id'>Test</span><span class='colon2 op'>::</span><span class='Unit constant id'>Unit</span><span class='colon2 op'>::</span><span class='AssertionFailedError constant id'>AssertionFailedError</span>
+</pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -99,7 +96,7 @@ here.
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:46 2010 by 
+  Generated on Mon Feb  8 15:43:42 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

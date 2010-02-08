@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Relais::Dev::Text</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (T)</a> &raquo; 
+    <span class='title'><a href="../../Relais.html" title="Relais (module)">Relais</a></span> &raquo; <span class='title'><a href="../Dev.html" title="Relais::Dev (module)">Dev</a></span>
+     &raquo; 
+    <span class="title">Text</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Relais::Dev::Text 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/relais-dev/text.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Assorted text manipulation functions.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fill-instance_method" title="#fill (instance method)">- (Hash) <strong>fill</strong>(txt, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Wrap a length of text to fit within a given width.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wrap-instance_method" title="#wrap (instance method)">- (Array) <strong>wrap</strong>(txt, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Wrap a length of text to fit within a given width.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="fill-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>fill</strong>(txt, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Wrap a length of text to fit within a given width
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='rshft op'>&gt;&gt;</span> <span class='fill identifier id'>fill</span><span class='lparen token'>(</span><span class='string val'>'foo'</span><span class='rparen token'>)</span>
+  <span class='foo identifier id'>foo</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='fill identifier id'>fill</span><span class='lparen token'>(</span><span class='string val'>'foo'</span><span class='mult op'>*</span><span class='integer val'>10</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:width=</span><span class='gt op'>&gt;</span><span class='integer val'>10</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='foofoofoof identifier id'>foofoofoof</span>\<span class='noofoofoofo identifier id'>noofoofoofo</span>\<span class='nofoofoofoo identifier id'>nofoofoofoo</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>txt</span>
+      
+      
+      
+        &mdash;
+        
+The text to be wrapped.
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>opts</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        
+A hash of optional parameters.
+
+
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>opts</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="name">width</span>
+          <span class="default">
+            
+              <span class="na">N/A</span>
+            
+          </span>
+          &mdash;
+The wrap width, 60 by default.
+
+
+        </tr>
+      
+    </ul>
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+A hash of the key generated from each item and an array of the
+corresponding items.
+
+
+Once again, there is actually a function in Rails for this, but Rails is
+not always available and we can add to the functionality of this one. The
+wrap function in this module are named after the Python equivalents.
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/text.rb', line 49</span>
+
+<span class='def def kw'>def</span> <span class='fill identifier id'>fill</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'># TODO: needs further options including eoln type and space stripping</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='RBC constant id'>RBC</span><span class='colon2 op'>::</span><span class='defaults identifier id'>defaults</span><span class='lparen token'>(</span>
+    <span class='symbol val'>:width</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>60</span><span class='comma token'>,</span>
+    <span class='symbol val'>:collapse_space</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span>
+  <span class='rparen token'>)</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='comment val'># to save repeated lookup</span>
+  <span class='return return kw'>return</span> <span class='txt identifier id'>txt</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='dregexp node'>/(.{1,#{options.width}})( +|$)\n?|(.{#{options.width}})/</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;\\1\\3\n&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="wrap-instance_method">
+  
+    - (<tt>Array</tt>) <strong>wrap</strong>(txt, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Wrap a length of text to fit within a given width.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='rshft op'>&gt;&gt;</span> <span class='wrap identifier id'>wrap</span><span class='lparen token'>(</span><span class='string val'>'foo'</span><span class='rparen token'>)</span>
+  <span class='lbrack token'>[</span><span class='foo identifier id'>foo</span><span class='rbrack token'>]</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='fill identifier id'>fill</span><span class='lparen token'>(</span><span class='string val'>'foo'</span><span class='mult op'>*</span><span class='integer val'>10</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:width=</span><span class='gt op'>&gt;</span><span class='integer val'>10</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='lbrack token'>[</span><span class='foofoofoof identifier id'>foofoofoof</span><span class='comma token'>,</span><span class='oofoofoofo identifier id'>oofoofoofo</span><span class='comma token'>,</span><span class='ofoofoofoo identifier id'>ofoofoofoo</span><span class='rbrack token'>]</span>
+</pre>
+    
+  </div>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+An array of Strings.
+
+
+This works like <tt><a href="#fill-instance_method" title="Relais::Dev::Text#fill (method)">Text#fill</a></tt> but instead of a String with inserted newlines,
+it returns an array of lines.
+
+
+      
+    </li>
+  
+</ul>
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li>fill</li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/text.rb', line 74</span>
+
+<span class='def def kw'>def</span> <span class='wrap identifier id'>wrap</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span>  <span class='wrap_text identifier id'>wrap_text</span><span class='lparen token'>(</span><span class='txt identifier id'>txt</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Feb  8 15:43:43 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.3 (ruby-1.8.5).
+</div>
+
+  </body>
+</html>

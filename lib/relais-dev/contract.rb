@@ -17,7 +17,7 @@ module Relais
 		#
 		# Assertions are hidden away in the unit testing module of the Ruby
 		# standard library, which may be one reason they're so infrequently used.
-		# For convenience, we gather them all here, along with a few allied
+		# For convenience, they are gathered here along with a few allied
 		# functions.
 		#
 		module Contract

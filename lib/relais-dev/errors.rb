@@ -1,9 +1,14 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Common error types.
+# Source file for {Relais::Dev::Errors}.
+#
+# Import to load {Relais::Dev::Errors}.
 
 ### IMPORTS
+
+require 'test/unit/assertionfailederror'
+
 
 ### IMPLEMENTATION
 
@@ -12,10 +17,13 @@
 # local code
 module Relais
 	module Dev
+		
+		# Common error types.
+		#
 		module Errors
 
-			AssertionError = AssertionFailedError
-			UnimplementedError = NotImplementedError
+			# For brevity
+			AssertionError = Test::Unit::AssertionFailedError
 
 		end
 	end

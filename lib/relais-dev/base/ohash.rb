@@ -1,33 +1,9 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Consistent handling of CSV files.
+# Source file for {Relais::Dev::Base::Ohash}.
 #
-# The standard CSV module is a bit of a mess (e.g. blocking use of "new", but
-# providing "create" instead.) This cleans up the interface into something more
-# rational.
-#
-# @example
-#   # simple data reading, path is opened and closed
-#   rdr = BaseReader('file/path', {:mode=>'rb'})
-#   data = rdr.read()
-#   rdr.finish()
-#
-#   # pass open IO object instead
-#   hndl = File.open('file/path', {:mode=>'rb'})
-#   rdr = BaseReader(hndl)
-#
-#   # simpler
-#   rdr = BaseReader('file/path')
-#   ...
-#
-#   # even simpler
-#   BaseReader::use_with('file/path') { |rdr|
-#      # do something with data ...
-#   }
-#
-#   # simplest
-#   data = quick_read('file/path')
+# Import this to load {Relais::Dev::Base::Ohash}.
 
 
 ### IMPORTS
@@ -37,237 +13,123 @@
 module Relais
 	module Dev
 		module Base
+		
+			if RUBY_VERSION >= '1.9'
+				OrderedHash = ::Hash
+			else
 			
-
-			# There's many implementations of ordered hashes out there - Jan Molic's
-			# is the one that provided the most inspiration.
-			#
-			class OrderedHash < Hash
-				 attr_accessor :order
-			
-				 class << self
-					def [] *args
-						hsh = OrderedHash.new
-						if Hash === args[0]
-							hsh.replace args[0]
-						elsif (args.size % 2) != 0
-							raise ArgumentError, "odd number of elements for Hash"
-						else
-							0.step(args.size - 1, 2) do |a|
-								b = a + 1
-								hsh[args[a]] = args[b]
-							end
+				# A hash with consistent ordering of keys.
+				#
+				# It's often useful to provide an order to the hash keys, or at
+				# least be able to iterate over them in a consistent order. There's
+				# many implementations, but this is borrowed from Rails, with the
+				# possibility of using the core Ruby hash if it provides ordering
+				# (version 1.9 and later).
+				#
+				class OrderedHash < Hash
+					def initialize(*args, &block)
+						super
+						@keys = []
+					end
+		 
+					def initialize_copy(other)
+						super
+						# make a deep copy of keys
+						@keys = other.keys
+					end
+		 
+					def []=(key, value)
+						@keys << key if !has_key?(key)
+						super
+					end
+		 
+					def delete(key)
+						if has_key? key
+							index = @keys.index(key)
+							@keys.delete_at index
 						end
-						hsh
+						super
 					end
-				end
-				
-				def initialize(*a, &b)
-					super
-					@order = []
-				end
-				
-				def store_only a,b
-					store a,b
-				end
-				
-				alias orig_store store
-				
-				def store a,b
-					@order.push a unless has_key? a
-					super a,b
-				end
-				
-				alias []= store
-				
-				def == hsh2
-					return false if @order != hsh2.order
-					super hsh2
-				end
-				
-				def clear
-					@order = []
-					super
-				end
-				
-				def delete key
-					@order.delete key
-					super
-				end
-				
-				def each_key
-					@order.each { |k| yield k }
-					self
-				end
-				
-				def each_value
-					@order.each { |k| yield self[k] }
-					self
-				end
-				
-				def each
-					@order.each { |k| yield k,self[k] }
-					self
-				end
-				
-				alias each_pair each
-				
-				def delete_if
-					@order.clone.each { |k| 
-						delete k if yield(k)
-					}
-					self
-				end
-				
-				def values
-					ary = []
-					@order.each { |k| ary.push self[k] }
-					ary
-				end
-				
-				def keys
-					@order
-				end
-				
-				def first
-					{@order.first => self[@order.first]}
-				end
-				
-				def last
-					{@order.last => self[@order.last]}
-				end
-				
-				def invert
-					hsh2 = Hash.new    
-					@order.each { |k| hsh2[self[k]] = k }
-					hsh2
-				end
-				
-				def reject &block
-					self.dup.delete_if &block
-				end
-				
-				def reject! &block
-					hsh2 = reject &block
-					self == hsh2 ? nil : hsh2
-				end
-				
-				def replace hsh2
-					@order = hsh2.keys 
-					super hsh2
-				end
-				
-				def shift
-					key = @order.first
-					key ? [key,delete(key)] : super
-				end
-				
-				def unshift k,v
-					unless self.include? k
-						@order.unshift k
-						orig_store(k,v)
-						true
-					else
-						false
+					
+					def delete_if
+						super
+						sync_keys!
+						self
 					end
-				end
-				
-				def push k,v
-					unless self.include? k
-						@order.push k
-						orig_store(k,v)
-						true
-					else
-						false
+		 
+					def reject!
+						super
+						sync_keys!
+						self
 					end
-				end
-				
-				def pop
-					key = @order.last
-					key ? [key,delete(key)] : nil
-				end
-				
-				def to_a
-					ary = []
-					each { |k,v| ary << [k,v] }
-					ary
-				end
-				
-				def to_s
-					self.to_a.to_s
-				end
-				
-				def inspect
-					ary = []
-					each {|k,v| ary << k.inspect + "=>" + v.inspect}
-					'{' + ary.join(", ") + '}'
-				end
-				
-				def update hsh2
-					hsh2.each { |k,v| self[k] = v }
-					self
-				end
-				
-				alias :merge! update
-				
-				def merge hsh2
-					self.dup update(hsh2)
-				end
-				
-				def select
-					ary = []
-					each { |k,v| ary << [k,v] if yield k,v }
-					ary
-				end
-				
-				def class
-					Hash
-				end
-				
-				def __class__
-					OrderedHash
+		 
+					def reject(&block)
+						dup.reject!(&block)
+					end
+		 
+					def keys
+						@keys.dup
+					end
+		 
+					def values
+						@keys.collect { |key| self[key] }
+					end
+		 
+					def to_hash
+						self
+					end
+		 
+					def each_key
+						@keys.each { |key| yield key }
+					end
+		 
+					def each_value
+						@keys.each { |key| yield self[key]}
+					end
+		 
+					def each
+						@keys.each {|key| yield [key, self[key]]}
+					end
+		 
+					alias_method :each_pair, :each
+		 
+					def clear
+						super
+						@keys.clear
+						self
+					end
+		 
+					def shift
+						k = @keys.first
+						v = delete(k)
+						[k, v]
+					end
+		 
+					def merge!(other_hash)
+						other_hash.each {|k,v| self[k] = v }
+						self
+					end
+		 
+					def merge(other_hash)
+						dup.merge!(other_hash)
+					end
+		 
+					def inspect
+						"#<OHash #{self.to_hash.inspect}>"
+					end
+		 
+				private
+		 
+					def sync_keys!
+						@keys.delete_if {|k| !has_key?(k)}
+					end
+					
 				end
 			
-				attr_accessor "to_yaml_style"
-				def yaml_inline= bool
-					if respond_to?("to_yaml_style")
-						self.to_yaml_style = :inline
-					else
-						unless defined? @__yaml_inline_meth
-						@__yaml_inline_meth =
-							lambda {|opts|
-							  YAML::quick_emit(object_id, opts) {|emitter|
-								 emitter << '{ ' << map{|kv| kv.join ': '}.join(', ') << ' }'
-							  }
-							}
-						 class << self
-							def to_yaml opts = {}
-							  begin
-								 @__yaml_inline ? @__yaml_inline_meth[ opts ] : super
-							  rescue
-								 @to_yaml_style = :inline
-								 super
-							  end
-							end
-						 end
-						end
-					end
-					@__yaml_inline = bool
-				end
-				
-				def yaml_inline!()
-					self.yaml_inline = true
-				end
-			
-				def each_with_index
-					@order.each_with_index { |k, index| yield k, self[k], index }
-					self
-				end
 			end
-
+			
 		end
 	end
 end
-
 
 ### END
