@@ -7,7 +7,6 @@
 
 require 'relais-dev/contract'
 require 'relais-dev/base/options'
-require 'relais-dev/debug'
 require 'relais-dev/typecheck'
 
 
@@ -22,16 +21,16 @@ module Relais
 		# Support for ubiquitous development tricks and idioms.
 		#
 		# For developer convenience, this module imports a set of the most
-		# ubiquitous modules used, making them available under a single namespace.
+		# commonly used modules, making them available under a single namespace.
 		# These include:
 		#
-		# * asserts (as borrowed from Test::Unit)
+		# * assertions (as borrowed from Test::Unit)
 		# * options and defaults
+		# * typechecks
 		# 
 		module Common
 
 			include Relais::Dev::Contract
-			include Relais::Dev::Debug
 			include Relais::Dev::Base
 			include Relais::Dev::Typecheck
 

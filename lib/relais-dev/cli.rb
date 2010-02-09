@@ -12,9 +12,6 @@
 
 ### IMPLEMENTATION
 
-# submodules that we provide
-require 'relais-dev/cli/clapp'
-
 # local code
 module Relais
 	module Dev
@@ -34,6 +31,10 @@ module Relais
 		
 	end
 end
+
+
+# submodules that we provide
+Dir['relais-dev/cli/*.rb'].sort.each { |lib| require lib }
 
 
 ### END

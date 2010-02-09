@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Math}.
+# Home for {Relais::Dev:Math} module.
+#
+# Import this file to load {Relais::Dev:Math}.
 
 ### IMPORTS
 
@@ -25,7 +27,7 @@ module Relais
 			#   not given, we use simple equality (i.e. the item itself)
 			#
 			# @return [Hash] a hash of the key generated from each item and an array of the
-			#   corrsponding items 
+			#   corresponding items 
 			#
 			# There is actually a function in Rails for this, but 1. Rails is not always
 			# available and 2. I like the way I did it better. Note that the order of

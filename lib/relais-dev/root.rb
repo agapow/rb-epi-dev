@@ -7,10 +7,6 @@
 
 ### IMPLEMENTATION
 
-# submodules that we provide
-require 'relais-dev/base/fixedstruct'
-require 'relais-dev/base/ohash'
-
 # local code
 module Relais
 	module Dev
@@ -28,6 +24,10 @@ module Relais
 		
 	end
 end
+
+
+# submodules that we provide
+Dir['relais-dev/base/*.rb'].sort.each { |lib| require lib }
 
 
 ### END
