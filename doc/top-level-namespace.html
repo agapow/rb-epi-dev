@@ -67,6 +67,8 @@
     
    
     
+      <strong class="classes">Classes:</strong> <a href="ClosedStruct.html" title="ClosedStruct (class)">ClosedStruct</a>, <a href="ConstStruct.html" title="ConstStruct (class)">ConstStruct</a>
+    
   
 </p>
 
@@ -85,11 +87,92 @@
 
 
 
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#make_class-instance_method" title="#make_class (instance method)">- (Object) <strong>make_class</strong>(superkls, name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Create and return a new class with the given name.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="make_class-instance_method">
+  
+    - (<tt>Object</tt>) <strong>make_class</strong>(superkls, name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Create and return a new class with the given name.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/meta.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='make_class identifier id'>make_class</span><span class='lparen token'>(</span><span class='superkls identifier id'>superkls</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='comment val'># TODO: but what namespace is it created in?</span>
+  <span class='kls identifier id'>kls</span> <span class='assign token'>=</span> <span class='Class constant id'>Class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='superkls identifier id'>superkls</span><span class='rparen token'>)</span>
+  <span class='Object constant id'>Object</span><span class='dot token'>.</span><span class='const_set identifier id'>const_set</span> <span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='kls identifier id'>kls</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='kls identifier id'>kls</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:46 2010 by 
+  Generated on Fri Feb 12 18:29:40 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

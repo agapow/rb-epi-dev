@@ -52,14 +52,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></span>
+      <span class="inheritName"><a href="Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next"><a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></li>
           
-            <li class="next"><a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></li>
+            <li class="next"><a href="Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a></li>
           
             <li class="next">Relais::Dev::Io::RecordWriter</li>
           
@@ -81,9 +81,23 @@
 </dl>
 <div class="clear"></div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+The interface for record writers is much thinner than that for record
+readers, because in functional style the looping the writer is a client
+(&quot;for each of these, write a record&quot;) while the reader controls
+the loop (&quot;for each record read, do this&quot;).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><a href="LineWriter.html" title="Relais::Dev::Io::LineWriter (class)">LineWriter</a></p>
+  <p class="children"><a href="LineWriter.html" title="Relais::Dev::Io::LineWriter (class)">LineWriter</a>, <a href="ParagraphWriter.html" title="Relais::Dev::Io::ParagraphWriter (class)">ParagraphWriter</a></p>
 </div>
 
 
@@ -95,34 +109,445 @@
   
   
   
+  <h2>Instance Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delimiter-instance_method" title="#delimiter (instance method)">- (Object) <strong>delimiter</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+TODO: delimiter?.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delimiter_posn-instance_method" title="#delimiter_posn (instance method)">- (Object) <strong>delimiter_posn</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+TODO: delimiter?.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#encode_record-instance_method" title="#encode_record (instance method)">- (Object) <strong>encode_record</strong>(rec) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Produces a representation of the record suitable for writing.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (RecordWriter) <strong>initialize</strong>(io_or_path, delimiter, opts = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of RecordWriter.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_record-instance_method" title="#write_record (instance method)">- (Object) <strong>write_record</strong>(rec) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Write a record to the source.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_records-instance_method" title="#write_records (instance method)">- (Object) <strong>write_records</strong>(en) </a>
+    
+
+    
+      (also: #write)
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
 
   
   
   
   
   
-  <h3 class="inherited">Methods inherited from <a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></h3>
-  <p class="inherited"><a href="BaseWriter.html#initialize-instance_method" title="Relais::Dev::Io::BaseWriter#initialize (method)">#initialize</a></p>
-
   
   
   
   
   
   <h3 class="inherited">Methods inherited from <a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></h3>
-  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#initialize-instance_method" title="Relais::Dev::Io::BaseIo#initialize (method)">#initialize</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
+  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <a href="BaseWriter.html#initialize-instance_method" title="Relais::Dev::Io::BaseWriter#initialize (method)">Relais::Dev::Io::BaseWriter</a></p>
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Relais::Dev::Io::RecordWriter (class)">RecordWriter</a></tt>) <strong>initialize</strong>(io_or_path, delimiter, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of RecordWriter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 212</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='delimiter identifier id'>delimiter</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='@delimiter ivar id'>@delimiter</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:delimiter_posn</span><span class='rparen token'>)</span> <span class='or or kw'>or</span> 
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
   
 </div>
 
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="delimiter=-instance_method"></span>
+      <span id="delimiter-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="delimiter-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delimiter</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+TODO: delimiter?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+210
+211
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 210</span>
+
+<span class='def def kw'>def</span> <span class='delimiter identifier id'>delimiter</span>
+  <span class='@delimiter ivar id'>@delimiter</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="delimiter_posn=-instance_method"></span>
+      <span id="delimiter_posn-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="delimiter_posn-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delimiter_posn</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+TODO: delimiter?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+210
+211
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 210</span>
+
+<span class='def def kw'>def</span> <span class='delimiter_posn identifier id'>delimiter_posn</span>
+  <span class='@delimiter_posn ivar id'>@delimiter_posn</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="encode_record-instance_method">
+  
+    - (<tt>Object</tt>) <strong>encode_record</strong>(rec) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Produces a representation of the record suitable for writing.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 226</span>
+
+<span class='def def kw'>def</span> <span class='encode_record identifier id'>encode_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='rec identifier id'>rec</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_record-instance_method">
+  
+    - (<tt>Object</tt>) <strong>write_record</strong>(rec) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Write a record to the source.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+219
+220
+221
+222
+223</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 219</span>
+
+<span class='def def kw'>def</span> <span class='write_record identifier id'>write_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='comment val'># gets can handle a lot of different splits, but more complicated</span>
+  <span class='comment val'># cases will have to by overriding this</span>
+  <span class='return return kw'>return</span> <span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='encode_record identifier id'>encode_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_records-instance_method">
+  
+    - (<tt>Object</tt>) <strong>write_records</strong>(en) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='write-instance_method'>write</span></span>
+    </span>
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232
+233
+234</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 230</span>
+
+<span class='def def kw'>def</span> <span class='write_records identifier id'>write_records</span><span class='lparen token'>(</span><span class='en identifier id'>en</span><span class='rparen token'>)</span>
+  <span class='en identifier id'>en</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span>
+    <span class='write_record identifier id'>write_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:46 2010 by 
+  Generated on Fri Feb 12 18:29:39 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

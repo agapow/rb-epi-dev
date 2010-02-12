@@ -6,13 +6,13 @@
 ### IMPORTS
 
 require 'relais-dev/contract'
-require 'relais-dev/base/options'
 require 'relais-dev/typecheck'
+require 'relais-dev/debug'
+require 'relais-dev/root/options'
+require 'relais-dev/root/enum'
 
 
 ### IMPLEMENTATION
-
-# submodules that we provide
 
 # local code
 module Relais
@@ -30,11 +30,15 @@ module Relais
 		# 
 		module Common
 
+			# note we don't include Debug, because that must be in own namespace
 			include Relais::Dev::Contract
-			include Relais::Dev::Base
+			include Relais::Dev::Root
 			include Relais::Dev::Typecheck
 
 		end
+
 	end
 end
 
+
+### END

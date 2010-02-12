@@ -59,7 +59,7 @@
           
             <li class="next"><a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></li>
           
-            <li class="next"><a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></li>
+            <li class="next"><a href="Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></li>
           
             <li class="next"><a href="RecordReader.html" title="Relais::Dev::Io::RecordReader (class)">RecordReader</a></li>
           
@@ -105,21 +105,24 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#read_record-instance_method" title="#read_record (instance method)">- (Object) <strong>read_record</strong> </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (LineReader) <strong>initialize</strong>(io_or_path, opts = {}) </a>
     
 
-    
-      (also: #read_line)
     
   </span>
   
+    <span class="note title constructor">constructor</span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc">
+A new instance of LineReader.
+
+</span>
   
 </li>
 
@@ -132,15 +135,15 @@
   
   
   <h3 class="inherited">Methods inherited from <a href="RecordReader.html" title="Relais::Dev::Io::RecordReader (class)">RecordReader</a></h3>
-  <p class="inherited"><a href="RecordReader.html#%3E%3E-instance_method" title="Relais::Dev::Io::RecordReader#>> (method)">#>></a>, <a href="RecordReader.html#read-instance_method" title="Relais::Dev::Io::RecordReader#read (method)">#read</a>, <a href="RecordReader.html#read_all-instance_method" title="Relais::Dev::Io::RecordReader#read_all (method)">#read_all</a>, <a href="RecordReader.html#read_each-instance_method" title="Relais::Dev::Io::RecordReader#read_each (method)">#read_each</a></p>
+  <p class="inherited"><a href="RecordReader.html#decode_record-instance_method" title="Relais::Dev::Io::RecordReader#decode_record (method)">#decode_record</a>, <a href="RecordReader.html#read_all_records-instance_method" title="Relais::Dev::Io::RecordReader#read_all_records (method)">#read_all_records</a>, <a href="RecordReader.html#read_record-instance_method" title="Relais::Dev::Io::RecordReader#read_record (method)">#read_record</a>, <a href="RecordReader.html#read_records_using-instance_method" title="Relais::Dev::Io::RecordReader#read_records_using (method)">#read_records_using</a>, <a href="RecordReader.html#record_number-instance_method" title="Relais::Dev::Io::RecordReader#record_number (method)">#record_number</a></p>
 
   
   
   
   
   
-  <h3 class="inherited">Methods inherited from <a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></h3>
-  <p class="inherited"><a href="BaseReader.html#initialize-instance_method" title="Relais::Dev::Io::BaseReader#initialize (method)">#initialize</a>, <a href="BaseReader.html#read-instance_method" title="Relais::Dev::Io::BaseReader#read (method)">#read</a></p>
+  <h3 class="inherited">Methods inherited from <a href="Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></h3>
+  <p class="inherited"><a href="Reader.html#read-instance_method" title="Relais::Dev::Io::Reader#read (method)">#read</a></p>
 
   
   
@@ -148,58 +151,59 @@
   
   
   <h3 class="inherited">Methods inherited from <a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></h3>
-  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#initialize-instance_method" title="Relais::Dev::Io::BaseIo#initialize (method)">#initialize</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
+  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <a href="BaseReader.html#initialize-instance_method" title="Relais::Dev::Io::BaseReader#initialize (method)">Relais::Dev::Io::BaseReader</a></p>
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
   
+    - (<tt><a href="" title="Relais::Dev::Io::LineReader (class)">LineReader</a></tt>) <strong>initialize</strong>(io_or_path, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of LineReader
+</p>
+
+
+  </div>
 </div>
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-    
-    
-      <div class="method_details first">
-  <p class="signature first" id="read_record-instance_method">
+<div class="tags">
   
-    - (<tt>Object</tt>) <strong>read_record</strong> 
-  
-
-  
-    <span class="aliases">Also known as:
-    <span class="names"><span id='read_line-instance_method'>read_line</span></span>
-    </span>
-  
-</p><table class="source_code">
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-159
-160
-161</pre>
+243
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 243</span>
 
-<span class='def def kw'>def</span> <span class='read_record identifier id'>read_record</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='delimiter identifier id'>delimiter</span> <span class='assign token'>=</span> <span class='delimiter identifier id'>delimiter</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='$/ gvar id'>$/</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
   </tr>
 </table>
 </div>
-    
-  </div>
+  
+</div>
+
 
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:42 2010 by 
+  Generated on Fri Feb 12 18:29:34 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

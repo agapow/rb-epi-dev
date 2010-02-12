@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Base::FixedStruct}.
+# Source file for {Relais::Dev::Root::FixedStruct}.
 
 ### IMPORTS
 
@@ -12,7 +12,7 @@ require 'ostruct'
 
 module Relais
 	module Dev
-		module Base
+		module Root
 
 			# An OpenStruct with instance attributes fixed at creation.
 			#
@@ -24,7 +24,7 @@ module Relais
 			#   
 			# A FixedStruct prevents this by only allowing instance variables to
 			# be added at object creation. Its main purpose is as a base for
-			# {Relais::Dev::Common::Options}.
+			# {Options}.
 			# 
 			# FixedStructs can be created with the same syntax as OpenStructs:
 			#
@@ -47,7 +47,7 @@ module Relais
 				#
 				def method_missing(mid, *args) # :nodoc:
 					# TODO: should call Object.method_missing, bypassing OpenStruct?
-					raise(TypeError, "can't add to #{self.class} once created",
+					raise(TypeError, "can't add #{mid} to #{self.class} once created",
 						caller(1))
 				end
 			
@@ -86,7 +86,7 @@ module Relais
 				#   fs.update!({:foo => 'baz'})    # foo is now 'baz'
 				#...fs.update!({:foo => 'quux'})   # error!
 				#
-				def update!(hsh)
+				def update(hsh)
 					# CHANGE: now a ! method because it mutates
 					hsh.each_pair { |k,v|
 						# ???: not sure if this is the right Ruby idiom

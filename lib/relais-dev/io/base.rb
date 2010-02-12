@@ -23,18 +23,30 @@ module Relais
 		module Io
 		
 			RDC = Relais::Dev::Common
-		
+			
+			DELIMITER_POSN = FixedStruct.new(
+				:BEFORE => 'before',
+				:AFTER => 'after',
+				:BETWEEN =>  'between',
+				:AROUND => 'around'
+			)
+			
 			class BaseIo
 		
 				attr_accessor(:hndl, :file_open)
 
-				def initialize(io_or_path, mode)
+				def initialize(io_or_path, opts={})
 					# TODO: what if it's a Pathname?
-
+					# Setting mode as nil may seem peculiar, but it's only needed if
+					# a path is passed in. But if a path is used, then we should not
+					# guess what the the user means, so they must specify one.
+					options = {
+						:mode => nil,
+					}.update(opts)
 					# if passed a filepath, open it
 					is_path = (io_or_path.class == String)
 					if is_path
-						@hndl = File.open(io_or_path, mode)
+						@hndl = File.open(io_or_path, options[:mode])
 						@file_open = true
 					else
 						@hndl = io_or_path
@@ -71,8 +83,10 @@ module Relais
 				# this to handle footer information or terminating tags, etc.
 				#
 				def finish()
-					@hndl.close()
-					@file_open = false
+					if @file_open
+						@hndl.close()
+						@file_open = false
+					end
 				end
 
 				# Create an IO object, pass it for use and then finish it off.
@@ -80,7 +94,7 @@ module Relais
 				# This allows easy use of an IO object within a block.
 				#
 				def self.with(io_or_path, opts={}, &block)
-					io = BaseIO.new(io_or_path, opts)
+					io = new(io_or_path, opts)
 					result = block.call(io)
 					io.finish()
 					return result
@@ -88,94 +102,191 @@ module Relais
 			end
 
 
-			class BaseWriter < BaseIo
-				# ???: what sort fo write interface do we need
-		
-				def initialize(io_or_path, opts={})
-					options = defaults(
-						:mode => 'rb'
-					).merge(opts)
-					super(io_or_path, mode)
-				end
-
-			end
-
-
-			class BaseReader < BaseIo
+			class Reader < BaseIo
 				# TODO: add enumerable interface
 				# TODO: use each and enumerable for reading
-		
+			
 				def initialize(io_or_path, opts={})
-					options = defaults(
+					options = {
 						:mode => 'wb'
-					).merge(opts)
+					}.update(opts)
 					super(io_or_path, opts)
 				end
 		
 				# Return entire contents of IO object.
 				#
-				def read(&block)
-					
+				def read(opts={})
+					options = {
+						:length => nil   # nil means read all
+					}.update(opts)
+					return @hndl.read(options[:length])
 				end
-		
+			
 			end
 
-		
-			class RecordReader < BaseReader
-				# ???: should 'read' alias to 'read_all' or vice versa
+
+			class Writer < BaseIo
+				# ???: what sort of write interface do we need
+
+				def initialize(io_or_path, opts={})
+					options = {
+						:mode => 'wb'
+					}.update(opts)
+					super(io_or_path, mode)
+				end
+
+				# Return entire contents of IO object.
+				#
+				def write(data)
+					return @hndl.write(data)
+				end
 				
-				def read_record(row)
-					# TODO: throw unimplemented 	
+			end
+
+
+			class RecordReader < Reader
+				
+				attr_accessor(:delimiter)
+				
+				def initialize(io_or_path, delimiter, opts={})
+					delimiter = delimiter
+					super(io_or_path, opts)
 				end
-		
-				def >>(row)
-					read_record(row)
+				
+				def record_number
+					return hndl.lineno
 				end
-		
-				# Read every record and pass it to the block
-				def read_each(&block)
-		
+				
+				# Read the next record from the source.
+				#
+				# @return the next record or nil if at the end of the source
+				#
+				def read_record()
+					# gets can handle a lot of different splits, but more complicated
+					# cases will have to by overriding this
+					if (rec = hndl.gets(delimiter))
+						return decode(rec)
+					else
+						return rec
+					end
 				end
-		
-				# Return an array of every record
-				def read_all()
-					return [].collect
-		
+				
+				# Converts records from their storage format to thie code format.
+				#
+				# To be overridden in subclasses.
+				#
+				def decode_record(rec)
+					return rec
 				end
-		
-				def read()
-					return read_all
+				
+				def read_all_records()
+					all_recs = []
+					read_records_using { |rec| all_recs << rec }
+					return all_recs
 				end
+				
+				def read_records_using(&block)
+					# NOTE: there is the temptation to write 'with_read_each_using'
+					# and related methods but they can be constructed by nesting
+					# a "using" inside a "with"
+					while (rec = read_record())
+						block.call(rec)
+					end
+				end
+			
+				alias read_each read_records_using
+				alias read read_all_records
 		
 			end
 		
-			class RecordWriter < BaseWriter
+			# The interface for record writers is much thinner than that for
+			# record readers, because in functional style the looping the writer is
+			# a client ("for each of these, write a record") while the reader
+			# controls the loop ("for each record read, do this").
+			#
+			class RecordWriter < Writer
+				# TODO: delimiter?
+				
+				attr_accessor(:delimiter, :delimiter_posn)
+				
+				def initialize(io_or_path, delimiter, opts={})
+					@delimiter = opts.delete(:delimiter_posn) or 
+					super(io_or_path, opts)
+				end
+				
+				# Write a record to the source.
+				#
+				def write_record(rec)
+					# gets can handle a lot of different splits, but more complicated
+					# cases will have to by overriding this
+					return hndl.write(encode_record(rec))
+				end
+				
+				# Produces a representation of the record suitable for writing.
+				def encode_record(rec)
+					return rec
+				end
+				
+				def write_records(en)
+					en.each {
+						write_record(rec)
+					}
+				end
+			
+				alias write write_records
 				
 			end
 
 
 			class LineReader < RecordReader
 
-				def read_record()
-
+				def initialize(io_or_path, opts={})
+					delimiter = delimiter
+					super(io_or_path, $/, opts)
 				end
-
+			
 				alias read_line read_record
+				alias read_each_line read_each
+				alias read_lines_using read_records_using
+				alias read_all_lines read_all_records
 
 			end
 
 
 			class LineWriter < RecordWriter
 
-				def write_record()
-
+				def encode_record(rec)
+					return rec + $/
 				end
 
 				alias write_line write_record
+				alias write_lines write_records
+
+			end
+
+			class ParagraphReader < RecordReader
+
+				def initialize(io_or_path, opts={})
+					delimiter = delimiter
+					super(io_or_path, '', opts)
+				end
+			
+				alias read_each_paragraph read_each
+				alias read_paragraphs_using read_records_using
+				alias read_all_paragraphs read_all_records
 
 			end
 
 
+			class ParagraphWriter < RecordWriter
+
+				def encode_record(rec)
+					return rec + $/ + $/
+				end
+
+				alias write_paragraph write_record
+
+			end
 		end
 	end
 end

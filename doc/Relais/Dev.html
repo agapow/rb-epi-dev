@@ -58,17 +58,57 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/relais-dev.rb<span class="defines">,<br />
-  lib/relais-dev/io.rb,<br /> lib/relais-dev/cli.rb,<br /> lib/relais-dev/math.rb,<br /> lib/relais-dev/base.rb,<br /> lib/relais-dev/text.rb,<br /> lib/relais-dev/debug.rb,<br /> lib/relais-dev/errors.rb,<br /> lib/relais-dev/common.rb,<br /> lib/relais-dev/io/csv.rb,<br /> lib/relais-dev/io/base.rb,<br /> lib/relais-dev/contract.rb,<br /> lib/relais-dev/io/quick.rb,<br /> lib/relais-dev/base/ohash.rb,<br /> lib/relais-dev/common/options.rb,<br /> lib/relais-dev/base/fixedstruct.rb</span>
+  lib/relais-dev/io.rb,<br /> lib/relais-dev/cli.rb,<br /> lib/relais-dev/log.rb,<br /> lib/relais-dev/math.rb,<br /> lib/relais-dev/text.rb,<br /> lib/relais-dev/root.rb,<br /> lib/relais-dev/debug.rb,<br /> lib/relais-dev/errors.rb,<br /> lib/relais-dev/common.rb,<br /> lib/relais-dev/io/csv.rb,<br /> lib/relais-dev/io/base.rb,<br /> lib/relais-dev/contract.rb,<br /> lib/relais-dev/io/quick.rb,<br /> lib/relais-dev/root/enum.rb,<br /> lib/relais-dev/typecheck.rb,<br /> lib/relais-dev/root/ohash.rb,<br /> lib/relais-dev/root/options.rb,<br /> lib/relais-dev/root/fixedstruct.rb</span>
 </dd>
   
 </dl>
 <div class="clear"></div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Relais::Dev is a collection of assorted utility functions for development
+and debugging. Although it has a deep purpose as a aid for the Ruby port of
+the Relais epiinformatics suite &lt;http://www.epicentr.org&gt;, it should
+be suitable for general programming making several common tasks quick and
+consistent.
+</p>
+<p>
+By importing this file you get the entirity of Relais::Dev which contains:
+</p>
+<ul>
+<li><tt><a href="Dev/Common.html" title="Relais::Dev::Common (module)">Relais::Dev::Common</a></tt> for traditional debugging constructs like diagnostic
+printing and assertion.
+
+</li>
+<li><tt><a href="Dev/Io.html" title="Relais::Dev::Io (module)">Relais::Dev::Io</a></tt> for consistent and simple IO classes.
+
+</li>
+<li><tt><a href="Dev/Cli.html" title="Relais::Dev::Cli (module)">Relais::Dev::Cli</a></tt> for commandline program functions, including a more.
+sophisticated argument parser and common commandline flags.
+
+</li>
+<li><tt><a href="Dev/Log.html" title="Relais::Dev::Log (module)">Relais::Dev::Log</a></tt> for enhanced and streamlined logging.
+
+</li>
+<li><tt><a href="Dev/Text.html" title="Relais::Dev::Text (module)">Relais::Dev::Text</a></tt> for common text manipulation utilities.
+
+</li>
+<li><tt><a href="Dev/Math.html" title="Relais::Dev::Math (module)">Relais::Dev::Math</a></tt> for assorted math functions.
+
+</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a href="Dev/Base.html" title="Relais::Dev::Base (module)">Base</a>, <a href="Dev/Cli.html" title="Relais::Dev::Cli (module)">Cli</a>, <a href="Dev/Common.html" title="Relais::Dev::Common (module)">Common</a>, <a href="Dev/Contract.html" title="Relais::Dev::Contract (module)">Contract</a>, <a href="Dev/Errors.html" title="Relais::Dev::Errors (module)">Errors</a>, <a href="Dev/I0.html" title="Relais::Dev::I0 (module)">I0</a>, <a href="Dev/Io.html" title="Relais::Dev::Io (module)">Io</a>, <a href="Dev/Math.html" title="Relais::Dev::Math (module)">Math</a>, <a href="Dev/Text.html" title="Relais::Dev::Text (module)">Text</a>
+      <strong class="modules">Modules:</strong> <a href="Dev/Cli.html" title="Relais::Dev::Cli (module)">Cli</a>, <a href="Dev/Common.html" title="Relais::Dev::Common (module)">Common</a>, <a href="Dev/Contract.html" title="Relais::Dev::Contract (module)">Contract</a>, <a href="Dev/Debug.html" title="Relais::Dev::Debug (module)">Debug</a>, <a href="Dev/Errors.html" title="Relais::Dev::Errors (module)">Errors</a>, <a href="Dev/I0.html" title="Relais::Dev::I0 (module)">I0</a>, <a href="Dev/Io.html" title="Relais::Dev::Io (module)">Io</a>, <a href="Dev/Log.html" title="Relais::Dev::Log (module)">Log</a>, <a href="Dev/Math.html" title="Relais::Dev::Math (module)">Math</a>, <a href="Dev/Root.html" title="Relais::Dev::Root (module)">Root</a>, <a href="Dev/Text.html" title="Relais::Dev::Text (module)">Text</a>, <a href="Dev/Typecheck.html" title="Relais::Dev::Typecheck (module)">Typecheck</a>
     
    
     
@@ -94,7 +134,7 @@
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:41 2010 by 
+  Generated on Fri Feb 12 18:29:35 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

@@ -9,20 +9,20 @@
 #
 # @example
 #   # simple data reading, path is opened and closed
-#   rdr = BaseReader('file/path', {:mode=>'rb'})
+#   rdr = Reader('file/path', {:mode=>'rb'})
 #   data = rdr.read()
 #   rdr.finish()
 #
 #   # pass open IO object instead
 #   hndl = File.open('file/path', {:mode=>'rb'})
-#   rdr = BaseReader(hndl)
+#   rdr = Reader(hndl)
 #
 #   # simpler
-#   rdr = BaseReader('file/path')
+#   rdr = Reader('file/path')
 #   ...
 #
 #   # even simpler
-#   BaseReader::use_with('file/path') { |rdr|
+#   Reader::use_with('file/path') { |rdr|
 #      # do something with data ...
 #   }
 #

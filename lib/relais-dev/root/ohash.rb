@@ -1,10 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Base::Ohash}.
-#
-# Import this to load {Relais::Dev::Base::Ohash}.
-
+# Source file for {Relais::Dev::Root::Ohash}.
 
 ### IMPORTS
 
@@ -12,7 +9,7 @@
 
 module Relais
 	module Dev
-		module Base
+		module Root
 		
 			if RUBY_VERSION >= '1.9'
 				OrderedHash = ::Hash

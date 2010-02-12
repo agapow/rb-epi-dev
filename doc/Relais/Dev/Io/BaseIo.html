@@ -79,7 +79,7 @@
 
 <div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a>, <a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></p>
+  <p class="children"><a href="Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a>, <a href="Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a></p>
 </div>
 
 
@@ -223,7 +223,7 @@ Do any necessary teardown to complete IO.
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BaseIo) <strong>initialize</strong>(io_or_path, mode) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BaseIo) <strong>initialize</strong>(io_or_path, opts = {}) </a>
     
 
     
@@ -275,7 +275,7 @@ Do any necessary setup to commence IO.
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a href="" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></tt>) <strong>initialize</strong>(io_or_path, mode) 
+    - (<tt><a href="" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></tt>) <strong>initialize</strong>(io_or_path, opts = {}) 
   
 
   
@@ -296,31 +296,41 @@ A new instance of BaseIo
       <pre class="lines">
 
 
-31
-32
-33
-34
-35
-36
-37
 38
 39
 40
 41
 42
 43
-44</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 38</span>
 
-<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='comment val'># TODO: what if it's a Pathname?</span>
-
+  <span class='comment val'># Setting mode as nil may seem peculiar, but it's only needed if</span>
+  <span class='comment val'># a path is passed in. But if a path is used, then we should not</span>
+  <span class='comment val'># guess what the the user means, so they must specify one.</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:mode</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
   <span class='comment val'># if passed a filepath, open it</span>
   <span class='is_path identifier id'>is_path</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='dot token'>.</span><span class='class identifier id'>class</span> <span class='eq op'>==</span> <span class='String constant id'>String</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='is_path identifier id'>is_path</span>
-    <span class='@hndl ivar id'>@hndl</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
+    <span class='@hndl ivar id'>@hndl</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:mode</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='@file_open ivar id'>@file_open</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
   <span class='else else kw'>else</span>
     <span class='@hndl ivar id'>@hndl</span> <span class='assign token'>=</span> <span class='io_or_path identifier id'>io_or_path</span>
@@ -366,12 +376,12 @@ Returns the value of attribute file_open
       <pre class="lines">
 
 
-29
-30
-31</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 36</span>
 
 <span class='def def kw'>def</span> <span class='file_open identifier id'>file_open</span>
   <span class='@file_open ivar id'>@file_open</span>
@@ -409,12 +419,12 @@ Returns the value of attribute hndl
       <pre class="lines">
 
 
-29
-30
-31</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 36</span>
 
 <span class='def def kw'>def</span> <span class='hndl identifier id'>hndl</span>
   <span class='@hndl ivar id'>@hndl</span>
@@ -459,18 +469,18 @@ This allows easy use of an IO object within a block.
       <pre class="lines">
 
 
-82
-83
-84
-85
-86
-87</pre>
+96
+97
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 96</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-  <span class='io identifier id'>io</span> <span class='assign token'>=</span> <span class='BaseIO constant id'>BaseIO</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='io identifier id'>io</span> <span class='assign token'>=</span> <span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='block identifier id'>block</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='io identifier id'>io</span><span class='rparen token'>)</span>
   <span class='io identifier id'>io</span><span class='dot token'>.</span><span class='finish identifier id'>finish</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='result identifier id'>result</span>
@@ -514,14 +524,14 @@ This simply ensures that any file opened by object is closed.
       <pre class="lines">
 
 
-50
-51
-52
-53
-54</pre>
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 62</span>
 
 <span class='def def kw'>def</span> <span class='finalize identifier id'>finalize</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='@file_open ivar id'>@file_open</span>
@@ -563,17 +573,21 @@ footer information or terminating tags, etc.
       <pre class="lines">
 
 
-73
-74
-75
-76</pre>
+85
+86
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 85</span>
 
 <span class='def def kw'>def</span> <span class='finish identifier id'>finish</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='@hndl ivar id'>@hndl</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='@file_open ivar id'>@file_open</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='if if kw'>if</span> <span class='@file_open ivar id'>@file_open</span>
+    <span class='@hndl ivar id'>@hndl</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='@file_open ivar id'>@file_open</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -610,12 +624,12 @@ may have to override this to handle header information opening tags, etc.
       <pre class="lines">
 
 
-63
-64
-65</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 75</span>
 
 <span class='def def kw'>def</span> <span class='prepare identifier id'>prepare</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='comment val'># to be overridden in subclasses</span>
@@ -631,7 +645,7 @@ may have to override this to handle header information opening tags, etc.
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:45 2010 by 
+  Generated on Fri Feb 12 18:29:39 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

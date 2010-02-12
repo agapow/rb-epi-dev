@@ -124,20 +124,20 @@ consistent interface.
     
       <h4></h4>
       <pre class="example code">  <span class='comment val'># simple data reading, path is opened and closed</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:mode=</span><span class='gt op'>&gt;</span><span class='string val'>'rb'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='Reader constant id'>Reader</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:mode=</span><span class='gt op'>&gt;</span><span class='string val'>'rb'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='finish identifier id'>finish</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
 
   <span class='comment val'># pass open IO object instead</span>
   <span class='hndl identifier id'>hndl</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:mode=</span><span class='gt op'>&gt;</span><span class='string val'>'rb'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='lparen token'>(</span><span class='hndl identifier id'>hndl</span><span class='rparen token'>)</span>
+  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='Reader constant id'>Reader</span><span class='lparen token'>(</span><span class='hndl identifier id'>hndl</span><span class='rparen token'>)</span>
 
   <span class='comment val'># simpler</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='rparen token'>)</span>
+  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='Reader constant id'>Reader</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='rparen token'>)</span>
   <span class='dot3 op'>...</span>
 
   <span class='comment val'># even simpler</span>
-  <span class='BaseReader constant id'>BaseReader</span><span class='colon2 op'>::</span><span class='use_with identifier id'>use_with</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rdr identifier id'>rdr</span><span class='bitor op'>|</span>
+  <span class='Reader constant id'>Reader</span><span class='colon2 op'>::</span><span class='use_with identifier id'>use_with</span><span class='lparen token'>(</span><span class='string val'>'file/path'</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rdr identifier id'>rdr</span><span class='bitor op'>|</span>
      <span class='comment val'># do something with data ...</span>
   <span class='rbrace token'>}</span>
 
@@ -161,7 +161,7 @@ consistent interface.
     
    
     
-      <strong class="classes">Classes:</strong> <a href="Io/BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a>, <a href="Io/BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a>, <a href="Io/BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a>, <a href="Io/LineReader.html" title="Relais::Dev::Io::LineReader (class)">LineReader</a>, <a href="Io/LineWriter.html" title="Relais::Dev::Io::LineWriter (class)">LineWriter</a>, <a href="Io/RecordReader.html" title="Relais::Dev::Io::RecordReader (class)">RecordReader</a>, <a href="Io/RecordWriter.html" title="Relais::Dev::Io::RecordWriter (class)">RecordWriter</a>
+      <strong class="classes">Classes:</strong> <a href="Io/BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a>, <a href="Io/LineReader.html" title="Relais::Dev::Io::LineReader (class)">LineReader</a>, <a href="Io/LineWriter.html" title="Relais::Dev::Io::LineWriter (class)">LineWriter</a>, <a href="Io/ParagraphReader.html" title="Relais::Dev::Io::ParagraphReader (class)">ParagraphReader</a>, <a href="Io/ParagraphWriter.html" title="Relais::Dev::Io::ParagraphWriter (class)">ParagraphWriter</a>, <a href="Io/Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a>, <a href="Io/RecordReader.html" title="Relais::Dev::Io::RecordReader (class)">RecordReader</a>, <a href="Io/RecordWriter.html" title="Relais::Dev::Io::RecordWriter (class)">RecordWriter</a>, <a href="Io/Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a>
     
   
 </p>
@@ -174,6 +174,17 @@ consistent interface.
             <span class="summary_desc"></span>
         </dt>
         <dd><pre class="code"><span class='Relais constant id'>Relais</span><span class='colon2 op'>::</span><span class='Dev constant id'>Dev</span><span class='colon2 op'>::</span><span class='Common constant id'>Common</span>
+</pre></dd>
+      
+        <dt id="DELIMITER_POSN-constant" class="">DELIMITER_POSN =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='FixedStruct constant id'>FixedStruct</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span>
+  <span class='symbol val'>:BEFORE</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'before'</span><span class='comma token'>,</span>
+  <span class='symbol val'>:AFTER</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'after'</span><span class='comma token'>,</span>
+  <span class='symbol val'>:BETWEEN</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>  <span class='string val'>'between'</span><span class='comma token'>,</span>
+  <span class='symbol val'>:AROUND</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'around'</span>
+<span class='rparen token'>)</span>
 </pre></dd>
       
         <dt id="RBC-constant" class="">RBC =
@@ -380,7 +391,7 @@ presumed to be &quot;readable&quot;.
       <pre class="code"><span class="info file"># File 'lib/relais-dev/io/quick.rb', line 50</span>
 
 <span class='def def kw'>def</span> <span class='quick_read identifier id'>quick_read</span> <span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='assign token'>=</span><span class='string val'>'r'</span><span class='rparen token'>)</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
+  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='Reader constant id'>Reader</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
   <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='data identifier id'>data</span>
@@ -426,7 +437,7 @@ Read the contents of the passed object with the selected reader.
   
     <li>
       
-        <span class='type'>(<tt><a href="Io/BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></tt>)</span>
+        <span class='type'>(<tt><a href="Io/Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></tt>)</span>
       
       
         <span class='name'>reader_cls</span>
@@ -435,7 +446,7 @@ Read the contents of the passed object with the selected reader.
       
         &mdash;
         
-A <tt><a href="Io/BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></tt> subclass.
+A <tt><a href="Io/Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></tt> subclass.
 
 
       
@@ -499,7 +510,7 @@ The data in the file.
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li>This is a convenience function, allowing simple one-liners that read the contents of a file or similar object. It accepts all the arguments and behaves like using a {BaseReader} to extract data.</li>
+      <li>This is a convenience function, allowing simple one-liners that read the contents of a file or similar object. It accepts all the arguments and behaves like using a {Reader} to extract data.</li>
     
   </ul>
 
@@ -622,7 +633,7 @@ The data in the file.
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li><a href="Io/BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">This is a convenience function, allowing simple one-liners that read the contents of a file or similar object. It accepts all the arguments and behaves like using a {BaseReader} to extract data.</a></li>
+      <li><a href="Io/Reader.html" title="Relais::Dev::Io::Reader (class)">This is a convenience function, allowing simple one-liners that read the contents of a file or similar object. It accepts all the arguments and behaves like using a {Reader} to extract data.</a></li>
     
   </ul>
 
@@ -643,7 +654,7 @@ The data in the file.
       <pre class="code"><span class="info file"># File 'lib/relais-dev/io/quick.rb', line 108</span>
 
 <span class='def def kw'>def</span> <span class='quick_write identifier id'>quick_write</span> <span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='assign token'>=</span><span class='string val'>'r'</span><span class='rparen token'>)</span>
-  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='BaseReader constant id'>BaseReader</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
+  <span class='rdr identifier id'>rdr</span> <span class='assign token'>=</span> <span class='Reader constant id'>Reader</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='mode identifier id'>mode</span><span class='rparen token'>)</span>
   <span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='rdr identifier id'>rdr</span><span class='dot token'>.</span><span class='close identifier id'>close</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='data identifier id'>data</span>
@@ -659,7 +670,7 @@ The data in the file.
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:45 2010 by 
+  Generated on Fri Feb 12 18:29:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

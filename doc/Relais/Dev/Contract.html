@@ -83,15 +83,868 @@ convenience, they are gathered here along with a few allied functions.
 <div class="tags">
   
 </div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="RBE-constant" class="">RBE =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='Relais constant id'>Relais</span><span class='colon2 op'>::</span><span class='Dev constant id'>Dev</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span>
+</pre></dd>
+      
+        <dt id="LEVELS-constant" class="">LEVELS =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='dstring node'>%w(DEBUG INFO WARN ERROR FATAL ANY)</span>
+</pre></dd>
+      
+    </dl>
+  
+
 
   
 
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_path_exists-instance_method" title="#assert_path_exists (instance method)">- (Object) <strong>assert_path_exists</strong>(fpath) </a>
+    
+
+    
+  </span>
   
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_path_is_dir-instance_method" title="#assert_path_is_dir (instance method)">- (Object) <strong>assert_path_is_dir</strong>(fpath) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_path_is_file-instance_method" title="#assert_path_is_file (instance method)">- (Object) <strong>assert_path_is_file</strong>(fpath) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_path_is_readable-instance_method" title="#assert_path_is_readable (instance method)">- (Object) <strong>assert_path_is_readable</strong>(fpath) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assert_path_is_writable-instance_method" title="#assert_path_is_writable (instance method)">- (Object) <strong>assert_path_is_writable</strong>(fpath) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#die_unless-instance_method" title="#die_unless (instance method)">- (Object) <strong>die_unless</strong>(cond, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Raise an exception unless the passed condition is met.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#log_error-instance_method" title="#log_error (instance method)">- (Object) <strong>log_error</strong>(msg, logger, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Print an error message to a logger.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#print_error-instance_method" title="#print_error (instance method)">- (Object) <strong>print_error</strong>(msg, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Print an error message to a stream.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#raise_unless-instance_method" title="#raise_unless (instance method)">- (Object) <strong>raise_unless</strong>(cond, opts = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Raise an exception unless the passed condition is met.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="assert_path_exists-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_path_exists</strong>(fpath) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 33</span>
+
+<span class='def def kw'>def</span> <span class='assert_path_exists identifier id'>assert_path_exists</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='assert_block identifier id'>assert_block</span><span class='lparen token'>(</span><span class='dstring node'>&quot;file path '#{fpath} does not exist&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_path_is_dir-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_path_is_dir</strong>(fpath) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='assert_path_is_dir identifier id'>assert_path_is_dir</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='assert_block identifier id'>assert_block</span><span class='lparen token'>(</span><span class='dstring node'>&quot;file path '#{fpath} is not a directory&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_path_is_file-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_path_is_file</strong>(fpath) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='assert_path_is_file identifier id'>assert_path_is_file</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='assert_block identifier id'>assert_block</span><span class='lparen token'>(</span><span class='dstring node'>&quot;file path '#{fpath} is not a file&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='file? fid id'>file?</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_path_is_readable-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_path_is_readable</strong>(fpath) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='assert_path_is_readable identifier id'>assert_path_is_readable</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='assert_block identifier id'>assert_block</span><span class='lparen token'>(</span><span class='dstring node'>&quot;file path '#{fpath} is not a directory&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='readable? fid id'>readable?</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="assert_path_is_writable-instance_method">
+  
+    - (<tt>Object</tt>) <strong>assert_path_is_writable</strong>(fpath) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='assert_path_is_writable identifier id'>assert_path_is_writable</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='assert_block identifier id'>assert_block</span><span class='lparen token'>(</span><span class='dstring node'>&quot;file path '#{fpath} is not a directory&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='writable? fid id'>writable?</span><span class='lparen token'>(</span><span class='fpath identifier id'>fpath</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="die_unless-instance_method">
+  
+    - (<tt>Object</tt>) <strong>die_unless</strong>(cond, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Raise an exception unless the passed condition is met
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='day_of_month identifier id'>day_of_month</span> <span class='leq op'>&lt;=</span> <span class='integer val'>32</span><span class='rparen token'>)</span>
+  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='filepath identifier id'>filepath</span><span class='dot token'>.</span><span class='exists identifier id'>exists</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:error=</span><span class='gt op'>&gt;</span><span class='IOError constant id'>IOError</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='denominator identifier id'>denominator</span> <span class='neq op'>!=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:msg=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;division by zero!&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <span class='name'>cond</span>
+      
+      
+      
+        &mdash;
+        
+A test that evaulates to a boolean
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+      
+        &mdash;
+        
+An options hash
+
+
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 122</span>
+
+<span class='def def kw'>def</span> <span class='die_unless identifier id'>die_unless</span><span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:ret_code</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>-1</span><span class='comma token'>,</span>
+    <span class='symbol val'>:msg</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;an unknown error has occurred and the program will exit&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:logger</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
+    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='FATAL constant id'>FATAL</span><span class='comma token'>,</span>
+    <span class='symbol val'>:err_stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span>
+      <span class='print_error identifier id'>print_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='lvl identifier id'>lvl</span><span class='comma token'>,</span> <span class='symbol val'>:stream=</span><span class='gt op'>&gt;</span><span class='stream identifier id'>stream</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span>
+      <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='lvl identifier id'>lvl</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> 
+    <span class='end end kw'>end</span>
+    <span class='exit identifier id'>exit</span><span class='lparen token'>(</span><span class='ret_code identifier id'>ret_code</span><span class='rparen token'>)</span> 
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="log_error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>log_error</strong>(msg, logger, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Print an error message to a logger.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>#to_s</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+An error message to report
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Logger</tt>)</span>
+      
+      
+        <span class='name'>logger</span>
+      
+      
+      
+        &mdash;
+        
+A logger to receieve the error message
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190
+191
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 187</span>
+
+<span class='def def kw'>def</span> <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'>## Preconditions &amp; preparation:</span>
+  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='comment val'>## Main:</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="print_error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>print_error</strong>(msg, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Print an error message to a stream.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>#to_s</tt>)</span>
+      
+      
+        <span class='name'>msg</span>
+      
+      
+      
+        &mdash;
+        
+An error message to report
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 156</span>
+
+<span class='def def kw'>def</span> <span class='print_error identifier id'>print_error</span> <span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'>## Preconditions &amp; preparation:</span>
+  <span class='comment val'># ???: you can use STDERR or $stderr, unsure which is best</span>
+  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
+    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Fixnum constant id'>Fixnum</span><span class='rparen token'>)</span>
+    <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='LEVELS constant id'>LEVELS</span><span class='lbrack token'>[</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='LEVELS constant id'>LEVELS</span><span class='lbrack token'>[</span><span class='integer val'>-1</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+  <span class='comment val'>## Main:</span>
+  <span class='lvl_str identifier id'>lvl_str</span> <span class='assign token'>=</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span>
+  <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:stream</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}\n&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="raise_unless-instance_method">
+  
+    - (<tt>Object</tt>) <strong>raise_unless</strong>(cond, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Raise an exception unless the passed condition is met
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4></h4>
+      <pre class="example code">  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='day_of_month identifier id'>day_of_month</span> <span class='leq op'>&lt;=</span> <span class='integer val'>32</span><span class='rparen token'>)</span>
+  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='filepath identifier id'>filepath</span><span class='dot token'>.</span><span class='exists identifier id'>exists</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:error=</span><span class='gt op'>&gt;</span><span class='IOError constant id'>IOError</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='denominator identifier id'>denominator</span> <span class='neq op'>!=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:msg=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;division by zero!&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <span class='name'>cond</span>
+      
+      
+      
+        &mdash;
+        
+A test that evaulates to a boolean
+
+
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+      
+        &mdash;
+        
+An options hash
+
+
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/contract.rb', line 81</span>
+
+<span class='def def kw'>def</span> <span class='raise_unless identifier id'>raise_unless</span><span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'># TODO: use globals to set the default err logger and stream</span>
+  <span class='comment val'># TODO: need a better word than 'defaults'</span>
+  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:err_class</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='RBE constant id'>RBE</span><span class='colon2 op'>::</span><span class='AssertionError constant id'>AssertionError</span><span class='comma token'>,</span>
+    <span class='symbol val'>:msg</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;an unknown error has occurred and an exception has been raised&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:logger</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
+    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
+    <span class='symbol val'>:err_stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='unless unless kw'>unless</span> <span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span>
+      <span class='print_error identifier id'>print_error</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='comma token'>,</span> 
+        <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:stream=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span>
+      <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>  
+    <span class='end end kw'>end</span>
+    <span class='raise identifier id'>raise</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_class</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:46 2010 by 
+  Generated on Fri Feb 12 18:29:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

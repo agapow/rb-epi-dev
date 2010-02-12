@@ -55,15 +55,13 @@
   
     
       <dt class="r1">Includes:</dt>
-      <dd class="r1"><a href="Base.html" title="Relais::Dev::Base (module)">Base</a>, <a href="Contract.html" title="Relais::Dev::Contract (module)">Contract</a>, Debug, Typecheck, Test::Unit::Assertions</dd>
+      <dd class="r1"><a href="Contract.html" title="Relais::Dev::Contract (module)">Contract</a>, <a href="Root.html" title="Relais::Dev::Root (module)">Root</a>, <a href="Typecheck.html" title="Relais::Dev::Typecheck (module)">Typecheck</a></dd>
       
     
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/relais-dev/common.rb<span class="defines">,<br />
-  lib/relais-dev/debug.rb,<br /> lib/relais-dev/common/options.rb</span>
-</dd>
+    <dd class="r2 last">lib/relais-dev/common.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -74,17 +72,20 @@
 Support for ubiquitous development tricks and idioms.
 </p>
 <p>
-For developer convenience, this module imports a set of the most ubiquitous
-modules used, making them available under a single namespace. These
+For developer convenience, this module imports a set of the most commonly
+used modules, making them available under a single namespace. These
 include:
 </p>
 <ul>
-<li>asserts (as borrowed from Test::Unit)
+<li>assertions (as borrowed from Test::Unit)
 
 </li>
 <li>options and defaults
 
 </li>
+<li>typechecks
+
+</li>
 </ul>
 
 
@@ -92,721 +93,58 @@ include:
 </div>
 <div class="tags">
   
-</div><h2>Defined Under Namespace</h2>
-<p class="children">
-   
-    
-   
-    
-      <strong class="classes">Classes:</strong> <a href="Common/Options.html" title="Relais::Dev::Common::Options (class)">Options</a>
-    
-  
-</p>
-
+</div>
   <h2>Constant Summary</h2>
   
-    <dl class="constants">
-      
-        <dt id="RBE-constant" class="">RBE =
-            <span class="summary_desc"></span>
-        </dt>
-        <dd><pre class="code"><span class='Relais constant id'>Relais</span><span class='colon2 op'>::</span><span class='Dev constant id'>Dev</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span>
-</pre></dd>
-      
-        <dt id="LEVELS-constant" class="">LEVELS =
-            <span class="summary_desc"></span>
-        </dt>
-        <dd><pre class="code"><span class='dstring node'>%w(DEBUG INFO WARN ERROR FATAL ANY)</span>
-</pre></dd>
-      
-    </dl>
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  <h2>Instance Method Summary</h2>
-
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#defaults-instance_method" title="#defaults (instance method)">- (Object) <strong>defaults</strong>(*args) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Create an options object with these default values.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#die_unless-instance_method" title="#die_unless (instance method)">- (Object) <strong>die_unless</strong>(cond, opts = {}) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Raise an exception unless the passed condition is met.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#log_error-instance_method" title="#log_error (instance method)">- (Object) <strong>log_error</strong>(msg, logger, opts = {}) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Print an error message to a logger.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#print_error-instance_method" title="#print_error (instance method)">- (Object) <strong>print_error</strong>(msg, opts = {}) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Print an error message to a stream.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#raise_unless-instance_method" title="#raise_unless (instance method)">- (Object) <strong>raise_unless</strong>(cond, opts = {}) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Raise an exception unless the passed condition is met.
-
-</span>
-  
-</li>
-
-    
-  </ul>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-    
-    
-      <div class="method_details first">
-  <p class="signature first" id="defaults-instance_method">
-  
-    - (<tt>Object</tt>) <strong>defaults</strong>(*args) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Create an options object with these default values.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">  <span class='def def kw'>def</span> <span class='myfunc identifier id'>myfunc</span> <span class='lparen token'>(</span><span class='arg1 identifier id'>arg1</span><span class='comma token'>,</span> <span class='arg2 identifier id'>arg2</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-     <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='defaults identifier id'>defaults</span><span class='lparen token'>(</span>
-       <span class='symbol val'>:overwrite_data</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
-       <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>  <span class='string val'>&quot;foo&quot;</span><span class='comma token'>,</span>
-     <span class='rparen token'>)</span><span class='dot token'>.</span><span class='update! fid id'>update!</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
-</pre>
-    
-  </div>
-
-  <h3>See Also:</h3>
-  <ul class="see">
-    
-      <li>This is a simple bit of semantic sugar for defining the default values for methods. It just creates and returns an Options object with the passed values.</li>
-    
-  </ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
 
-
-84
-85
-86</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/common/options.rb', line 84</span>
-
-<span class='def def kw'>def</span> <span class='defaults identifier id'>defaults</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='Options constant id'>Options</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="die_unless-instance_method">
-  
-    - (<tt>Object</tt>) <strong>die_unless</strong>(cond, opts = {}) 
-  
-
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Raise an exception unless the passed condition is met
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
   
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='day_of_month identifier id'>day_of_month</span> <span class='leq op'>&lt;=</span> <span class='integer val'>32</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='filepath identifier id'>filepath</span><span class='dot token'>.</span><span class='exists identifier id'>exists</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:error=</span><span class='gt op'>&gt;</span><span class='IOError constant id'>IOError</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='denominator identifier id'>denominator</span> <span class='neq op'>!=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:msg=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;division by zero!&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-</pre>
-    
-  </div>
-<h3>Parameters:</h3>
-<ul class="param">
   
-    <li>
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <span class='name'>cond</span>
-      
-      
-      
-        &mdash;
-        
-A test that evaulates to a boolean
-
-
-      
-    </li>
   
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <span class='name'>options</span>
-      
-      
-      
-        &mdash;
-        
-An options hash
+  <h3 class="inherited">Constants included from <a href="Contract.html" title="Relais::Dev::Contract (module)">Contract</a></h3>
+  <p class="inherited"><a href="Contract.html#LEVELS-constant" title="Relais::Dev::Contract::LEVELS (constant)">LEVELS</a>, <a href="Contract.html#RBE-constant" title="Relais::Dev::Contract::RBE (constant)">RBE</a></p>
 
-
-      
-    </li>
   
-</ul>
-
   
-    
-    
-    
-    
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/debug.rb', line 145</span>
-
-<span class='def def kw'>def</span> <span class='die_unless identifier id'>die_unless</span><span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
-    <span class='symbol val'>:ret_code</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>-1</span><span class='comma token'>,</span>
-    <span class='symbol val'>:msg</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;an unknown error has occurred and the program will exit&quot;</span><span class='comma token'>,</span>
-    <span class='symbol val'>:logger</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
-    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='FATAL constant id'>FATAL</span><span class='comma token'>,</span>
-    <span class='symbol val'>:err_stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
-  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
-  <span class='unless unless kw'>unless</span> <span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='rparen token'>)</span>
-    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span>
-      <span class='print_error identifier id'>print_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='lvl identifier id'>lvl</span><span class='comma token'>,</span> <span class='symbol val'>:stream=</span><span class='gt op'>&gt;</span><span class='stream identifier id'>stream</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-    <span class='end end kw'>end</span>
-    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span>
-      <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='lvl identifier id'>lvl</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> 
-    <span class='end end kw'>end</span>
-    <span class='exit identifier id'>exit</span><span class='lparen token'>(</span><span class='ret_code identifier id'>ret_code</span><span class='rparen token'>)</span> 
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="log_error-instance_method">
   
-    - (<tt>Object</tt>) <strong>log_error</strong>(msg, logger, opts = {}) 
   
-
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Print an error message to a logger.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
   
-    <li>
-      
-        <span class='type'>(<tt>String</tt>, <tt>#to_s</tt>)</span>
-      
-      
-        <span class='name'>msg</span>
-      
-      
-      
-        &mdash;
-        
-An error message to report
-
-
-      
-    </li>
   
-    <li>
-      
-        <span class='type'>(<tt>Logger</tt>)</span>
-      
-      
-        <span class='name'>logger</span>
-      
-      
-      
-        &mdash;
-        
-A logger to receieve the error message
-
-
-      
-    </li>
   
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <span class='name'>options</span>
-      
-      
-      
-    </li>
   
-</ul>
 
   
-    
-    
-    
-    
-    
-    
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-212
-213
-214
-215
-216
-217
-218
-219</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/debug.rb', line 212</span>
-
-<span class='def def kw'>def</span> <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='comment val'>## Preconditions &amp; preparation:</span>
-  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
-    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
-  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
-  <span class='comment val'>## Main:</span>
-  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="print_error-instance_method">
   
-    - (<tt>Object</tt>) <strong>print_error</strong>(msg, opts = {}) 
   
-
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Print an error message to a stream.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
   
-    <li>
-      
-        <span class='type'>(<tt>String</tt>, <tt>#to_s</tt>)</span>
-      
-      
-        <span class='name'>msg</span>
-      
-      
-      
-        &mdash;
-        
-An error message to report
+  <h3 class="inherited">Methods included from <a href="Contract.html" title="Relais::Dev::Contract (module)">Contract</a></h3>
+  <p class="inherited"><a href="Contract.html#assert_path_exists-instance_method" title="Relais::Dev::Contract#assert_path_exists (method)">#assert_path_exists</a>, <a href="Contract.html#assert_path_is_dir-instance_method" title="Relais::Dev::Contract#assert_path_is_dir (method)">#assert_path_is_dir</a>, <a href="Contract.html#assert_path_is_file-instance_method" title="Relais::Dev::Contract#assert_path_is_file (method)">#assert_path_is_file</a>, <a href="Contract.html#assert_path_is_readable-instance_method" title="Relais::Dev::Contract#assert_path_is_readable (method)">#assert_path_is_readable</a>, <a href="Contract.html#assert_path_is_writable-instance_method" title="Relais::Dev::Contract#assert_path_is_writable (method)">#assert_path_is_writable</a>, <a href="Contract.html#die_unless-instance_method" title="Relais::Dev::Contract#die_unless (method)">#die_unless</a>, <a href="Contract.html#log_error-instance_method" title="Relais::Dev::Contract#log_error (method)">#log_error</a>, <a href="Contract.html#print_error-instance_method" title="Relais::Dev::Contract#print_error (method)">#print_error</a>, <a href="Contract.html#raise_unless-instance_method" title="Relais::Dev::Contract#raise_unless (method)">#raise_unless</a></p>
 
-
-      
-    </li>
   
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <span class='name'>options</span>
-      
-      
-      
-    </li>
   
-</ul>
-
   
-    
-    
-    
-    
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/debug.rb', line 180</span>
-
-<span class='def def kw'>def</span> <span class='print_error identifier id'>print_error</span> <span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='comment val'>## Preconditions &amp; preparation:</span>
-  <span class='comment val'># ???: you can use STDERR or $stderr, unsure which is best</span>
-  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
-    <span class='symbol val'>:stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
-    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
-  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
-  <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Fixnum constant id'>Fixnum</span><span class='rparen token'>)</span>
-    <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='LEVELS constant id'>LEVELS</span><span class='lbrack token'>[</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='LEVELS constant id'>LEVELS</span><span class='lbrack token'>[</span><span class='integer val'>-1</span><span class='rbrack token'>]</span>
-  <span class='end end kw'>end</span>
-  <span class='comment val'>## Main:</span>
-  <span class='lvl_str identifier id'>lvl_str</span> <span class='assign token'>=</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span>
-  <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:stream</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{lvl_str.empty?()? '': lvl_str + ': '}#{msg}\n&quot;</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="raise_unless-instance_method">
   
-    - (<tt>Object</tt>) <strong>raise_unless</strong>(cond, opts = {}) 
   
-
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Raise an exception unless the passed condition is met
-</p>
+  <h3 class="inherited">Methods included from <a href="Root.html" title="Relais::Dev::Root (module)">Root</a></h3>
+  <p class="inherited"><a href="Root.html#defaults-instance_method" title="Relais::Dev::Root#defaults (method)">#defaults</a></p>
 
-
-  </div>
-</div>
-<div class="tags">
   
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='day_of_month identifier id'>day_of_month</span> <span class='leq op'>&lt;=</span> <span class='integer val'>32</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='filepath identifier id'>filepath</span><span class='dot token'>.</span><span class='exists identifier id'>exists</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:error=</span><span class='gt op'>&gt;</span><span class='IOError constant id'>IOError</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='raise_unless identifier id'>raise_unless</span> <span class='lparen token'>(</span><span class='denominator identifier id'>denominator</span> <span class='neq op'>!=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:msg=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;division by zero!&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-</pre>
-    
-  </div>
-<h3>Parameters:</h3>
-<ul class="param">
   
-    <li>
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-        <span class='name'>cond</span>
-      
-      
-      
-        &mdash;
-        
-A test that evaulates to a boolean
-
-
-      
-    </li>
   
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <span class='name'>options</span>
-      
-      
-      
-        &mdash;
-        
-An options hash
-
-
-      
-    </li>
   
-</ul>
-
   
-    
-    
-    
-    
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/debug.rb', line 103</span>
+  <h3 class="inherited">Methods included from <a href="Typecheck.html" title="Relais::Dev::Typecheck (module)">Typecheck</a></h3>
+  <p class="inherited"><a href="Typecheck.html#is_array_like-instance_method" title="Relais::Dev::Typecheck#is_array_like (method)">#is_array_like</a>, <a href="Typecheck.html#is_enumerable-instance_method" title="Relais::Dev::Typecheck#is_enumerable (method)">#is_enumerable</a>, <a href="Typecheck.html#is_string_able-instance_method" title="Relais::Dev::Typecheck#is_string_able (method)">#is_string_able</a>, <a href="Typecheck.html#is_string_like-instance_method" title="Relais::Dev::Typecheck#is_string_like (method)">#is_string_like</a>, <a href="Typecheck.html#make_array_like-instance_method" title="Relais::Dev::Typecheck#make_array_like (method)">#make_array_like</a>, <a href="Typecheck.html#make_enumerable-instance_method" title="Relais::Dev::Typecheck#make_enumerable (method)">#make_enumerable</a>, <a href="Typecheck.html#make_string_like-instance_method" title="Relais::Dev::Typecheck#make_string_like (method)">#make_string_like</a></p>
 
-<span class='def def kw'>def</span> <span class='raise_unless identifier id'>raise_unless</span><span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='comment val'># TODO: use globals to set the default err logger and stream</span>
-  <span class='comment val'># TODO: need a better word than 'defaults'</span>
-  <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
-    <span class='symbol val'>:err_class</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='RBE constant id'>RBE</span><span class='colon2 op'>::</span><span class='AssertionError constant id'>AssertionError</span><span class='comma token'>,</span>
-    <span class='symbol val'>:msg</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;an unknown error has occurred and an exception has been raised&quot;</span><span class='comma token'>,</span>
-    <span class='symbol val'>:logger</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
-    <span class='symbol val'>:lvl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Logger constant id'>Logger</span><span class='colon2 op'>::</span><span class='ERROR constant id'>ERROR</span><span class='comma token'>,</span>
-    <span class='symbol val'>:err_stream</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='$stderr gvar id'>$stderr</span><span class='comma token'>,</span>
-  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
-  <span class='unless unless kw'>unless</span> <span class='lparen token'>(</span><span class='cond identifier id'>cond</span><span class='rparen token'>)</span>
-    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span>
-      <span class='print_error identifier id'>print_error</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='comma token'>,</span> 
-        <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:stream=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_stream</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-    <span class='end end kw'>end</span>
-    <span class='if if kw'>if</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span>
-      <span class='log_error identifier id'>log_error</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:logger</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
-        <span class='lbrace token'>{</span><span class='symbol val'>:lvl=</span><span class='gt op'>&gt;</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:lvl</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>  
-    <span class='end end kw'>end</span>
-    <span class='raise identifier id'>raise</span> <span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:err_class</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='defaults identifier id'>defaults</span><span class='lbrack token'>[</span><span class='symbol val'>:msg</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:44 2010 by 
+  Generated on Fri Feb 12 18:29:38 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

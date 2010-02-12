@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Base}.
+# Source file for {Relais::Dev::Root}.
 
 ### IMPORTS
 
@@ -19,7 +19,7 @@ module Relais
 		# a whole external framework for small bits of functionality, we implement
 		# them here.
 		#
-		module Base
+		module Root
 		end
 		
 	end
@@ -27,7 +27,7 @@ end
 
 
 # submodules that we provide
-Dir['relais-dev/base/*.rb'].sort.each { |lib| require lib }
+Dir['relais-dev/root/*.rb'].sort.each { |lib| require lib }
 
 
 ### END

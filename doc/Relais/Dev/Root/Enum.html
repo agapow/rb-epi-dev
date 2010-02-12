@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: Relais::Dev::Root::Enum</title>
+<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (E)</a> &raquo; 
+    <span class='title'><a href="../../../Relais.html" title="Relais (module)">Relais</a></span> &raquo; <span class='title'><a href="../../Dev.html" title="Relais::Dev (module)">Dev</a></span> &raquo; <span class='title'><a href="../Root.html" title="Relais::Dev::Root (module)">Root</a></span>
+     &raquo; 
+    <span class="title">Enum</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Relais::Dev::Root::Enum 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/relais-dev/root/enum.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  <h2>Instance Method Summary</h2>
+
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(mid, *args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Ordering in enum members is a tough nut to crack.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_enum-instance_method" title="#new_enum (instance method)">- (Object) <strong>new_enum</strong>(enum_name, *args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>method_missing</strong>(mid, *args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Ordering in enum members is a tough nut to crack. As named arguments must
+come after un-named arguments, it proves to be impossible to mix specified
+and unspecified members:
+</p>
+<pre class="code">
+  <span class='enum identifier id'>enum</span> <span class='ColorEnum constant id'>ColorEnum</span> <span class='lbrace token'>{</span><span class='red identifier id'>red</span><span class='comma token'>,</span> <span class='blue identifier id'>blue</span><span class='assign token'>=</span><span class='integer val'>3</span><span class='comma token'>,</span> <span class='green identifier id'>green</span><span class='rbrace token'>}</span> <span class='Color constant id'>Color</span>   <span class='comment val'># c-style</span>
+  <span class='Color constant id'>Color</span> <span class='assign token'>=</span> <span class='make_enum identifier id'>make_enum</span> <span class='lbrace token'>{</span><span class='symbol val'>:red</span><span class='comma token'>,</span> <span class='symbol val'>:blue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>3</span><span class='comma token'>,</span> <span class='symbol val'>:green</span><span class='rbrace token'>}</span>   <span class='comment val'># ruby, nope</span>
+</pre>
+<p>
+Most possible solutions lead to awkward syntax and are complicated by
+hashes being unordered before Ruby 1.9. The solution settled upon is this:
+</p>
+<ul>
+<li>Enums can be created from unspecified (positional) arguments
+
+</li>
+</ul>
+<p>
+Using <tt>method_missing</tt> opens up the problems of mispelling but the
+risks are minimal. A new enum will only be created if
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/root/enum.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='mid identifier id'>mid</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
+  <span class='new_enum identifier id'>new_enum</span><span class='lparen token'>(</span><span class='mid identifier id'>mid</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="new_enum-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_enum</strong>(enum_name, *args) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/root/enum.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='new_enum identifier id'>new_enum</span><span class='lparen token'>(</span><span class='enum_name identifier id'>enum_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='comment val'># create enum value class</span>
+  <span class='val_kls_name identifier id'>val_kls_name</span> <span class='assign token'>=</span> <span class='enum_name identifier id'>enum_name</span> <span class='plus op'>+</span> <span class='string val'>&quot;Value&quot;</span>
+  <span class='val_kls identifier id'>val_kls</span> <span class='assign token'>=</span> <span class='Class constant id'>Class</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='BaseEnumValue constant id'>BaseEnumValue</span><span class='rparen token'>)</span>
+  <span class='Object constant id'>Object</span><span class='dot token'>.</span><span class='const_set identifier id'>const_set</span><span class='lparen token'>(</span><span class='val_kls_name identifier id'>val_kls_name</span><span class='comma token'>,</span> <span class='val_kls identifier id'>val_kls</span><span class='rparen token'>)</span>
+  <span class='comment val'># create enum object to hold values</span>
+  <span class='cont identifier id'>cont</span> <span class='assign token'>=</span> <span class='EnumContainer constant id'>EnumContainer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='cont identifier id'>cont</span><span class='dot token'>.</span><span class='value_class identifier id'>value_class</span> <span class='assign token'>=</span> <span class='val_kls identifier id'>val_kls</span>
+  <span class='comment val'># create the enum values</span>
+  <span class='enum_vals identifier id'>enum_vals</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='next_val identifier id'>next_val</span> <span class='assign token'>=</span> <span class='integer val'>-1</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='e identifier id'>e</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='instance_of? fid id'>instance_of?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+      <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='each_pair identifier id'>each_pair</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
+        <span class='enum_vals identifier id'>enum_vals</span><span class='lbrack token'>[</span><span class='k identifier id'>k</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span>
+        <span class='if if kw'>if</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='instance_of? fid id'>instance_of?</span><span class='lparen token'>(</span><span class='Fixnum constant id'>Fixnum</span><span class='rparen token'>)</span>
+          <span class='next_val identifier id'>next_val</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span> <span class='plus op'>+</span> <span class='integer val'>1</span>
+        <span class='end end kw'>end</span>
+      <span class='rbrace token'>}</span>
+    <span class='elsif elsif kw'>elsif</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='instance_of? fid id'>instance_of?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+      <span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span> <span class='assign token'>=</span> <span class='e identifier id'>e</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='e identifier id'>e</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+      <span class='enum_vals identifier id'>enum_vals</span><span class='lbrack token'>[</span><span class='k identifier id'>k</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span>
+      <span class='if if kw'>if</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='instance_of? fid id'>instance_of?</span><span class='lparen token'>(</span><span class='Fixnum constant id'>Fixnum</span><span class='rparen token'>)</span>
+        <span class='comment val'># TODO: check it hasn't alreday been used</span>
+        <span class='next_val identifier id'>next_val</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span> <span class='plus op'>+</span> <span class='integer val'>1</span>
+      <span class='end end kw'>end</span>
+    <span class='else else kw'>else</span>
+      <span class='enum_vals identifier id'>enum_vals</span><span class='lbrack token'>[</span><span class='e identifier id'>e</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='next_val identifier id'>next_val</span>
+      <span class='next_val identifier id'>next_val</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+    <span class='end end kw'>end</span>
+  <span class='rbrace token'>}</span>
+  <span class='comment val'># insert into Enum</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Fri Feb 12 18:29:36 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.3 (ruby-1.8.5).
+</div>
+
+  </body>
+</html>

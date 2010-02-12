@@ -36,5 +36,7 @@ def suppress_output(&block)
 	
 end
 
- 
+def file_contents(path)
+	return File.open(path, 'rb').read()
+end
 

@@ -52,14 +52,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></span>
+      <span class="inheritName"><a href="Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next"><a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></li>
           
-            <li class="next"><a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></li>
+            <li class="next"><a href="Reader.html" title="Relais::Dev::Io::Reader (class)">Reader</a></li>
           
             <li class="next">Relais::Dev::Io::RecordReader</li>
           
@@ -83,7 +83,7 @@
 
 <div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><a href="LineReader.html" title="Relais::Dev::Io::LineReader (class)">LineReader</a></p>
+  <p class="children"><a href="LineReader.html" title="Relais::Dev::Io::LineReader (class)">LineReader</a>, <a href="ParagraphReader.html" title="Relais::Dev::Io::ParagraphReader (class)">ParagraphReader</a></p>
 </div>
 
 
@@ -95,6 +95,37 @@
   
   
   
+  <h2>Instance Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delimiter-instance_method" title="#delimiter (instance method)">- (Object) <strong>delimiter</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the value of attribute delimiter.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
 
   <h2>Instance Method Summary</h2>
 
@@ -103,9 +134,59 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%3E%3E-instance_method" title="#&gt;&gt; (instance method)">- (Object) <strong>&gt;&gt;</strong>(row) </a>
+      <a href="#decode_record-instance_method" title="#decode_record (instance method)">- (Object) <strong>decode_record</strong>(rec) </a>
     
 
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Converts records from their storage format to thie code format.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (RecordReader) <strong>initialize</strong>(io_or_path, delimiter, opts = {}) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of RecordReader.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_all_records-instance_method" title="#read_all_records (instance method)">- (Object) <strong>read_all_records</strong> </a>
+    
+
+    
+      (also: #read)
     
   </span>
   
@@ -123,9 +204,34 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#read-instance_method" title="#read (instance method)">- (Object) <strong>read</strong> </a>
+      <a href="#read_record-instance_method" title="#read_record (instance method)">- (Object) <strong>read_record</strong> </a>
     
 
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Read the next record from the source.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_records_using-instance_method" title="#read_records_using (instance method)">- (Object) <strong>read_records_using</strong>(&amp;block) </a>
+    
+
+    
+      (also: #read_each)
     
   </span>
   
@@ -143,7 +249,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#read_all-instance_method" title="#read_all (instance method)">- (Object) <strong>read_all</strong> </a>
+      <a href="#record_number-instance_method" title="#record_number (instance method)">- (Object) <strong>record_number</strong> </a>
     
 
     
@@ -155,57 +261,7 @@
   
 
   
-    <span class="summary_desc">
-Return an array of every record.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#read_each-instance_method" title="#read_each (instance method)">- (Object) <strong>read_each</strong>(&amp;block) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Read every record and pass it to the block.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#read_record-instance_method" title="#read_record (instance method)">- (Object) <strong>read_record</strong>(row) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-???: should &#8216;read&#8217; alias to &#8216;read_all&#8217; or vice
-versa.
-
-</span>
+    <span class="summary_desc"></span>
   
 </li>
 
@@ -217,22 +273,107 @@ versa.
   
   
   
-  <h3 class="inherited">Methods inherited from <a href="BaseReader.html" title="Relais::Dev::Io::BaseReader (class)">BaseReader</a></h3>
-  <p class="inherited"><a href="BaseReader.html#initialize-instance_method" title="Relais::Dev::Io::BaseReader#initialize (method)">#initialize</a></p>
-
   
   
   
   
   
   <h3 class="inherited">Methods inherited from <a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></h3>
-  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#initialize-instance_method" title="Relais::Dev::Io::BaseIo#initialize (method)">#initialize</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
+  <p class="inherited"><a href="BaseIo.html#finalize-instance_method" title="Relais::Dev::Io::BaseIo#finalize (method)">#finalize</a>, <a href="BaseIo.html#finish-instance_method" title="Relais::Dev::Io::BaseIo#finish (method)">#finish</a>, <a href="BaseIo.html#prepare-instance_method" title="Relais::Dev::Io::BaseIo#prepare (method)">#prepare</a>, <a href="BaseIo.html#with-class_method" title="Relais::Dev::Io::BaseIo.with (method)">with</a></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <a href="BaseReader.html#initialize-instance_method" title="Relais::Dev::Io::BaseReader#initialize (method)">Relais::Dev::Io::BaseReader</a></p>
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Relais::Dev::Io::RecordReader (class)">RecordReader</a></tt>) <strong>initialize</strong>(io_or_path, delimiter, opts = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of RecordReader
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 151</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='delimiter identifier id'>delimiter</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='delimiter identifier id'>delimiter</span> <span class='assign token'>=</span> <span class='delimiter identifier id'>delimiter</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='io_or_path identifier id'>io_or_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="delimiter=-instance_method"></span>
+      <span id="delimiter-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="delimiter-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delimiter</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute delimiter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 149</span>
+
+<span class='def def kw'>def</span> <span class='delimiter identifier id'>delimiter</span>
+  <span class='@delimiter ivar id'>@delimiter</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -240,74 +381,19 @@ versa.
     
     
       <div class="method_details first">
-  <p class="signature first" id=">>-instance_method">
+  <p class="signature first" id="decode_record-instance_method">
   
-    - (<tt>Object</tt>) <strong>&gt;&gt;</strong>(row) 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-131
-132
-133</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 131</span>
-
-<span class='def def kw'>def</span> <span class='rshft op'>&gt;&gt;</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
-  <span class='read_record identifier id'>read_record</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="read-instance_method">
-  
-    - (<tt>Object</tt>) <strong>read</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-146
-147
-148</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 146</span>
-
-<span class='def def kw'>def</span> <span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='read_all identifier id'>read_all</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="read_all-instance_method">
-  
-    - (<tt>Object</tt>) <strong>read_all</strong> 
+    - (<tt>Object</tt>) <strong>decode_record</strong>(rec) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Return an array of every record
+Converts records from their storage format to thie code format.
+</p>
+<p>
+To be overridden in subclasses.
 </p>
 
 
@@ -321,17 +407,15 @@ Return an array of every record
       <pre class="lines">
 
 
-141
-142
-143
-144</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 178</span>
 
-<span class='def def kw'>def</span> <span class='read_all identifier id'>read_all</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span>
-    
+<span class='def def kw'>def</span> <span class='decode_record identifier id'>decode_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='rec identifier id'>rec</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -340,38 +424,35 @@ Return an array of every record
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="read_each-instance_method">
+  <p class="signature " id="read_all_records-instance_method">
   
-    - (<tt>Object</tt>) <strong>read_each</strong>(&amp;block) 
+    - (<tt>Object</tt>) <strong>read_all_records</strong> 
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Read every record and pass it to the block
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read-instance_method'>read</span></span>
+    </span>
   
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-136
-137
-138</pre>
+182
+183
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 182</span>
 
-<span class='def def kw'>def</span> <span class='read_each identifier id'>read_each</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-    
+<span class='def def kw'>def</span> <span class='read_all_records identifier id'>read_all_records</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='all_recs identifier id'>all_recs</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='read_records_using identifier id'>read_records_using</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rec identifier id'>rec</span><span class='bitor op'>|</span> <span class='all_recs identifier id'>all_recs</span> <span class='lshft op'>&lt;&lt;</span> <span class='rec identifier id'>rec</span> <span class='rbrace token'>}</span>
+  <span class='return return kw'>return</span> <span class='all_recs identifier id'>all_recs</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -382,37 +463,139 @@ Read every record and pass it to the block
       <div class="method_details ">
   <p class="signature " id="read_record-instance_method">
   
-    - (<tt>Object</tt>) <strong>read_record</strong>(row) 
+    - (<tt>Object</tt>) <strong>read_record</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-???: should &#8216;read&#8217; alias to &#8216;read_all&#8217; or vice
-versa
+Read the next record from the source.
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        
+the next record or nil if at the end of the source
+
+
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-127
-128
-129</pre>
+164
+165
+166
+167
+168
+169
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 164</span>
 
-<span class='def def kw'>def</span> <span class='read_record identifier id'>read_record</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
-  <span class='comment val'># TODO: throw unimplemented  </span>
+<span class='def def kw'>def</span> <span class='read_record identifier id'>read_record</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='comment val'># gets can handle a lot of different splits, but more complicated</span>
+  <span class='comment val'># cases will have to by overriding this</span>
+  <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='rec identifier id'>rec</span> <span class='assign token'>=</span> <span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='gets identifier id'>gets</span><span class='lparen token'>(</span><span class='delimiter identifier id'>delimiter</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='return return kw'>return</span> <span class='decode identifier id'>decode</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='return return kw'>return</span> <span class='rec identifier id'>rec</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_records_using-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_records_using</strong>(&amp;block) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read_each-instance_method'>read_each</span></span>
+    </span>
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189
+190
+191
+192
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 188</span>
+
+<span class='def def kw'>def</span> <span class='read_records_using identifier id'>read_records_using</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='comment val'># NOTE: there is the temptation to write 'with_read_each_using'</span>
+  <span class='comment val'># and related methods but they can be constructed by nesting</span>
+  <span class='comment val'># a &quot;using&quot; inside a &quot;with&quot;</span>
+  <span class='while while kw'>while</span> <span class='lparen token'>(</span><span class='rec identifier id'>rec</span> <span class='assign token'>=</span> <span class='read_record identifier id'>read_record</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='block identifier id'>block</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="record_number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>record_number</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 156</span>
+
+<span class='def def kw'>def</span> <span class='record_number identifier id'>record_number</span>
+  <span class='return return kw'>return</span> <span class='hndl identifier id'>hndl</span><span class='dot token'>.</span><span class='lineno identifier id'>lineno</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -425,7 +608,7 @@ versa
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:43 2010 by 
+  Generated on Fri Feb 12 18:29:35 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

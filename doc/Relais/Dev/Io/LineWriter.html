@@ -59,7 +59,7 @@
           
             <li class="next"><a href="BaseIo.html" title="Relais::Dev::Io::BaseIo (class)">BaseIo</a></li>
           
-            <li class="next"><a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></li>
+            <li class="next"><a href="Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a></li>
           
             <li class="next"><a href="RecordWriter.html" title="Relais::Dev::Io::RecordWriter (class)">RecordWriter</a></li>
           
@@ -105,11 +105,9 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write_record-instance_method" title="#write_record (instance method)">- (Object) <strong>write_record</strong> </a>
+      <a href="#encode_record-instance_method" title="#encode_record (instance method)">- (Object) <strong>encode_record</strong>(rec) </a>
     
 
-    
-      (also: #write_line)
     
   </span>
   
@@ -131,13 +129,16 @@
   
   
   
+  <h3 class="inherited">Methods inherited from <a href="RecordWriter.html" title="Relais::Dev::Io::RecordWriter (class)">RecordWriter</a></h3>
+  <p class="inherited"><a href="RecordWriter.html#initialize-instance_method" title="Relais::Dev::Io::RecordWriter#initialize (method)">#initialize</a>, <a href="RecordWriter.html#write_record-instance_method" title="Relais::Dev::Io::RecordWriter#write_record (method)">#write_record</a>, <a href="RecordWriter.html#write_records-instance_method" title="Relais::Dev::Io::RecordWriter#write_records (method)">#write_records</a></p>
+
   
   
   
   
   
-  <h3 class="inherited">Methods inherited from <a href="BaseWriter.html" title="Relais::Dev::Io::BaseWriter (class)">BaseWriter</a></h3>
-  <p class="inherited"><a href="BaseWriter.html#initialize-instance_method" title="Relais::Dev::Io::BaseWriter#initialize (method)">#initialize</a></p>
+  <h3 class="inherited">Methods inherited from <a href="Writer.html" title="Relais::Dev::Io::Writer (class)">Writer</a></h3>
+  <p class="inherited"><a href="Writer.html#initialize-instance_method" title="Relais::Dev::Io::Writer#initialize (method)">#initialize</a>, <a href="Writer.html#write-instance_method" title="Relais::Dev::Io::Writer#write (method)">#write</a></p>
 
   
   
@@ -149,7 +150,7 @@
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <a href="BaseWriter.html#initialize-instance_method" title="Relais::Dev::Io::BaseWriter#initialize (method)">Relais::Dev::Io::BaseWriter</a></p>
+    <p class="notice">This class inherits a constructor from <a href="RecordWriter.html#initialize-instance_method" title="Relais::Dev::Io::RecordWriter#initialize (method)">Relais::Dev::Io::RecordWriter</a></p>
   
 </div>
 
@@ -159,15 +160,11 @@
     
     
       <div class="method_details first">
-  <p class="signature first" id="write_record-instance_method">
+  <p class="signature first" id="encode_record-instance_method">
   
-    - (<tt>Object</tt>) <strong>write_record</strong> 
+    - (<tt>Object</tt>) <strong>encode_record</strong>(rec) 
   
 
-  
-    <span class="aliases">Also known as:
-    <span class="names"><span id='write_line-instance_method'>write_line</span></span>
-    </span>
   
 </p><table class="source_code">
   <tr>
@@ -175,15 +172,15 @@
       <pre class="lines">
 
 
-170
-171
-172</pre>
+258
+259
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/relais-dev/io/base.rb', line 258</span>
 
-<span class='def def kw'>def</span> <span class='write_record identifier id'>write_record</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
-
+<span class='def def kw'>def</span> <span class='encode_record identifier id'>encode_record</span><span class='lparen token'>(</span><span class='rec identifier id'>rec</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='rec identifier id'>rec</span> <span class='plus op'>+</span> <span class='$/ gvar id'>$/</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -196,7 +193,7 @@
 </div>
     
     <div id="footer">
-  Generated on Mon Feb  8 15:43:41 2010 by 
+  Generated on Fri Feb 12 18:29:39 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.8.5).
 </div>

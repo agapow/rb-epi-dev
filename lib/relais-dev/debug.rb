@@ -20,10 +20,10 @@ module Relais
 		# the development cycle, switched off for production or toggled by a
 		# runtime switch.
 		#
-		# The controlling variable is {apply_checks}. If set to +true+ (the
+		# The controlling variable is {Dev.apply_checks}. If set to +true+ (the
 		# default), all runtime checks are carried out and behave as normal.
 		# Otherwise, runtime checks are skipped. In addition, if the module
-		# variable {announce_checks} is set to +true+ (the default is +false+),
+		# variable {.announce_checks} is set to +true+ (the default is +false+),
 		# when a check is called a message is printed to the console, whether or
 		# not the check is run.
 		#

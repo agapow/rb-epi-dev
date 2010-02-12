@@ -34,11 +34,11 @@ module Relais
 			#
 			# @return The data in the file.
 			#
-			# @see BaseReader
+			# @see Reader
 			#
 			# This is a convenience function, allowing simple one-liners that read
 			# the contents of a file or similar object. It accepts all the
-			# arguments and behaves like using a {BaseReader} to extract data. 
+			# arguments and behaves like using a {Reader} to extract data. 
 			#
 			# @example
 			#    data = quick_read('foo.txt')
@@ -49,7 +49,7 @@ module Relais
 			#
 			def quick_read(io_or_path, opts={})
 				# TODO: replace with "use_with"?
-				rdr = BaseReader.new(io_or_path, opts)
+				rdr = Reader.new(io_or_path, opts)
 				data = rdr.hndl.read()
 				rdr.close()
 				return data
@@ -58,7 +58,7 @@ module Relais
 
 			# Read the contents of the passed object with the selected reader.
 			#
-			# @param [BaseReader] reader_cls  A {BaseReader} subclass.
+			# @param [Reader] reader_cls  A {Reader} subclass.
 			# @param [#read, String] io_or_path  A readable object or a filepath
 			#    (String).
 			# @param [Hash] opts  A hash of optional arguments.
@@ -69,7 +69,7 @@ module Relais
 			#
 			# This is a convenience function, allowing simple one-liners that read
 			# the contents of a file or similar object. It accepts all the
-			# arguments and behaves like using a {BaseReader} to extract data. 
+			# arguments and behaves like using a {Reader} to extract data. 
 			#
 			# @example
 			#    data = quick_read('foo.txt')
@@ -92,11 +92,11 @@ module Relais
 			#
 			# @return The data in the file.
 			#
-			# @see BaseReader
+			# @see Reader
 			#
 			# This is a convenience function, allowing simple one-liners that read
 			# the contents of a file or similar object. It accepts all the
-			# arguments and behaves like using a {BaseReader} to extract data. 
+			# arguments and behaves like using a {Reader} to extract data. 
 			#
 			# @example
 			#    data = quick_read('foo.txt')
@@ -106,7 +106,7 @@ module Relais
 			#    hndl.close()
 			#
 			def quick_write (io_or_path, mode='r')
-				rdr = BaseReader.new(io_or_path, mode)
+				rdr = Reader.new(io_or_path, mode)
 				data = rdr.hndl.read()
 				rdr.close()
 				return data
@@ -134,7 +134,7 @@ module Relais
 			#    hndl.close()
 			#
 			def quick_read (io_or_path, mode='r')
-				rdr = BaseReader.new(io_or_path, mode)
+				rdr = Reader.new(io_or_path, mode)
 				data = rdr.hndl.read()
 				rdr.close()
 				return data

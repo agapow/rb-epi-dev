@@ -31,31 +31,31 @@ module Relais
 			LEVELS = %w(DEBUG INFO WARN ERROR FATAL ANY)
 
 			def assert_path_exists(fpath)
-				assert_block ("file path '#{fpath} does not exist") {
+				assert_block("file path '#{fpath} does not exist") {
 					File.exists?(fpath)
 				}
 			end
 
 			def assert_path_is_file(fpath)
-				assert_block ("file path '#{fpath} is not a file") {
+				assert_block("file path '#{fpath} is not a file") {
 					File.file?(fpath)
 				}
 			end
 
 			def assert_path_is_dir(fpath)
-				assert_block ("file path '#{fpath} is not a directory") {
+				assert_block("file path '#{fpath} is not a directory") {
 					File.directory?(fpath)
 				}
 			end
 
 			def assert_path_is_readable(fpath)
-				assert_block ("file path '#{fpath} is not a directory") {
+				assert_block("file path '#{fpath} is not a directory") {
 					File.readable?(fpath)
 				}
 			end
 
 			def assert_path_is_writable(fpath)
-				assert_block ("file path '#{fpath} is not a directory") {
+				assert_block("file path '#{fpath} is not a directory") {
 					File.writable?(fpath)
 				}
 			end
