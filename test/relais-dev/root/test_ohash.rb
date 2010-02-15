@@ -10,20 +10,32 @@ module TestRelais
 			Ohash = Relais::Dev::Root::Ohash
 			
 			class TestOrderedHash < Test::Unit::TestCase
+				
+				# the inline creation of ohashs doesn't preserve order, because it
+				# is converted to a hash before reading. Hence this function for
+				# generating ohashes to test. 
+				def generate_ohash
+					oh = Ohash.new()
+					oh[:foo] = 0
+					oh[:bar] = 1
+					oh[:baz] = 2
+					return oh
+				end
+				
 				def test_clear
-					oh = Ohash[:foo=>0, :bar=>1, :baz=>2]
+					oh = generate_ohash()
 					oh.clear()
 					assert_equal(0, oh.length)
 				end
 
 				def test_delete
-					oh = Ohash.new(:foo=>0, :bar=>1, :baz=>2)
+					oh = generate_ohash()
 					oh.delete(:bar)
 					assert_equal([:foo, :baz], oh.keys)
 				end
 
 				def test_each
-					oh = Ohash.new(:foo=>0, :bar=>1, :baz=>2)
+					oh = generate_ohash()
 					keys = []
 					oh.each { |k, v|
 						keys << k
@@ -32,7 +44,7 @@ module TestRelais
 				end
 
 				def test_each_key
-					oh = Ohash.new(:foo=>0, :bar=>1, :baz=>2)
+					oh = generate_ohash()
 					keys = []
 					oh.each_key { |k|
 						keys << k
@@ -41,54 +53,50 @@ module TestRelais
 				end
 
 				def test_each_pair
-					raise NotImplementedError, 'Need to write test_each_pair'
+					oh = generate_ohash()
+					keys = []
+					oh.each_pair { |k, v|
+						keys << k
+					}
+					assert_equal([:foo, :bar, :baz], keys)
 				end
 
 				def test_each_value
-					oh = Ohash.new(:foo=>0, :bar=>1, :baz=>2)
+					oh = generate_ohash()
 					vals = []
 					oh.each_value { |k|
 						vals << k
 					}
-					assert_equal([1, 2, 3], vals)
-				end
-
-				def test_index_equals
-					raise NotImplementedError, 'Need to write test_index_equals'
+					assert_equal([0, 1, 2], vals)
 				end
 
 				def test_keys
-					oh = Ohash.new(:foo=>0, :bar=>1, :baz=>2)
+					oh = generate_ohash()
 					keys = oh.keys()
 					assert_equal([:foo, :bar, :baz], keys)
 				end
 
-				def test_merge
-					raise NotImplementedError, 'Need to write test_merge'
-				end
-
-				def test_merge_bang
-					raise NotImplementedError, 'Need to write test_merge_bang'
-				end
-
-				def test_reject
-					raise NotImplementedError, 'Need to write test_reject'
-				end
-
-				def test_reject_bang
-					raise NotImplementedError, 'Need to write test_reject_bang'
-				end
-
 				def test_shift
-					raise NotImplementedError, 'Need to write test_shift'
+					oh = generate_ohash()
+					k, v = oh.shift()
+					assert_equal(:foo, k)
+					assert_equal(0, v)
 				end
 
 				def test_to_hash
-					raise NotImplementedError, 'Need to write test_to_hash'
+					oh = generate_ohash()
+					h = oh.to_hash
+					assert_equal(["bar", "baz", "foo"], h.keys.map { |k|
+						k.to_s()
+						}.sort()
+					)
+					assert_equal([0, 1, 2].sort(), h.values.sort())
 				end
 
 				def test_values
-					raise NotImplementedError, 'Need to write test_values'
+					oh = generate_ohash()
+					values = oh.values()
+					assert_equal([0, 1, 2], values)
 				end
 			end
 		end

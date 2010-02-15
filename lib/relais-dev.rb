@@ -32,7 +32,7 @@ module Relais
 	# * {Relais::Dev::Math} for assorted math functions. 
 	#
 	module Dev
-		VERSION = '0.0.3'
+		VERSION = '0.1.0'
 	end
 	
 end

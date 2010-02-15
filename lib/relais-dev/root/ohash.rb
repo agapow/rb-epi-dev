@@ -24,9 +24,41 @@ module Relais
 				# (version 1.9 and later).
 				#
 				class Ohash < Hash
+					
+					
+					# C'tor, duplicating the standard Hash.
+					#
 					def initialize(*args, &block)
-						super
 						@keys = []
+						super
+					end
+		
+					def self.[](*args)
+						# The rails implementation doesn't have this function, which
+						# is necessary to create an ohash inline. Mind, this whole
+						# method interface in Ruby is a big WTF.
+						# TODO: The parsing of args is a bit ad hoc
+						## Main:
+						new_ohash = Ohash.new()
+						# process args
+						arg_cnt = args.length
+						curr_posn = 0
+						while (curr_posn < arg_cnt)
+							curr_arg = args[curr_posn]
+							if (curr_arg.is_a?(Hash))
+								# process keyword args
+								curr_arg.each_pair { |k, v|
+									new_ohash[k] = v
+								}
+								curr_posn += 1
+							else
+								# process pairs of positional args
+								new_ohash[curr_arg] = args[curr_posn+1]
+								curr_posn += 2
+							end
+						end
+						## Return:
+						return new_ohash
 					end
 		
 					def initialize_copy(other)
@@ -40,20 +72,10 @@ module Relais
 						super
 					end
 		
-					def [](args, &block)
-						if (0 < args.length) || (args.at(-1).is_a?(Hash))
-							pairs = args.pop()
-						end
-						super()
-						pairs.each_pair { |k, v|
-							self[k] = v
-						}
-					end
-		
 					def delete(key)
-						if has_key? key
+						if has_key?(key)
 							index = @keys.index(key)
-							@keys.delete_at index
+							@keys.delete_at(index)
 						end
 						super
 					end
@@ -75,11 +97,11 @@ module Relais
 					end
 		
 					def keys
-						@keys.dup
+						return @keys.dup
 					end
 		
 					def values
-						@keys.collect { |key| self[key] }
+						return @keys.collect { |key| self[key] }
 					end
 		
 					def to_hash
