@@ -116,9 +116,9 @@ module TestRelais
 				def test_read_line
 					# check that io is created & handed to block & closes file
 					in_path = 'test/files/in/oneline.txt'
-					Reader.with(in_path) { |wrtr|
-						assert_instance_of(Reader, wrtr)
-						assert_equal("line 1\n", wrtr.read_line())
+					LineReader.with(in_path) { |wrtr|
+						assert_instance_of(LineReader, wrtr)
+						assert_equal("line 1", wrtr.read_line())
 					}
 				end
 				
@@ -141,7 +141,7 @@ module TestRelais
 					LineWriter.with(OUT_PATH) { |wrtr|
 						wrtr.write_line("foo")
 					}
-					assert_equal(file_contents(out_path), "foo\n")
+					assert_equal(file_contents(OUT_PATH), "foo\n")
 				end
 
 			end
@@ -167,21 +167,30 @@ module TestRelais
 				def test_read
 					# check that file read appropriately
 					wrtr = RecordReader.new(IN_PATH, 'delim')
-					assert_equal("line 1\n", wrtr.read())
+					assert_equal("foo", wrtr.read_record())
+					assert_equal("bar", wrtr.read_record())
+					assert_equal("baz\n", wrtr.read_record())
+					assert_equal(nil, wrtr.read_record())
 				end
 
 				def test_read_all
-					raise NotImplementedError, 'Need to write test_read_all'
+					# check that file read appropriately
+					wrtr = RecordReader.new(IN_PATH, 'delim')
+					assert_equal(["foo", "bar", "baz\n"], wrtr.read_all_records())
 				end
 
 				def test_read_each
-					raise NotImplementedError, 'Need to write test_read_each'
+					wrtr = RecordReader.new(IN_PATH, 'delim')
+					recs = []
+					wrtr.read_each { |r|
+						recs << r
+					}
+					assert_equal(["foo", "bar", "baz\n"], recs)
 				end
 
 				def test_read_record
 					in_path = 'test/files/in/rec-delim.txt'
 					RecordReader.with(in_path, 'delim') { |rdr|
-						assert_instance_of(Reader, rdr)
 						assert_equal("foo", rdr.read_record())
 					}
 				end
@@ -189,8 +198,7 @@ module TestRelais
 				def test_read_all_records
 					in_path = 'test/files/in/rec-delim.txt'
 					RecordReader.with(in_path, 'delim') { |rdr|
-						assert_instance_of(Reader, rdr)
-						assert_equal(["foo", "bar", "baz"], rdr.read_all_records())
+						assert_equal(["foo", "bar", "baz\n"], rdr.read_all_records())
 					}
 				end
 

@@ -132,7 +132,7 @@ module Relais
 					options = {
 						:mode => 'wb'
 					}.update(opts)
-					super(io_or_path, mode)
+					super(io_or_path, options)
 				end
 
 				# Return entire contents of IO object.
@@ -149,7 +149,7 @@ module Relais
 				attr_accessor(:delimiter)
 				
 				def initialize(io_or_path, delimiter, opts={})
-					delimiter = delimiter
+					@delimiter = delimiter
 					super(io_or_path, opts)
 				end
 				
@@ -164,11 +164,10 @@ module Relais
 				def read_record()
 					# gets can handle a lot of different splits, but more complicated
 					# cases will have to by overriding this
-					if (rec = hndl.gets(delimiter))
-						return decode(rec)
-					else
-						return rec
+					if (rec = hndl.gets(@delimiter))
+						rec = decode_record(rec)
 					end
+					return rec
 				end
 				
 				# Converts records from their storage format to thie code format.
@@ -176,7 +175,7 @@ module Relais
 				# To be overridden in subclasses.
 				#
 				def decode_record(rec)
-					return rec
+					return rec.chomp(@delimiter)
 				end
 				
 				def read_all_records()
@@ -210,7 +209,7 @@ module Relais
 				attr_accessor(:delimiter, :delimiter_posn)
 				
 				def initialize(io_or_path, delimiter, opts={})
-					@delimiter = opts.delete(:delimiter_posn) or 
+					@delimiter_posn = opts.delete(:delimiter_posn) or DELIMITER_POSN.BETWEEN
 					super(io_or_path, opts)
 				end
 				
@@ -241,8 +240,15 @@ module Relais
 			class LineReader < RecordReader
 
 				def initialize(io_or_path, opts={})
-					delimiter = delimiter
 					super(io_or_path, $/, opts)
+				end
+				
+				# Converts records from their storage format to thie code format.
+				#
+				# To be overridden in subclasses.
+				#
+				def decode_record(rec)
+					return rec.chomp!()
 				end
 			
 				alias read_line read_record
@@ -267,7 +273,6 @@ module Relais
 			class ParagraphReader < RecordReader
 
 				def initialize(io_or_path, opts={})
-					delimiter = delimiter
 					super(io_or_path, '', opts)
 				end
 			

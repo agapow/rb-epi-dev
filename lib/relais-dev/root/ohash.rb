@@ -12,7 +12,7 @@ module Relais
 		module Root
 		
 			if RUBY_VERSION >= '1.9'
-				OrderedHash = ::Hash
+				Ohash = ::Hash
 			else
 			
 				# A hash with consistent ordering of keys.
@@ -23,23 +23,33 @@ module Relais
 				# possibility of using the core Ruby hash if it provides ordering
 				# (version 1.9 and later).
 				#
-				class OrderedHash < Hash
+				class Ohash < Hash
 					def initialize(*args, &block)
 						super
 						@keys = []
 					end
-		 
+		
 					def initialize_copy(other)
 						super
 						# make a deep copy of keys
 						@keys = other.keys
 					end
-		 
+		
 					def []=(key, value)
 						@keys << key if !has_key?(key)
 						super
 					end
-		 
+		
+					def [](args, &block)
+						if (0 < args.length) || (args.at(-1).is_a?(Hash))
+							pairs = args.pop()
+						end
+						super()
+						pairs.each_pair { |k, v|
+							self[k] = v
+						}
+					end
+		
 					def delete(key)
 						if has_key? key
 							index = @keys.index(key)
@@ -53,70 +63,71 @@ module Relais
 						sync_keys!
 						self
 					end
-		 
+		
 					def reject!
 						super
 						sync_keys!
 						self
 					end
-		 
+		
 					def reject(&block)
 						dup.reject!(&block)
 					end
-		 
+		
 					def keys
 						@keys.dup
 					end
-		 
+		
 					def values
 						@keys.collect { |key| self[key] }
 					end
-		 
+		
 					def to_hash
 						self
 					end
-		 
+		
 					def each_key
 						@keys.each { |key| yield key }
 					end
-		 
+		
 					def each_value
 						@keys.each { |key| yield self[key]}
 					end
-		 
+		
 					def each
 						@keys.each {|key| yield [key, self[key]]}
 					end
-		 
+		
 					alias_method :each_pair, :each
-		 
+		
 					def clear
 						super
 						@keys.clear
 						self
 					end
-		 
+		
 					def shift
 						k = @keys.first
 						v = delete(k)
 						[k, v]
 					end
-		 
+		
 					def merge!(other_hash)
 						other_hash.each {|k,v| self[k] = v }
 						self
 					end
-		 
+		
 					def merge(other_hash)
 						dup.merge!(other_hash)
 					end
-		 
+		
 					def inspect
-						"#<OHash #{self.to_hash.inspect}>"
+						# the rails original has a weird recursive bug here
+						"#<OHash #{super.inspect}>"
 					end
-		 
+		
 				private
-		 
+		
 					def sync_keys!
 						@keys.delete_if {|k| !has_key?(k)}
 					end
