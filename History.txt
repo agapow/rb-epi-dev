@@ -1,4 +1,9 @@
+== 0.1.0 2010.02.15
+	
+* First functional version of library
+* Added many features including ordered hash 
+* Added tests for many major features
+
 === 0.0.1 2010-01-12
 
-* 1 major enhancement:
-  * Initial release
+* Initial release
