@@ -20,6 +20,24 @@ RBC = Relais::Dev::Common
 module Relais
 	module Dev
 		
+		class String
+		
+			# Iterate over every match in a string, passing it to a block.
+			#
+			# In one of those strange gaps that exists in Ruby, while there are
+			# several ways to loop over substrings matched by a pattern, no
+			# facility exists for iterating over the *matches*, for example to
+			# get the offset of each matching substring. This method rectifies
+			# that.
+			#
+			def each_match (re, &block)
+				scan(re) {
+					block.call($~)
+				}
+			end
+		
+		end
+		
 		# Assorted text manipulation functions.
 		#
 		module Text
