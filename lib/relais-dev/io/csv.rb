@@ -85,10 +85,6 @@ module Relais
 					@csv_writer << row
 				end
 		
-				def >>(row)
-					write_record(row)
-				end
-		
 			end
 
 		end
