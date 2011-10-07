@@ -12,7 +12,7 @@ require 'test/unit' unless defined? $ZENTEST and $ZENTEST
 
 ### TESTCASES
 
-module TestRelais
+module TestEpi
 	module TestDev
 		module TestRoot
 
