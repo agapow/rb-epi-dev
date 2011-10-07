@@ -12,7 +12,6 @@
 # local code
 module Epi
 	module Dev
-		module Root
 
 			# Support for enumerated types and constants.
 			#
@@ -99,7 +98,6 @@ module Epi
 				end
 			end
 
-		end
 	end
 end
 

@@ -1,127 +1,103 @@
-# = ostruct.rb: OpenStruct implementation
-#
-# Author:: Yukihiro Matsumoto
-# Documentation:: Gavin Sinclair
-#
-# OpenStruct allows the creation of data objects with arbitrary attributes.
-# See OpenStruct for an example.
-#
+#! /usr/bin/env ruby
+# -*- coding: utf-8 -*-
 
-#
-# OpenStruct allows you to create data objects and set arbitrary attributes.
-# For example:
-#
-#   require 'ostruct'
-#
-#   record = OpenStruct.new
-#   record.name    = "John Smith"
-#   record.age     = 70
-#   record.pension = 300
-#
-#   puts record.name     # -> "John Smith"
-#   puts record.address  # -> nil
-#
-# It is like a hash with a different way to access the data.  In fact, it is
-# implemented with a hash, and you can initialize it with one.
-#
-#   hash = { "country" => "Australia", :population => 20_000_000 }
-#   data = OpenStruct.new(hash)
-#
-#   p data        # -> <OpenStruct country="Australia" population=20000000>
-#
+# Source file for {Epi::Dev::Root::FixedStruct}.
 
-# An OpenStruct but with fixed instance variables.
-#
-# 
-#
-class ClosedStruct
-	
-	#
-	# Create a new OpenStruct object.  The optional +hash+, if given, will
-	# generate attributes and values.  For example.
-	#
-	#   require 'ostruct'
-	#   hash = { "country" => "Australia", :population => 20_000_000 }
-	#   data = OpenStruct.new(hash)
-	#
-	#   p data        # -> <OpenStruct country="Australia" population=20000000>
-	#
-	# By default, the resulting OpenStruct object will have no attributes.
-	#
-	def initialize(hash=nil)
-		@table = {}
-		if hash
-			for k,v in hash
-				@table[k.to_sym] = v
-				new_ostruct_member(k)
-			end
-		end
-	end
+### IMPORTS
 
-	# Duplicate an OpenStruct object members.
-	def initialize_copy(orig)
-		super
-		@table = @table.dup
-	end
+require 'ostruct'
 
-	def marshal_dump
-		@table
-	end
-	
-	def marshal_load(x)
-		@table = x
-		@table.each_key{|key| new_ostruct_member(key)}
-	end
 
-	private
-	def new_ostruct_member(name)
-		name = name.to_sym
-		unless self.respond_to?(name)
-			meta = class << self; self; end
-			meta.send(:define_method, name) { @table[name] }
-			meta.send(:define_method, :"#{name}=") { |x| @table[name] = x }
-		end
-	end
+### IMPLEMENTATION
 
-	InspectKey = :__inspect_key__ # :nodoc:
+module Epi
+	module Dev
 
-	#
-	# Returns a string containing a detailed summary of the keys and values.
-	#
-	def inspect
-		str = "#<#{self.class}"
-
-		Thread.current[InspectKey] ||= []
-		if Thread.current[InspectKey].include?(self) then
-			str << " ..."
-		else
-			first = true
-			for k,v in @table
-				str << "," unless first
-				first = false
-
-				Thread.current[InspectKey] << v
-				begin
-					str << " #{k}=#{v.inspect}"
-				ensure
-					Thread.current[InspectKey].pop
+			# An OpenStruct with instance attributes fixed at creation.
+			#
+			# When using OpenStructs, errors can silently occur from mispellings:
+			#
+			#   mydata = OpenStruct({:received => true})
+			#   ...
+			#   mydata.recieved = false # oops!
+			#   
+			# A FixedStruct prevents this by only allowing instance variables to
+			# be added at object creation. Its main purpose is as a base for
+			# {Options}.
+			# 
+			# FixedStructs can be created with the same syntax as OpenStructs:
+			#
+			#   # pass keyword arguments
+			#   my_opt = Options.new(:overwrite_data => true, :message => "foo")
+			#   # or a hash if you prefer
+			#   my_opt = Options.new({:overwrite_data => true, :message => "foo"})
+			#
+			class ClosedStruct < OpenStruct
+				# TODO: replace talk of "attribute/field" with "instance variable"
+				
+				# Respond when a method is absent.
+				#
+				# @private
+				#
+				# In practice (and in OpenStruct) this is usually called when a
+				# non-existent member is addressed. This is where the key difference
+				# of FixedStruct is implemented - attempts to create a new field
+				# result in an error.
+				#
+				def method_missing(mid, *args) # :nodoc:
+					# TODO: should call Object.method_missing, bypassing OpenStruct?
+					raise(TypeError, "can't add #{mid} to #{self.class} once created",
+						caller(1))
 				end
+			
+				# Remove the named attribute from the object.
+				#
+				# @private
+				#
+				def delete_field(name)
+					raise(TypeError, "can't delete from #{self.class} once created",
+						caller(1))
+				end
+			
+				# Compare this and another object for equality.
+				#
+				# We assume that only FixedStructs can be equal to each to each
+				# and then devolve equality down to the contents, i.e. are the
+				# contents equal to each other?
+				#
+				def ==(other)
+					# TODO: change to do class comparison and make clearer 
+					return false unless(other.kind_of?(OpenStruct))
+					return @table == other.table
+				end
+			
+				# Update the fields with the passed values.
+				#
+				# @param [Hash, #each_pair] hsh  A hash of instance variable / value
+				#   pairs.
+				#
+				# Normally this would be used to merge passed option values with a
+				# default set. It differs from the Hash method by raising an error
+				# if the update refers to an attribute that doesn't exist.
+				#
+				# @example
+				#   fs = FixedStruct.new(:foo => 'bar')
+				#   fs.update!({:foo => 'baz'})    # foo is now 'baz'
+				#...fs.update!({:foo => 'quux'})   # error!
+				#
+				def update(hsh)
+					# CHANGE: now a ! method because it mutates
+					hsh.each_pair { |k,v|
+						# XXX: not sure if this is the right Ruby idiom
+						instance_variable_set("@"+k.to_s, v)
+					}
+					return self
+				end
+			
 			end
-		end
-
-		str << ">"
-	end
-	
-	alias :to_s :inspect
-
-	attr_reader :table # :nodoc:
-	protected :table
-
-	#
-	# Compare this object and +other+ for equality.
-	#
-	def ==(other)
-		return false unless(other.kind_of?(OpenStruct))
-		return @table == other.table
+			
 	end
 end
+
+
+### END

@@ -5,7 +5,7 @@
 
 ### IMPORTS
 
-require 'relais-dev/root/fixedstruct'
+require 'epi-dev/closedstruct'
 
 
 ### IMPLEMENTATION
@@ -15,7 +15,6 @@ require 'relais-dev/root/fixedstruct'
 # local code
 module Epi
 	module Dev
-		module Root
 
 			# Options and their default values for scripts and functions.
 			#
@@ -61,36 +60,7 @@ module Epi
 			# Options is currently a synonym for {Epi::Dev::Root::FixedStruct}
 			# although this may change at some later point.
 			#
-			class Options < Epi::Dev::Root::FixedStruct
-			  
-        # This handles naming collisions with Sinatra/Vlad/Capistrano. Since these use a set()
-        # helper that defines methods in Object, ANY method_missing ANYWHERE picks up the Vlad/Sinatra
-        # settings!  So settings.deploy_to title actually calls Object.deploy_to (from set :deploy_to, "host"),
-        # rather than the app_yml['deploy_to'] hash.  Jeezus.
-        def create_accessors!
-          self.each do |key,val|
-            create_accessor_for(key)
-          end
-        end
-      
-        # Use instance_eval/class_eval because they're actually more efficient than define_method{}
-        # http://stackoverflow.com/questions/185947/ruby-definemethod-vs-def
-        # http://bmorearty.wordpress.com/2009/01/09/fun-with-rubys-instance_eval-and-class_eval/
-        def create_accessor_for(key, val=nil)
-          return unless key.to_s =~ /^\w+$/  # could have "some-setting:" which blows up eval
-          instance_variable_set("@#{key}", val) if val
-          self.class.class_eval <<-EndEval
-            def #{key}
-              return @#{key} if @#{key}
-              raise MissingSetting, "Missing setting '#{key}' in #{@section}" unless has_key? '#{key}'
-              value = fetch('#{key}')
-              @#{key} = value.is_a?(Hash) ? self.class.new(value, "'#{key}' section in #{@section}") : value
-            end
-          EndEval
-        end
-        
-        
-			
+			class Options < Epi::Dev::ClosedStruct
 			end
 			
 			
@@ -113,7 +83,6 @@ module Epi
 				return Options.new(*args)
 			end
 
-		end
 	end
 end
 

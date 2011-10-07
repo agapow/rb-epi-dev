@@ -39,7 +39,7 @@ module Epi
 		# 
 		module Debug
 			
-			require 'relais-dev/contract'
+			require 'epi-dev/contract'
 
 			apply_checks = true
 			announce_checks = false

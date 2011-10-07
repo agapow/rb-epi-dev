@@ -7,9 +7,9 @@
 
 ### IMPORTS
 
-require 'relais-dev/common'
+require 'epi-dev/options'
 
-RBC = Epi::Dev::Common
+ED = Epi::Dev
 
 
 ### IMPLEMENTATION
@@ -66,7 +66,7 @@ module Epi
 			#
 			def fill(txt, opts={})
 				# TODO: needs further options including eoln type and space stripping
-				options = RBC::defaults(
+				options = ED::defaults(
 					:width => 60,
 					:collapse_space => false
 				).merge(opts)
