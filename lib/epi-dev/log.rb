@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-module Relais
+module Epi
 	module Dev
 		module Log
 		end

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Tests for Relais::Dev::Common
+# Tests for Epi::Dev::Common
 
 # Description/list of tests to be done.
 
@@ -17,7 +17,7 @@ module TestRelais
 		module TestRoot
 
 			require 'relais-dev/root/fixedstruct'
-			RBD = Relais::Dev::Root
+			RBD = Epi::Dev::Root
 
 			class TestFixedStruct < Test::Unit::TestCase
 

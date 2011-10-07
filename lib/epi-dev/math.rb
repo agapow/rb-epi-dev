@@ -1,15 +1,15 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Home for {Relais::Dev:Math} module.
+# Home for {Epi::Dev:Math} module.
 #
-# Import this file to load {Relais::Dev:Math}.
+# Import this file to load {Epi::Dev:Math}.
 
 ### IMPORTS
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		
 		# Assorted mathematical and logical functions.

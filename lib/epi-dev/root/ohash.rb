@@ -1,18 +1,18 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Root::Ohash}.
+# Source file for {Epi::Dev::Root::Ohash}.
 
 ### IMPORTS
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		module Root
 		
 			if RUBY_VERSION >= '1.9'
-				Ohash = ::Hash
+				OHash = ::Hash
 			else
 			
 				# A hash with consistent ordering of keys.
@@ -23,7 +23,7 @@ module Relais
 				# possibility of using the core Ruby hash if it provides ordering
 				# (version 1.9 and later).
 				#
-				class Ohash < Hash
+				class OHash < Hash
 					
 					
 					# C'tor, duplicating the standard Hash.

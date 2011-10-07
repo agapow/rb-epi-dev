@@ -37,7 +37,7 @@ require 'relais-dev/io/base'
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		module I0
 		

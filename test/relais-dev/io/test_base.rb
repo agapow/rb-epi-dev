@@ -8,7 +8,7 @@ module TestRelais
 	module TestDev
 		module TestIo
 			
-			BaseIo = Relais::Dev::Io::BaseIo
+			BaseIo = Epi::Dev::Io::BaseIo
 			
 			class TestBaseIo < Test::Unit::TestCase
 
@@ -72,7 +72,7 @@ module TestRelais
 	module TestDev
 		module TestIo
 			
-			Reader = Relais::Dev::Io::Reader
+			Reader = Epi::Dev::Io::Reader
 
 			class TestReader < Test::Unit::TestCase
 				# TODO: need to test setting of modes
@@ -109,7 +109,7 @@ module TestRelais
 	module TestDev
 		module TestIo
 			
-			LineReader = Relais::Dev::Io::LineReader
+			LineReader = Epi::Dev::Io::LineReader
 
 			class TestLineReader < Test::Unit::TestCase
 				
@@ -132,7 +132,7 @@ module TestRelais
 	module TestDev
 		module TestIo
 			
-			LineWriter = Relais::Dev::Io::LineWriter
+			LineWriter = Epi::Dev::Io::LineWriter
 			OUT_PATH = 'test/files/out/oneline.txt'
 
 			class TestLineWriter < Test::Unit::TestCase
@@ -153,7 +153,7 @@ module TestRelais
 	module TestDev
 		module TestIo
 			
-			RecordReader = Relais::Dev::Io::RecordReader
+			RecordReader = Epi::Dev::Io::RecordReader
 			IN_PATH = 'test/files/in/rec-delim.txt'
 
 			class TestRecordReader < Test::Unit::TestCase

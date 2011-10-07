@@ -18,11 +18,11 @@ require 'relais-dev/common'
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		module Io
 		
-			RDC = Relais::Dev::Common
+			RDC = Epi::Dev::Common
 			
 			DELIMITER_POSN = FixedStruct.new(
 				:BEFORE => 'before',
@@ -35,14 +35,14 @@ module Relais
 		
 				attr_accessor(:hndl, :file_open)
 
-				def initialize(io_or_path, opts={})
+				def initialize(io_or_path, kwargs={})
 					# TODO: what if it's a Pathname?
 					# Setting mode as nil may seem peculiar, but it's only needed if
 					# a path is passed in. But if a path is used, then we should not
 					# guess what the the user means, so they must specify one.
 					options = {
 						:mode => nil,
-					}.update(opts)
+					}.update(kwargs)
 					# if passed a filepath, open it
 					is_path = (io_or_path.class == String)
 					if is_path

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestRelaisDev < Test::Unit::TestCase
+class TestEpi::Dev < Test::Unit::TestCase
 
   def setup
   end

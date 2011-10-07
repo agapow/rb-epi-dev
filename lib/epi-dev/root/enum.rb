@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Root::Enum}.
+# Source file for {Epi::Dev::Root::Enum}.
 
 ### IMPORTS
 
@@ -10,7 +10,7 @@
 # submodules that we provide
 
 # local code
-module Relais
+module Epi
 	module Dev
 		module Root
 

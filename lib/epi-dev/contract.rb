@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Contract}
+# Source file for {Epi::Dev::Contract}
 
 ### IMPORTS
 
@@ -10,7 +10,7 @@
 # submodules that we provide
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Assertions and other design-by-contract idioms.
@@ -27,7 +27,7 @@ module Relais
 			require 'test/unit/assertions'
 			include Test::Unit::Assertions
 
-			RBE = Relais::Dev::Errors
+			RBE = Epi::Dev::Errors
 			LEVELS = %w(DEBUG INFO WARN ERROR FATAL ANY)
 
 			def assert_path_exists(fpath)

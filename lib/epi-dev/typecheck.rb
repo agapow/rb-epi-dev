@@ -1,14 +1,14 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Typecheck}.
+# Source file for {Epi::Dev::Typecheck}.
 
 ### IMPORTS
 
 ### IMPLEMENTATION
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Runtime double-checking duck-typing.

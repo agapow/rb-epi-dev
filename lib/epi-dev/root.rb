@@ -1,14 +1,14 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Root}.
+# Source file for {Epi::Dev::Root}.
 
 ### IMPORTS
 
 ### IMPLEMENTATION
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Assorted data structures.

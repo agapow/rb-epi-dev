@@ -1,4 +1,4 @@
-= relais-dev
+= epi-dev
 
 * http://github.com/agapow/rb-relais-dev
 * http://agapow.net/software/rb-relais-dev
@@ -7,8 +7,10 @@
 == DESCRIPTION:
 
 Relais is a suite of libraries for epi-informatics, the computational analysis
-of disease data. Relais::Dev is a common base for development with other Relais
-libraries, presenting utilities and consistent idioms for coding.
+of disease data. Epi::Dev is a common base for development with other Relais
+libraries, presenting utilities and consistent idioms for coding, and papers
+over some rough spots in Ruby and Ruby's standard libraries. It contains no bio-
+or epi-centric code and as such may be useful to a more general audience.
 
 
 == FEATURES/PROBLEMS:
@@ -16,7 +18,7 @@ libraries, presenting utilities and consistent idioms for coding.
 * A consistent and easy-to-use set of IO classes.
 * Error-resistant handling of method options.
 * Useful mathematical and logical functions.
-* A fraework for commandline applications.
+
 
 == SYNOPSIS:
 
@@ -28,19 +30,22 @@ libraries, presenting utilities and consistent idioms for coding.
 			
 		}
 
+
 == REQUIREMENTS:
 
 * Ruby 1.8.6 or higher. Earlier versions may work but are not guaranteed.
+
 
 == INSTALL:
 
 * sudo gem install
 
+
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2010 FIXME full name
+Copyright (c) 2010-2011 Paul-Michael Agapow
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -60,3 +65,4 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

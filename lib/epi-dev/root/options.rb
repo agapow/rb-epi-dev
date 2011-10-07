@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Root::Options}.
+# Source file for {Epi::Dev::Root::Options}.
 
 ### IMPORTS
 
@@ -13,7 +13,7 @@ require 'relais-dev/root/fixedstruct'
 # submodules that we provide
 
 # local code
-module Relais
+module Epi
 	module Dev
 		module Root
 
@@ -58,10 +58,10 @@ module Relais
 			#        :message =>  "foo",
 			#      ).update!(opts)
 			#
-			# Options is currently a synonym for {Relais::Dev::Root::FixedStruct}
+			# Options is currently a synonym for {Epi::Dev::Root::FixedStruct}
 			# although this may change at some later point.
 			#
-			class Options < Relais::Dev::Root::FixedStruct
+			class Options < Epi::Dev::Root::FixedStruct
 			
 			end
 			

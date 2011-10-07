@@ -7,7 +7,7 @@ module TestRelais
 		module TestRoot
 			
 			require 'relais-dev/root/ohash'
-			Ohash = Relais::Dev::Root::Ohash
+			Ohash = Epi::Dev::Root::Ohash
 			
 			class TestOrderedHash < Test::Unit::TestCase
 				

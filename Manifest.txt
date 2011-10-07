@@ -3,9 +3,9 @@ Manifest.txt
 PostInstall.txt
 README.rdoc
 Rakefile
-lib/relais-dev.rb
+lib/epi-dev.rb
 script/console
 script/destroy
 script/generate
 test/test_helper.rb
-test/test_relais-dev.rb
+test/test_epi-dev.rb

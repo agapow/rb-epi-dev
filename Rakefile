@@ -11,7 +11,7 @@ Hoe.plugin :newgem
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.spec 'relais-dev' do
+$hoe = Hoe.spec 'epi-dev' do
   self.developer 'Paul-Michael Agapow', 'paul-michael.agapow@hpa.org.uk'
   self.post_install_message = 'PostInstall.txt' 
   self.rubyforge_name       = self.name 

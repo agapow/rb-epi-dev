@@ -1,3 +1,8 @@
+== 0.2.0 2011.10.06
+	
+* The long delayed great renaming: the library is called Relais but the module
+  is now called Epi
+
 == 0.1.0 2010.02.15
 	
 * First functional version of library

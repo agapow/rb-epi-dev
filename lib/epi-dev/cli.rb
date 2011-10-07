@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Cli}.
+# Source file for {Epi::Dev::Cli}.
 
 # Other possibilities for cli arg parsers include:
 # http://totalrecall.wordpress.com/2008/09/08/ruby-command-line-parsing/
@@ -12,7 +12,7 @@
 ### IMPLEMENTATION
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Utility functions and common objects for commandline programs.

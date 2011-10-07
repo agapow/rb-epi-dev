@@ -1,16 +1,16 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Tests for Relais::Dev::Common
+# Tests for Epi::Dev::Common
 
 # Description/list of tests to be done.
 
 ### IMPORTS
 
 require "relais-dev/common"
-include Relais::Dev::Common
+include Epi::Dev::Common
 require "relais-dev/errors"
-RBE = Relais::Dev::Errors
+RBE = Epi::Dev::Errors
 
 
 ### TESTCASES

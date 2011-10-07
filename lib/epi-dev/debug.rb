@@ -1,19 +1,19 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Debug}
+# Source file for {Epi::Dev::Debug}
 
 ### IMPORTS
 
 ### IMPLEMENTATION
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Assertions and design-by-contract idioms for the development cycle.
 		#
-		# This module provides all the functionality of {Relais::Dev::Contract}
+		# This module provides all the functionality of {Epi::Dev::Contract}
 		# - assertions and other runtime sanity checks - but with a twist.
 		# Depending on the setting of a module variable, these assertions may
 		# not actually be run. This allows assertions to be switched on during
@@ -28,7 +28,7 @@ module Relais
 		# not the check is run.
 		#
 		# @example
-		#   RDD = Relais::Dev::Debug
+		#   RDD = Epi::Dev::Debug
 		#   RDD.assert(false) # throw assertion, no message
 		#   RDD.announce_checks = true
 		#   RDD.assert(false) # throw assertion, print message
@@ -47,13 +47,13 @@ module Relais
 			def self.method_missing(mthd, *args)
 				if announce_checks
 					if apply_checks
-						print "runtime check Relais::Dev::#{mthd} ...\n"
+						print "runtime check Epi::Dev::#{mthd} ...\n"
 					else
-						print "suppressed check Relais::Dev::#{mthd} ...\n"
+						print "suppressed check Epi::Dev::#{mthd} ...\n"
 					end
 				end
 				if apply_checks
-					Relais::Dev::Contract.send(*args)
+					Epi::Dev::Contract.send(*args)
 				end
 				
 				return nil

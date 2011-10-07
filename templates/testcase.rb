@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Tests for Relais::Dev::Common
+# Tests for Epi::Dev::Common
 
 # Description/list of tests to be done.
 

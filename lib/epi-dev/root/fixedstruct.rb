@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Root::FixedStruct}.
+# Source file for {Epi::Dev::Root::FixedStruct}.
 
 ### IMPORTS
 
@@ -10,7 +10,7 @@ require 'ostruct'
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		module Root
 

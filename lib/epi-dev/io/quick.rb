@@ -20,11 +20,11 @@ require 'relais-dev/common'
 
 ### IMPLEMENTATION
 
-module Relais
+module Epi
 	module Dev
 		module Io
 
-			RBC = Relais::Dev::Common
+			RBC = Epi::Dev::Common
 
 			# Read the contents of the passed object, opening and closing if required.
 			#

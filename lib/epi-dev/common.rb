@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Common}.
+# Source file for {Epi::Dev::Common}.
 
 ### IMPORTS
 
@@ -15,7 +15,7 @@ require 'relais-dev/root/enum'
 ### IMPLEMENTATION
 
 # local code
-module Relais
+module Epi
 	module Dev
 		
 		# Support for ubiquitous development tricks and idioms.
@@ -31,9 +31,9 @@ module Relais
 		module Common
 
 			# note we don't include Debug, because that must be in own namespace
-			include Relais::Dev::Contract
-			include Relais::Dev::Root
-			include Relais::Dev::Typecheck
+			include Epi::Dev::Contract
+			include Epi::Dev::Root
+			include Epi::Dev::Typecheck
 
 		end
 

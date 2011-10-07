@@ -1,15 +1,15 @@
 #! /usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
-# Source file for {Relais::Dev::Text} .
+# Source file for {Epi::Dev::Text} .
 #
-# Import this file to load {Relais::Dev::Text}.
+# Import this file to load {Epi::Dev::Text}.
 
 ### IMPORTS
 
 require 'relais-dev/common'
 
-RBC = Relais::Dev::Common
+RBC = Epi::Dev::Common
 
 
 ### IMPLEMENTATION
@@ -17,7 +17,7 @@ RBC = Relais::Dev::Common
 # submodules that we provide
 
 
-module Relais
+module Epi
 	module Dev
 		
 		class String
